@@ -2,7 +2,7 @@
 
   <div class="container-fluid body">
     <div class="col-12 row d-flex justify-content-center">
-      <img src="/img/logo_teste.png" alt="logo" class="logo" />
+      <img src="/img/logo.jpg" alt="" class="logo">
     </div>
     <hr />
     <form class="g-3" action="#" method="post" @submit.prevent>

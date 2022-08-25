@@ -5,7 +5,7 @@
             <div class="col-lg-3 col-md-2"></div>
             <div class="col-lg-6 col-md-8 login-box">
                 <div class="col-lg-12 login-key row justify-content-center mb-5 mt-3">
-                  <img src="/img/logo_teste.png" alt="" class="logo mt-3">
+                    <img src="/img/logo.jpg" alt="" class="logo">
                 </div>
                 <div class="col-lg-12 login-title">
                     <h2>PAINEL ADMIN</h2>

@@ -98,7 +98,6 @@ export default {
             ],
             text_valor: 'Valor Total Geral',
             text_pedido: 'Total pedido',
-            email_admin: ''
         };
     },
     methods: {

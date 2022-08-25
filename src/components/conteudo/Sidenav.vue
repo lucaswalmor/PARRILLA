@@ -13,12 +13,12 @@
     <div class="sidenav">
         <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
             <div class="offcanvas-header">
-                <img src="/img/logo_teste.png" alt="" class="logo">
+                <img src="/img/logo.jpg" alt="" class="logo">
                 <button type="button" class="btn-close text-reset text-light" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
                 <div class="row text-center text-light">
-                    <h2>Nome cliente</h2>
+                    <p><strong>{{email_admin}}</strong></p>
                 </div>
                 <ul class="mt-5 nav flex-column" id="menu">
                     <li class="nav-item">
@@ -140,6 +140,11 @@
 <script>
 export default {
     name: 'Sidenav',
+    data() {
+        return {
+            email_admin: ''
+        }
+    },
     methods: {
         dashboardView() {
             var token = this.$route.params.token;
@@ -205,12 +210,18 @@ export default {
                 document.getElementById('data-hora').innerHTML = dataHora;
             }, 1000);
         },
+
         logout() {
             this.$router.push("/admin")
         },
+
+        usuarioOnline() {
+            this.email_admin = window.localStorage.getItem('email');
+        }
     },
     mounted() {
         this.horas();
+        this.usuarioOnline();
     }
 }
 </script>
