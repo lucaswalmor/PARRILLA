@@ -223,7 +223,6 @@ export default {
                 const dados_data = await req.json();
                 if (req.status === 200) {
                     this.somaPedidoDiaAtual = dados_data;
-                    this.text_valor = 'Valor Total Dia';
                     this.text_pedido = 'Total pedido dia';
                 } else {
                     this.somaPedidoDiaAtual = 'Sem resultado';
