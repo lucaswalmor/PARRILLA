@@ -14,7 +14,9 @@
         <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
             <div class="offcanvas-header">
                 <img src="/img/logo.jpg" alt="" class="logo">
-                <button type="button" class="btn-close text-reset text-light" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                <button type="button" class="btn-close text-light" data-bs-dismiss="offcanvas" aria-label="Close">
+                    <i class="fa-lg fa-solid fa-xmark"></i>
+                </button>
             </div>
             <div class="offcanvas-body">
                 <div class="row text-center text-light">
@@ -227,6 +229,13 @@ export default {
 </script>
 
 <style scoped>
+.btn-close {
+    background: transparent !important;
+}
+
+.btn-close i {
+    color: #f9a529;
+}
 
 span {
     cursor: pointer;
