@@ -2,7 +2,7 @@
     <Sidenav />
     <div class="container">
         <div class="row">
-            <div class="titulo col-md-12 p-5 d-flex">
+            <div class="titulo col-md-12 p-5">
                 <div class="col-md-6">
                     <h1 class="text-secondary">Editar Usuário</h1>
                 </div>

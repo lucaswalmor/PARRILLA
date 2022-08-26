@@ -1,6 +1,6 @@
 <template>
 
-  <div >
+  <div>
     <!-- <nav>
       <router-link to="/">Home</router-link> |
       <router-link to="/admin">Admin</router-link>
@@ -8,6 +8,12 @@
     <router-view/>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'App',
+}
+</script>
 
 <style>
 * {
@@ -17,6 +23,6 @@
 }
 
 body {
-  overflow-y: scroll;
+  overflow-y: scroll !important;
 }
 </style>

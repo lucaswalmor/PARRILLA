@@ -2,7 +2,7 @@
 
   <div class="container-fluid body">
     <div class="col-12 row d-flex justify-content-center">
-      <img src="/img/logo.jpg" alt="" class="logo">
+      <img src="/img/logo.jpg" alt="logo" class="logo" />
     </div>
     <hr />
     <form class="g-3" action="#" method="post" @submit.prevent>
@@ -237,100 +237,6 @@
               ></textarea>
             </div>
           </div>
-
-          <!-- IMAGENS LANCHES -->
-          <!-- <div class="col-md-4 d-flex justify-content-center">
-            <img
-              src="/img/sem_imagem.png"
-              alt=""
-              class="img-lanche berry"
-              v-if="tipoLanche == 'PARRILLA BERRY'"
-            />
-            <img
-              src="/img/sem_imagem.png"
-              alt=""
-              class="img-lanche berry_combo"
-              v-if="tipoLanche == 'PARRILLA BERRY COMBO'"
-            />
-            <img
-              src="/img/sem_imagem.png"
-              alt=""
-              class="img-lanche parrilla_grilled_herbs"
-              v-if="tipoLanche == 'PARRILLA CANDY'"
-            />
-            <img
-              src="/img/sem_imagem.png"
-              alt=""
-              class="img-lanche parrilla_grilled_herbs_combo"
-              v-if="tipoLanche == 'PARRILLA GRILLED HERBS'"
-            />
-            <img
-              src="/img/sem_imagem.png"
-              alt=""
-              class="img-lanche burguer"
-              v-if="tipoLanche == 'PARRILLA GRILLED HERBS COMBO'"
-            />
-            <img
-              src="/img/sem_imagem.png"
-              alt=""
-              class="img-lanche burguer_combo"
-              v-if="tipoLanche == 'PARRILLA BURGER'"
-            />
-            <img
-              src="/img/sem_imagem.png"
-              alt=""
-              class="img-lanche catupiry_angus"
-              v-if="tipoLanche == 'PARRILLA BURGER COMBO'"
-            />
-            <img
-              src="/img/sem_imagem.png"
-              alt=""
-              class="img-lanche catupiry_angus_combo"
-              v-if="tipoLanche == 'PARRILLA CATUPIRY ANGUS'"
-            />
-            <img
-              src="/img/sem_imagem.png"
-              alt=""
-              class="img-lanche classic"
-              v-if="tipoLanche == 'PARRILLA CATUPIRY ANGUS COMBO'"
-            />
-            <img
-              src="/img/sem_imagem.png"
-              alt=""
-              class="img-lanche classic_combo"
-              v-if="tipoLanche == 'PARRILLA CLASSIC'"
-            />
-            <img
-              src="/img/sem_imagem.png"
-              alt=""
-              class="img-lanche special"
-              v-if="tipoLanche == 'PARRILLA CLASSIC COMBO'"
-            />
-            <img
-              src="/img/sem_imagem.png"
-              alt=""
-              class="img-lanche special_combo"
-              v-if="tipoLanche == 'PARRILLA SPECIAL DUPLO'"
-            />
-            <img
-              src="/img/sem_imagem.png"
-              alt=""
-              class="img-lanche chicken"
-              v-if="tipoLanche == 'PARRILLA SPECIAL DUPLO COMBO'"
-            />
-            <img
-              src="/img/sem_imagem.png"
-              alt=""
-              class="img-lanche chicken_combo"
-              v-if="tipoLanche == 'PARRILLA CHICKEN'"
-            />
-            <img
-              src="/img/sem_imagem.png"
-              alt=""
-              class="img-lanche candy"
-              v-if="tipoLanche == 'PARRILLA CHICKEN COMBO'"
-            />
-          </div> -->
 
           <!-- INGREDIENTES LANCHES -->
           <div class="col-md-4 mt-4">
@@ -606,7 +512,7 @@
             </div>
           </div>
 
-          <div class="col-12 mt-3 d-flex justify-content-center" id="botao_etapa_2">
+          <div class="col-12 mt-3 text-center" id="botao_etapa_2">
             <button type="submit" @click="etapa_2" class="btn etapa_2">
               Próxima Etapa
             </button>
@@ -634,11 +540,7 @@
               />
             </div>
           </div>
-          <!-- <div class="col-md-4 text-center">
-            <img src="/img/sem_imagem.png" alt="" class="mt-3" style="width: 250px;" v-if="src === ''">
-            <img :src="src" alt="" class="img-lanche" />
-          </div> -->
-          <div class="col-12 mt-3 d-flex justify-content-center" id="botao">
+          <div class="col-12 mt-3 text-center" id="botao">
             <button type="submit" @click="etapa_3($event)" class="btn etapa_3">
               Confirmar Pedido
             </button>
@@ -693,7 +595,7 @@
             />
           </div>
 
-          <div class="col-12 mt-3 d-flex justify-content-center" id="botao">
+          <div class="col-12 mt-3 text-center" id="botao">
             <button type="submit" @click="etapa_4" class="btn confirmar_pedido">
               Confirmar Pedido
             </button>
@@ -701,13 +603,16 @@
         </div>
       </div>
 
-      <div class="row mt-3" v-show="divFinPedido">
+      <div class="row mt-3" id="pedido_montado" v-show="divFinPedido">
         <div class="row col-12 text-center">
           <h4>Agradecemos pela preferência, agora só resta enviar o pedido &#x1F60A;</h4>
         </div> 
         <div class="row col-12 text-center">
           <div>
             <strong>Nome:</strong> {{ dadosPedido.nome }}
+          </div>
+          <div>
+            <strong>CPF:</strong> {{ dadosPedido.cpf }}
           </div>
           <div>
             <strong>Rua:</strong> {{ dadosPedido.rua }}
@@ -731,7 +636,7 @@
             <strong>Observações:</strong> {{ dadosPedido.observacoes }}
           </div>
           <div v-if="dadosPedido.bebida != ''">
-            <strong>Observações:</strong> {{ dadosPedido.bebida }}
+            <strong>Bebida:</strong> {{ dadosPedido.bebida }}
           </div>
           <div>
             <strong>Valor Total: R$</strong> {{ dadosPedido.valor_total }}
@@ -884,8 +789,10 @@ export default {
     etapa_4() {
       // se tiver troco, ap e bloco no pedido, entrara neste bloco 
       if (this.dadosPedido.troco != '' && this.dadosPedido.apartamento != '' && this.dadosPedido.bloco != '') {
-        this.pedido_wpp = '*Agradecemos pela preferência, seu pedido está sendo preparado!*%0A*Nome:* ' + this.dadosPedido.nome +
+        this.pedido_wpp = '*Agradecemos pela preferência, seu pedido está sendo preparado!*' +
+          '%0A' +
           '%0A*--------------------------------------------------------------------------------* ' +
+          '%0A*Nome:* ' + this.dadosPedido.nome +
           '%0A' +
           '%0A*Rua:* ' + this.dadosPedido.rua + ' Nº ' + this.dadosPedido.numero +
           '%0A' +
@@ -912,8 +819,10 @@ export default {
       } else if (this.dadosPedido.troco === '' && this.dadosPedido.apartamento != '' && this.dadosPedido.bloco != '') {
         // se tiver ap e bloco no pedido, entrara neste bloco
         // variavel pedido monta o pedido que será enviado no html 
-        this.pedido_wpp = '*Agradecemos pela preferência, seu pedido está sendo preparado!*%0A*Nome:* ' + this.dadosPedido.nome +
+        this.pedido_wpp = '*Agradecemos pela preferência, seu pedido está sendo preparado!*' +
+          '%0A' +
           '%0A*--------------------------------------------------------------------------------* ' +
+          '%0A*Nome:* ' + this.dadosPedido.nome +
           '%0A' +
           '%0A*Rua:* ' + this.dadosPedido.rua + ' Nº ' + this.dadosPedido.numero +
           '%0A' +
@@ -934,8 +843,10 @@ export default {
         // se tiver ap e troco no pedido, entrara neste bloco 
 
         // variavel pedido monta o pedido que será enviado no html 
-        this.pedido_wpp = '*Agradecemos pela preferência, seu pedido está sendo preparado!*%0A*Nome:* ' + this.dadosPedido.nome +
+        this.pedido_wpp = '*Agradecemos pela preferência, seu pedido está sendo preparado!*' +
+            '%0A' +
             '%0A*--------------------------------------------------------------------------------* ' +
+            '%0A*Nome:* ' + this.dadosPedido.nome +
             '%0A' +
             '%0A*Rua:* ' + this.dadosPedido.rua + ' Nº ' + this.dadosPedido.numero +'%0A' +
             '%0A*Bairro:* ' + this.dadosPedido.bairro +'%0A' +
@@ -951,8 +862,10 @@ export default {
       } else {
         // se não tiver troco, ap e bloco no pedido, entrara neste bloco 
         // variavel pedido monta o pedido que será enviado no html 
-        this.pedido_wpp = '*Agradecemos pela preferência, seu pedido está sendo preparado!*%0A*Nome:* ' + this.dadosPedido.nome +
+        this.pedido_wpp = '*Agradecemos pela preferência, seu pedido está sendo preparado!*%0A*Nome:*' +
+            '%0A' +
             '%0A*--------------------------------------------------------------------------------* ' +
+            '%0A*Nome:* ' + this.dadosPedido.nome +
             '%0A' +
             '%0A*Rua:* ' + this.dadosPedido.rua + ' Nº ' + this.dadosPedido.numero +'%0A' +
             '%0A*Bairro:* ' + this.dadosPedido.bairro +'%0A' +
@@ -1124,11 +1037,11 @@ export default {
   }
 }
 </script>
+
 <style scoped>
 
 .body {
   width: 100%;
-  height: 100vh;
   margin: 0;
   background-color: #212529 !important;
   color: #f9a529;
@@ -1215,15 +1128,29 @@ hr {
   display: block;
 }
 
-@media screen and (max-width: 425px) {
-  .body {
-    height: 100%;
-  }
+.container-fluid.body {
+  height: 100vh;
 }
 
-@media screen and (max-width: 320px) {
-  .body {
-    height: 100%;
+@media screen and (max-width: 425px) {
+  #pedido_lanche {
+    height: 550px;
+  }
+
+  #pedido_bebida {
+    height: 480px;
+  }
+
+  .container-fluid.body {
+    height: auto;
+  }
+
+  #pagamento {
+    min-height: 480px;
+  }
+
+  #pedido_montado {
+    min-height: 440px;
   }
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <div class="message-container alert-danger">
+    <div class="message-container alert-success">
         <span>{{ msg }}</span>
     </div>  
 </template>

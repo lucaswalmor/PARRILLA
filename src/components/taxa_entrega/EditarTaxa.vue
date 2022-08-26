@@ -1,5 +1,5 @@
 <template>
-    <Header />
+    <Sidenav />
     <div class="container">
         <div class="row p-5">
             <h2>Editar Taxa de Entrega</h2>
@@ -26,9 +26,10 @@
 
 <script>
 import Header from '../conteudo/Header.vue';
+import Sidenav from '../conteudo/Sidenav.vue';
 export default {
     name: "EditarLanche",
-    components: { Header },
+    components: { Header, Sidenav },
     data() {
         return {
             bairro: null,

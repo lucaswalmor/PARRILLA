@@ -27,7 +27,7 @@
                                 <i class="fa-lg fa-solid fa-gauge"></i> 
                             </div>
                             <div class="col-md-6">
-                                <span>
+                                <span class="offcanvas-span-titulo">
                                     Dashboard
                                 </span>
                             </div>
@@ -39,7 +39,7 @@
                                 <i class="fa-lg fa-solid fa-user-plus"></i>
                             </div>
                             <div class="col-md-6">
-                                <span>
+                                <span class="offcanvas-span-titulo">
                                     Usuario
                                 </span>
                             </div>
@@ -59,7 +59,7 @@
                                 <i class="fa-lg fa-solid fa-burger"></i> 
                             </div>
                             <div class="col-md-6">
-                                <span>
+                                <span class="offcanvas-span-titulo">
                                     Lanches
                                 </span>
                             </div>
@@ -79,7 +79,7 @@
                                 <i class="fa-lg fa-solid fa-martini-glass"></i>
                             </div>
                             <div class="col-md-6">
-                                <span>
+                                <span class="offcanvas-span-titulo">
                                     Bebidas
                                 </span>
                             </div>
@@ -99,7 +99,7 @@
                                 <i class="fa-lg fa-solid fa-file-lines"></i>
                             </div>
                             <div class="col-md-6">
-                                <span>
+                                <span class="offcanvas-span-titulo">
                                     Pedidos
                                 </span>
                             </div>
@@ -111,7 +111,7 @@
                                 <i class="fa-lg fa-solid fa-dollar-sign"></i>
                             </div>
                             <div >
-                                <span>
+                                <span class="offcanvas-span-titulo">
                                     Taxa Entrega 
                                 </span>
                             </div>
@@ -227,6 +227,7 @@ export default {
 </script>
 
 <style scoped>
+
 span {
     cursor: pointer;
 }
@@ -343,15 +344,6 @@ span div i {
     bottom:0;
 }
 
-.no-touch .scrollable.hover {
-    overflow-y:hidden;
-}
-
-.no-touch .scrollable.hover:hover {
-    overflow-y:auto;
-    overflow:visible;
-}
-
 a:hover,a:focus {
     text-decoration:none;
 }
@@ -417,6 +409,10 @@ nav ul,nav li {
 @media screen and (max-width: 425px) {
     .card-valor-total {
         margin: 35px;
+    }
+    
+    .offcanvas-span-titulo {
+        padding-left: 20px;
     }
 
     .cards {

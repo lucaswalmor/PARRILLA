@@ -57,6 +57,7 @@
 </template>
 
 <script>
+
 import Sidenav from "./Sidenav.vue";
 
 export default {
@@ -294,6 +295,8 @@ export default {
 </script>
 
 <style scoped>
+
+
 .botao-acao-tabela button {
     margin-left: 10px !important;
 }
@@ -407,15 +410,6 @@ export default {
     bottom:0;
 }
 
-.no-touch .scrollable.hover {
-    overflow-y:hidden;
-}
-
-.no-touch .scrollable.hover:hover {
-    overflow-y:auto;
-    overflow:visible;
-}
-
 a:hover,a:focus {
     text-decoration:none;
 }
@@ -432,11 +426,6 @@ nav ul,nav li {
     outline:0;
     margin:0;
     padding:0;
-}
-
-.main-menu li:hover>a,nav.main-menu li.active>a,.dropdown-menu>li>a:hover,.dropdown-menu>li>a:focus,.dropdown-menu>.active>a,.dropdown-menu>.active>a:hover,.dropdown-menu>.active>a:focus,.no-touch .dashboard-page nav.dashboard-menu ul li:hover a,.dashboard-page nav.dashboard-menu ul li.active a {
-    color:#fff;
-    background-color:#5fa2db;
 }
 
 .area {
