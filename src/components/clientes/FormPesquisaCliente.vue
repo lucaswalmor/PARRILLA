@@ -41,7 +41,7 @@ export default {
     methods: {
         async pesquisar() {
             let data = {
-                cpf: this.cpf,
+                cpf_cliente: this.cpf,
                 filtro_valores: null,
                 filtro_total_pedidos: null,
                 compra_cliente_dia: null
