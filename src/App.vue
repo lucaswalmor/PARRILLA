@@ -23,7 +23,6 @@ export default {
 }
 
 body {
-  padding: 0 !important;
   overflow-y: scroll !important;
 }
 </style>

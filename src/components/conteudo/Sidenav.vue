@@ -14,9 +14,7 @@
         <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
             <div class="offcanvas-header">
                 <img src="/img/logo.jpg" alt="" class="logo">
-                <button type="button" class="btn-close text-light" data-bs-dismiss="offcanvas" aria-label="Close">
-                    <i class="fa-lg fa-solid fa-xmark"></i>
-                </button>
+                <button type="button" class="btn-close text-reset text-light" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
                 <div class="row text-center text-light">
@@ -103,6 +101,18 @@
                             <div class="col-md-6">
                                 <span class="offcanvas-span-titulo">
                                     Pedidos
+                                </span>
+                            </div>
+                        </span>
+                    </li>
+                    <li class="nav-item">
+                        <span class="col-md-12 d-flex nav-link px-0" @click="clientes">
+                            <div class="col-md-2">
+                                <i class="fa-lg fa-solid fa-users"></i>
+                            </div>
+                            <div class="col-md-6">
+                                <span class="offcanvas-span-titulo">
+                                    Clientes
                                 </span>
                             </div>
                         </span>
@@ -195,6 +205,11 @@ export default {
             this.$router.push({ path: `/listar-taxa/${token}`, params: {token: token}} );  
         },
 
+        clientes() {
+            var token = this.$route.params.token;
+            this.$router.push({ path: `/clientes/${token}`, params: {token: token}} );  
+        },
+
         // OUTROS
         horas() {
             const zeroFill = n => {
@@ -229,13 +244,6 @@ export default {
 </script>
 
 <style scoped>
-.btn-close {
-    background: transparent !important;
-}
-
-.btn-close i {
-    color: #f9a529;
-}
 
 span {
     cursor: pointer;

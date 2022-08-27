@@ -87,7 +87,14 @@ const routes = [
     path: '/ver-pedido/:token/:id',
     name: 'VerPedido',
     component: () => import('../components/pedidos/VerPedido.vue')
-  }
+  },
+  // ROTAS DE CLIENTES
+  {
+    path: '/clientes/:token',
+    name: 'Clientes',
+    component: () => import('../components/clientes/Clientes.vue')
+  },
+
 ]
 
 const router = createRouter({
