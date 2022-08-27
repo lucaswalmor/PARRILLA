@@ -4,7 +4,7 @@
         <div class="row col-md-12">
             <FormPesquisaCliente />
         </div>
-        <div class="row mt-5 col-12" v-if="gasto_total != ''">
+        <div class="row mt-5 col-12">
             <div class="col-7">
                 <h4>{{gasto_total}}</h4>
             </div>
@@ -75,8 +75,7 @@ export default {
 
             // transforma o array de dados do pedido em texto 
             const dataJson = JSON.stringify(data);
-            // const req = await fetch("http://127.0.0.1:8000/api/filtros", {
-                const req = await fetch("https://pedidoparrilha.herokuapp.com/api/filtros", {
+            const req = await fetch("http://127.0.0.1:8000/api/filtros", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: dataJson
