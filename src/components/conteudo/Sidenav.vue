@@ -207,6 +207,7 @@ export default {
 
         clientes() {
             var token = this.$route.params.token;
+            localStorage.removeItem('dados')
             this.$router.push({ path: `/clientes/${token}`, params: {token: token}} );  
         },
 
