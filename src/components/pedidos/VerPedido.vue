@@ -8,6 +8,7 @@
     </div>
     <div class="row col-12 text-center">
       <div><strong>Nome:</strong> {{ dadosPedido.nome_cliente }}</div>
+      <div><strong>CPF:</strong> {{ dadosPedido.cpf }}</div>
       <div><strong>Rua:</strong> {{ dadosPedido.rua }}</div>
       <div><strong>Bairro:</strong> {{ dadosPedido.bairro }}</div>
       <div v-if="dadosPedido.apartamento != null">

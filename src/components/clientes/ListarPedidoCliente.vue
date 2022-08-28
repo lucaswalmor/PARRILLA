@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="card mt-3">
     <div class="card-header bg-dark text-white text-center">
         Dados do Pedido
     </div>
@@ -9,7 +9,7 @@
             <li>Telefone: {{telefone}}</li>
             <li>Lanche: {{lanche}}</li>
             <li>Valor: R$ {{valor_total}}</li>
-            <li>Forma de pagamento: {{forma_pagamento}}</li>
+            <li>Pagamento: {{forma_pagamento}}</li>
             <li>Rua: {{rua}}</li>
             <li>Bairro: {{bairro}}</li>
             <li v-if="apartamento != null">Apartamento: {{apartamento}}</li>

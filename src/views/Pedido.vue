@@ -778,10 +778,6 @@ export default {
         var preco_lanche = parseFloat(this.dadosPedido.preco_lanche.replace('R$ ', ''));
         var taxa_entrega = parseFloat(this.dadosPedido.taxa_entrega.replace('R$ ', ''));
         var soma = preco_bebida + preco_lanche + taxa_entrega;
-        console.log('bebida = ' + preco_bebida)
-        console.log('lanche = ' + preco_lanche)
-        console.log('entrega = ' + taxa_entrega)
-        console.log('soma = ' + soma)
         this.dadosPedido.valor_total = soma;
         this.divBebida = !this.divBebida;
         this.divPagamento = !this.divPagamento;
@@ -920,8 +916,8 @@ export default {
         // transforma o array de dados do pedido em texto 
         const dataJson = JSON.stringify(data);
 
-        // const req = await fetch("http://127.0.0.1:8000/api/pedidos", {
-        const req = await fetch("https://pedidoparrilha.herokuapp.com/api/pedidos", {
+        const req = await fetch("http://127.0.0.1:8000/api/pedidos", {
+        // const req = await fetch("https://pedidoparrilha.herokuapp.com/api/pedidos", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: dataJson

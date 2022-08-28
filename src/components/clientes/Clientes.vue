@@ -9,7 +9,7 @@
                 <h4>{{gasto_total}}</h4>
             </div>
             <div class="col-5">
-                <select name="modo" id="modo" class="form-select" v-model="modo" @change="pesquisar($event)">
+                <select name="modo" id="modo" class="form-select" v-model="modo" @change="pesquisarCPF($event)">
                     <option value="" disabled>Selecione...</option>
                     <option value="mes">Mês atual</option>
                     <option value="ano">Ano atual</option>
@@ -44,17 +44,22 @@ export default {
         }
     },
     methods: {
-        pesquisarCPF() {
+        somaGastoTotal() {
             this.dados = JSON.parse(localStorage.getItem('dados'));
 
-            const total = this.dados.reduce((total, item) => {
-                return item.valor_total + total;
-            }, 0)
+            let quant = this.dados;
+            let arr_valores = []
+            let soma = 0
 
-            this.gasto_total = `Este cliente já gastou R$ ${total} em seu restaurante!`;
+            for (var i = 0; i < quant.length; i++){
+                arr_valores[i] = parseInt(quant[i].valor_total);      
+                soma += parseInt(arr_valores[i]);
+            }  
+
+            this.gasto_total = `Este cliente já gastou R$ ${soma} em seu restaurante!`;
         },
-        async pesquisar(event) {
-            const option = event.target.value;
+        async pesquisarCPF(event) {
+            let option = event.target.value;
             const data_atual = new Date();
             let mes = (data_atual.getMonth()) + 1;
             let ano = data_atual.getFullYear();
@@ -66,7 +71,7 @@ export default {
             }
 
             let data = {
-                cpf: this.dados[0].cpf,
+                cpf_cliente: this.dados[0].cpf,
                 filtro_valores: null,
                 filtro_total_pedidos: null,
                 compra_cliente_dia: this.modo,
@@ -75,26 +80,37 @@ export default {
 
             // transforma o array de dados do pedido em texto 
             const dataJson = JSON.stringify(data);
+
             // const req = await fetch("http://127.0.0.1:8000/api/filtros", {
-                const req = await fetch("https://pedidoparrilha.herokuapp.com/api/filtros", {
+            const req = await fetch("https://pedidoparrilha.herokuapp.com/api/filtros", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: dataJson
             });
 
             const dados = await req.json();
+            
+            let quant = dados;
+            let arr_valores = []
+            let soma = 0
+
+            for (var i = 0; i < quant.length; i++){
+                arr_valores[i] = parseInt(quant[i].valor_total);      
+                soma += parseInt(arr_valores[i]);
+            }  
+
             if(option == 'mes') {
-                this.gasto_total = `Este cliente já gastou neste mês R$ ${dados} em seu restaurante!`;
+                this.gasto_total = `Este cliente já gastou neste mês R$ ${soma} em seu restaurante!`;
             } else if(option == 'ano') {
-                this.gasto_total = `Este cliente já gastou este ano R$ ${dados} em seu restaurante!`;
+                this.gasto_total = `Este cliente já gastou este ano R$ ${soma} em seu restaurante!`;
             } else {
-                this.gasto_total = `Este cliente já gastou R$ ${total} em seu restaurante!`;
+                this.gasto_total = `Este cliente já gastou R$ ${soma} em seu restaurante!`;
             }
         }
     },
     mounted() {
+        this.somaGastoTotal();
         this.pesquisarCPF();
-        this.pesquisar();
     } 
 }
 </script>
