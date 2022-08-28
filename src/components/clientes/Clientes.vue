@@ -5,10 +5,10 @@
             <FormPesquisaCliente />
         </div>
         <div class="row mt-5 col-12" v-if="gasto_total != ''">
-            <div class="col-7">
+            <div class="col-md-7">
                 <h4>{{gasto_total}}</h4>
             </div>
-            <div class="col-5">
+            <div class="col-md-5">
                 <select name="modo" id="modo" class="form-select" v-model="modo" @change="pesquisarCPF($event)">
                     <option value="" disabled>Selecione...</option>
                     <option value="mes">Mês atual</option>
@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="row mt-2 mb-5">
-            <div class="col-6" v-for="(dado, index) in dados" :key="index">
+            <div class="col-md-6" v-for="(dado, index) in dados" :key="index">
                 <ListarPedidoCliente v-bind="dado" />
             </div>
         </div>
