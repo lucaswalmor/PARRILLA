@@ -50,7 +50,7 @@ $(document).ready(function(){
     });
   });
 });
-import Header from '../conteudo/Header.vue';
+
 import Sidenav from '../conteudo/Sidenav.vue';
 export default {
     name: "Pedidos",
@@ -100,7 +100,7 @@ export default {
     mounted() {
         this.listarPedidos();
     },
-    components: { Header, Sidenav }
+    components: { Sidenav }
 }
 </script>
 

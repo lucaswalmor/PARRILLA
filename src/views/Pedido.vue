@@ -916,8 +916,8 @@ export default {
         // transforma o array de dados do pedido em texto 
         const dataJson = JSON.stringify(data);
 
-        const req = await fetch("http://127.0.0.1:8000/api/pedidos", {
-        // const req = await fetch("https://pedidoparrilha.herokuapp.com/api/pedidos", {
+        // const req = await fetch("http://127.0.0.1:8000/api/pedidos", {
+        const req = await fetch("https://pedidoparrilha.herokuapp.com/api/pedidos", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: dataJson

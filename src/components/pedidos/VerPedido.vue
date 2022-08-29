@@ -43,8 +43,8 @@
 </template>
 
 <script>
-import Header from '../conteudo/Header.vue';
 import Sidenav from '../conteudo/Sidenav.vue';
+
 export default {
     name: "VerPedido",
     data() {

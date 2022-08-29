@@ -51,6 +51,11 @@
                         </div>
                     </div>
                 </div>
+                <div class="row mt-5">
+                    <div class="col h-50">
+                        <Grafico :dadosBackend="pedidos"/>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -59,11 +64,13 @@
 <script>
 
 import Sidenav from "./Sidenav.vue";
+import Grafico from "../graficos/Grafico.vue";
 
-export default {
+export default {    
     name: "Dashboard",
     components: {
-        Sidenav
+        Sidenav,
+        Grafico
     },
     data() {
         return {
@@ -114,13 +121,11 @@ export default {
             var dia_atual = new Date().getDate();
             this.dia = dia_atual;
             
-            var mes_atual = new Date().getMonth();
-
+            var mes_atual = new Date().getMonth() + 1;
             if(mes_atual < 10){
-                var mes_atual = (mes_atual) + 1
                 this.mes = '0' + mes_atual;
             } else {
-                this.mes = (mes_atual) + 1;
+                this.mes = mes_atual;
             }
 
             var ano_atual = new Date().getFullYear();
@@ -435,7 +440,7 @@ nav ul,nav li {
 
 .cards {
     box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.46);
-    padding: 30px;
+    padding: 15px;
     background-color: #fff;
 }
 

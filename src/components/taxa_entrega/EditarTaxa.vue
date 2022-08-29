@@ -25,11 +25,10 @@
 </template>
 
 <script>
-import Header from '../conteudo/Header.vue';
 import Sidenav from '../conteudo/Sidenav.vue';
 export default {
     name: "EditarLanche",
-    components: { Header, Sidenav },
+    components: { Sidenav },
     data() {
         return {
             bairro: null,

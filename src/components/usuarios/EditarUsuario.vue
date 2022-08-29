@@ -31,12 +31,11 @@
 </template>
 
 <script>
-import Header from '../conteudo/Header.vue';
 import Sidenav from '../conteudo/Sidenav.vue';
 import Message from '../message/Message.vue';
 export default {
     name: "EditarUsuario",
-    components: { Header, Sidenav, Message },
+    components: { Sidenav, Message },
     data() {
         return {
             name: null,

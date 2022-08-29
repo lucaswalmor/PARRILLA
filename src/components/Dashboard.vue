@@ -1,13 +1,12 @@
 <template>
-  <Header />
-
+  <Conteudo />
 </template>
 
 <script>
-import Header from './conteudo/Conteudo.vue';
+import Conteudo from './conteudo/Conteudo.vue';
 
 export default {
-    components: {Header}
+    components: {Conteudo}
 }
 </script>
 
