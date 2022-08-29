@@ -12,6 +12,13 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-12 p-3 text-end">
+                <button class="btn btn-dark text-warning" @click="cadastrarLanche">
+                    Cadastrar Lanche
+                </button>
+            </div>
+        </div>
         <table class="table text-center table-striped">
             <thead class="table-dark">
                 <tr>
@@ -77,15 +84,21 @@ export default {
 
                 // msg de pedido deletado
                 this.msg = `Lanche Nº ${id} deletado com sucesso`;
+
                 setTimeout(() => {
                     this.msg = "";
-                }, 3000);
+                    location.reload();
+                }, 1500);
             }
         },
 
         editarLanche(id) {
             var token = this.$route.params.token;
             this.$router.push({ path: `/editar-lanche/${token}/${id}`, params: {id: id, token: token}} );
+        },
+        cadastrarLanche() {
+            var token = this.$route.params.token;
+            this.$router.push({ path: `/cadastrar-lanche/${token}`, params: {token: token } });
         }
     },
     mounted() {

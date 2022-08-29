@@ -7,7 +7,7 @@
             </div>
         </div>
         <Message :msg="msg" v-show="msg"/>
-        <form class="row g-3" autocomplete="off" @submit.prevent>
+        <form class="row " autocomplete="off" @submit.prevent>
             <div class="col-md-6">
                 <label for="nome" class="form-label">Nome:</label>
                 <input type="text" class="form-control" id="nome" v-model="nome">
@@ -16,8 +16,11 @@
                 <label for="preco" class="form-label">Preco:</label>
                 <input type="text" class="form-control" placeholder="00.00" id="preco" min="0" v-model="preco">
             </div>
-            <div class="col-md-12">
-                <input type="submit" class="form-control btn btn-secondary" @click="createBebida">
+            <div class="col-md-6 pt-3">
+                <input type="submit" class="form-control btn btn-success" value="Cadastrar" @click="createBebida">
+            </div>
+            <div class="col-md-6 pt-3">
+                <input type="submit" class="form-control btn btn-secondary" @click="voltar" value="Voltar">
             </div>
         </form>
         <p class="mt-3"><small>* Favor seguir o modelo de preço na hora do cadastro "00.00", sempre colocar os valores decimais</small></p>
@@ -41,7 +44,7 @@ export default {
             // cria um array com os dados do pedido 
             const data = {
                 nome: this.nome,
-                preco: "R$ " + this.preco,
+                preco: this.preco,
             };
             if (data.nome === null || data.preco === null) {
                 alert("Porfavor preencha todos os campos");
@@ -64,6 +67,10 @@ export default {
                     }, 2000);
                 }
             }
+        },
+        voltar() {
+            var token = this.$route.params.token;
+            this.$router.push({ path: `/dashboard/${token}`, params: {token: token } });
         }
     },
     components: { Sidenav, Message }

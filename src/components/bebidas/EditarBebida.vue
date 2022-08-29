@@ -4,6 +4,7 @@
         <div class="row p-5">
             <h2>Editar Bebida</h2>
         </div>
+        <Message :msg="msg" v-show="msg"/>
         <form class="row g-3" autocomplete="off" @submit.prevent>
             <div class="col-md-6">
                 <label for="nome" class="form-label">Nome:</label>
@@ -26,9 +27,10 @@
 
 <script>
 import Sidenav from '../conteudo/Sidenav.vue';
+import Message from '../message/Message.vue';
 export default {
     name: "EditarBebida",
-    components: { Sidenav },
+    components: { Sidenav, Message },
     data() {
         return {
             nome: null,
@@ -43,7 +45,7 @@ export default {
 
             const data = {
                 nome: this.dadosBebidas.nome,
-                preco: 'R$ ' + this.dadosBebidas.preco,
+                preco: this.dadosBebidas.preco,
             };
 
             if(data.nome === null || data.preco === null) {

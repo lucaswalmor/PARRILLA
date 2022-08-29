@@ -14,7 +14,7 @@
             <li>Bairro: {{bairro}}</li>
             <li v-if="apartamento != null">Apartamento: {{apartamento}}</li>
             <li v-if="bloco != null">Bloco: {{bloco}}</li>
-            <li>Data / Hora: {{created_at}}</li>
+            <li>Data: {{getCreated}}</li>
         </ul>
     </div>
   </div>
@@ -23,7 +23,30 @@
 <script>
 export default {
     name: 'ListarPedidoCliente',
-    props: ['nome_cliente', 'telefone', 'lanche', 'valor_total', 'rua', 'bairro', 'forma_pagamento', 'created_at']
+    props: ['nome_cliente', 'telefone', 'lanche', 'valor_total', 'rua', 'bairro', 'forma_pagamento', 'created_at'],
+    data() {
+      return {
+        
+      }
+    },
+    computed: {
+      getCreated() {
+        function adicionaZero(numero){
+            if (numero <= 9) 
+                return "0" + numero;
+            else
+                return numero; 
+        }
+
+        let dataBackEnd = this.created_at.substring(0, 10);
+        let dataAtual = new Date(dataBackEnd); //29/01/2020
+        let dataAtualFormatada = (adicionaZero(dataAtual.getDate().toString()) + "/" + (adicionaZero(dataAtual.getMonth()+1).toString()) + "/" + dataAtual.getFullYear());
+        return dataAtualFormatada;
+      }
+    },
+    mounted() {
+      this.getCreated();
+    }
 }
 </script>
 

@@ -11,6 +11,13 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-12 p-3 text-end">
+                <button class="btn btn-dark text-warning" @click="cadastrarUsuario">
+                    Cadastrar Usuário
+                </button>
+            </div>
+        </div>
         <table class="table text-center table-striped">
             <thead class="table-dark">
                 <tr>
@@ -79,7 +86,8 @@ export default {
                 this.msg = `Usuário Nº ${id} deletado com sucesso`;
                 setTimeout(() => {
                     this.msg = "";
-                }, 3000);
+                    location.reload();
+                }, 1500);
             }
 
         },
@@ -87,6 +95,10 @@ export default {
             var token = this.$route.params.token;
             this.$router.push({ path: `/editar-usuario/${token}/${id}`, params: {id: id, token: token}} );
         },
+        cadastrarUsuario() {
+            var token = this.$route.params.token;
+            this.$router.push({ path: `/cadastrar-usuario/${token}`, params: {token: token } });
+        }
     },
     mounted() {
         this.editarUsuario();

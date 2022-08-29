@@ -45,7 +45,7 @@ export default {
             var id = this.$route.params.id;
             const data = {
                 nome: this.dadosLanche.nome,
-                preco: 'R$ ' + this.dadosLanche.preco,
+                preco: this.dadosLanche.preco,
             };
 
             if(data.nome === null || data.preco === null) {

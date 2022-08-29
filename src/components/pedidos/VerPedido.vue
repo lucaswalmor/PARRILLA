@@ -23,7 +23,7 @@
         <strong>Observações:</strong> {{ dadosPedido.observacoes }}
       </div>
       <div v-if="dadosPedido.bebida != null">
-        <strong>Observações:</strong> {{ dadosPedido.bebida }}
+        <strong>Bebida:</strong> {{ dadosPedido.bebida }}
       </div>
       <div><strong>Valor Total: R$</strong> {{ dadosPedido.valor_total }}</div>
       <div v-if="dadosPedido.troco != null">
@@ -32,6 +32,7 @@
       <div>
         <strong>Forma de pagamento:</strong> {{ dadosPedido.forma_pagamento }}
       </div>
+      <div><strong>Data do Pedido:</strong> {{ dataDoPedido }}</div>
         <div>
             <button class="btn btn-warning mt-5" style="font-weight: bold;" @click="voltar">
                 <span class="text-dark">Voltar a tela de pedidos</span>
@@ -50,7 +51,8 @@ export default {
     data() {
         return {
             dadosPedido: [],
-            token: ""
+            token: "",
+            dataDoPedido: ''
         };
     },
     methods: {
@@ -63,6 +65,11 @@ export default {
                 // const req = await fetch(`http://127.0.0.1:8000/api/pedidos/${id}`);
                 const data = await req.json();
                 this.dadosPedido = data;
+                let data_pedido = this.dadosPedido.created_at;
+                let dataAtual = new Date(data_pedido);
+                let dataPublicacao = new Date(dataAtual);
+                this.dataDoPedido = dataPublicacao.toLocaleDateString('pt-BR')
+
             }
             catch (err) {
                 console.log("error", err);
@@ -76,7 +83,7 @@ export default {
     mounted() {
         this.pedido();
     },
-    components: { Header, Sidenav }
+    components: { Sidenav }
 };
 </script>
 

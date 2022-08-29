@@ -21,8 +21,13 @@
                 <label for="inputPassword4" class="form-label">Password</label>
                 <input type="password" class="form-control" id="inputPassword4" v-model="password">
             </div>
-            <div class="col-md-12">
-                <input type="submit" class="form-control btn btn-secondary" @click="createUser">
+            <div class="row">
+                <div class="col-md-6 pt-3">
+                    <input type="submit" class="form-control btn btn-success" value="Cadastrar" @click="createUser">
+                </div>
+                <div class="col-md-6 pt-3">
+                    <input type="submit" class="form-control btn btn-secondary" @click="voltar" value="Voltar">
+                </div>
             </div>
         </form>
     </div>
@@ -77,6 +82,10 @@ export default {
                 }
             }
         },
+        voltar() {
+            var token = this.$route.params.token;
+            this.$router.push({ path: `/dashboard/${token}`, params: {token: token } });
+        }
     },
 }
 </script>

@@ -16,8 +16,11 @@
                 <label for="preco" class="form-label">Preco:</label>
                 <input type="text" class="form-control" name="preco" id="preco" placeholder="00.00" min="0" v-model="preco">
             </div>
-            <div class="col-md-12">
-                <input type="submit" class="form-control btn btn-secondary">
+            <div class="col-md-6 pt-3">
+                <input type="submit" class="form-control btn btn-success" value="Cadastrar">
+            </div>
+            <div class="col-md-6 pt-3">
+                <input type="submit" class="form-control btn btn-secondary" @click="voltar" value="Voltar">
             </div>
         </form>
         <p class="mt-3"><small>* Favor seguir o modelo de preço na hora do cadastro "00.00", sempre colocar os valores decimais</small></p>
@@ -60,6 +63,10 @@ export default {
                     }, 2000);
                 }
             }
+        },
+        voltar() {
+            var token = this.$route.params.token;
+            this.$router.push({ path: `/dashboard/${token}`, params: {token: token } });
         }
     },
     components: { Sidenav, Message }

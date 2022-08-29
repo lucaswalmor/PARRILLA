@@ -58,6 +58,7 @@ export default {
 
             this.gasto_total = `Este cliente já gastou R$ ${soma} em seu restaurante!`;
         },
+        
         async pesquisarCPF(event) {
             let option = event.target.value;
             const data_atual = new Date();
@@ -89,7 +90,6 @@ export default {
             });
 
             const dados = await req.json();
-            
             let quant = dados;
             let arr_valores = []
             let soma = 0

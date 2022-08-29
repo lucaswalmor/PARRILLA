@@ -12,6 +12,13 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-12 p-3 text-end">
+                <button class="btn btn-dark text-warning" @click="cadastrarBebida">
+                    Cadastrar Bebida
+                </button>
+            </div>
+        </div>
         <table class="table text-center table-striped">
             <thead class="table-dark">
                 <tr>
@@ -25,7 +32,7 @@
                 <tr v-for="bebida in dadosBebidas" :key="bebida">
                     <th>{{bebida.id}}</th>
                     <td>{{bebida.nome}}</td>
-                    <td>{{bebida.preco}}</td>
+                    <td>R$ {{bebida.preco}}</td>
                     <td class="botao-acao-tabela">
                         <button class=" btn btn-primary" @click="editarBebida(bebida.id)"><i class="fa-solid fa-user-pen"></i></button>
                         <button @click="deletarBebida(bebida.id)" class="btn btn-danger ms-3"><i class="fa-solid fa-user-xmark"></i></button>
@@ -82,12 +89,17 @@ export default {
                 this.msg = `bebida Nº ${id} deletado com sucesso`;
                 setTimeout(() => {
                     this.msg = "";
-                }, 3000);
+                    location.reload();
+                }, 1500);
             }
         },
         editarBebida(id) {
             var token = this.$route.params.token;
             this.$router.push({ path: `/editar-bebida/${token}/${id}`, params: {id: id, token: token}} );
+        },
+        cadastrarBebida() {
+            var token = this.$route.params.token;
+            this.$router.push({ path: `/cadastrar-bebida/${token}`, params: {token: token } });
         }
     },
     mounted() {
