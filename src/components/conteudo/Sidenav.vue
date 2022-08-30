@@ -205,6 +205,7 @@ export default {
             this.$router.push({ path: `/listar-taxa/${token}`, params: {token: token}} );  
         },
 
+        // CLIENTES 
         clientes() {
             var token = this.$route.params.token;
             localStorage.removeItem('dados')

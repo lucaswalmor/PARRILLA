@@ -44,9 +44,11 @@ export default {
         }
     },
     methods: {
-        somaGastoTotal() {
+        dadosStorage() {
+            // console.log(JSON.parse(localStorage.getItem('dados')))
             this.dados = JSON.parse(localStorage.getItem('dados'));
-
+        },
+        somaGastoTotal() {
             let quant = this.dados;
             let arr_valores = []
             let soma = 0
@@ -60,7 +62,7 @@ export default {
         },
         
         async pesquisarCPF(event) {
-            let option = event.target.value;
+            const option = event.target.value;
             const data_atual = new Date();
             let mes = (data_atual.getMonth()) + 1;
             let ano = data_atual.getFullYear();
@@ -90,6 +92,7 @@ export default {
             });
 
             const dados = await req.json();
+            
             let quant = dados;
             let arr_valores = []
             let soma = 0
@@ -106,10 +109,40 @@ export default {
             } else {
                 this.gasto_total = `Este cliente já gastou R$ ${soma} em seu restaurante!`;
             }
+        },
+        
+        async pesquisar() {
+            let data = {
+                cpf_cliente: this.cpf,
+                filtro_valores: null,
+                filtro_total_pedidos: null,
+                compra_cliente_dia: null
+            }
+
+            // transforma o array de dados do pedido em texto 
+            const dataJson = JSON.stringify(data);
+            // const req = await fetch("http://127.0.0.1:8000/api/filtros", {
+            const req = await fetch("https://pedidoparrilha.herokuapp.com/api/filtros", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: dataJson
+            });
+
+            const dados = await req.json();
+
+            localStorage.setItem('dados', JSON.stringify(dados))
+            // this.$emit('dadosBack', p)
+            if(dados != '') {
+                location.reload(true);
+            } else {
+                alert(`Não foi encontrado dados com o CPF: ${this.cpf}`)
+                localStorage.setItem('dados', '')
+                location.reload(true);
+            }
         }
     },
     mounted() {
-        this.somaGastoTotal();
+        this.dadosStorage();
         this.pesquisarCPF();
     },
 }

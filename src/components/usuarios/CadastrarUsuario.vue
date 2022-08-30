@@ -1,7 +1,6 @@
 <template>
     <Sidenav />
     <div class="container">
-        <Message :msg="msg" v-show="msg" />
         <div class="row">
             <div class="titulo col-md-12 p-5">
                 <h1 class="text-secondary">Cadastrar Usuário</h1>
@@ -59,7 +58,7 @@ export default {
             // transforma o array de dados do pedido em texto 
             const dataJson = JSON.stringify(data);
                 
-            if(values.nome === null || values.preco === null) {
+            if(data.nome === null || data.preco === null) {
                 alert('Porfavor preencha todos os campos');
             } else {
                 // const req = await fetch("http://127.0.0.1:8000/api/register", {

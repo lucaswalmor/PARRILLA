@@ -5,6 +5,7 @@
     </div>
     <div class="card-body bg-secondary text-white">
         <ul>
+            <li>Nº Pedido: {{id}}</li>
             <li>Nome: {{nome_cliente}}</li>
             <li>Telefone: {{telefone}}</li>
             <li>Lanche: {{lanche}}</li>
@@ -23,7 +24,7 @@
 <script>
 export default {
     name: 'ListarPedidoCliente',
-    props: ['nome_cliente', 'telefone', 'lanche', 'valor_total', 'rua', 'bairro', 'forma_pagamento', 'created_at'],
+    props: ['nome_cliente', 'telefone', 'lanche', 'valor_total', 'rua', 'bairro', 'forma_pagamento', 'created_at', 'id'],
     data() {
       return {
         
@@ -43,9 +44,6 @@ export default {
         let dataAtualFormatada = (adicionaZero(dataAtual.getDate().toString()) + "/" + (adicionaZero(dataAtual.getMonth()+1).toString()) + "/" + dataAtual.getFullYear());
         return dataAtualFormatada;
       }
-    },
-    mounted() {
-      this.getCreated();
     }
 }
 </script>

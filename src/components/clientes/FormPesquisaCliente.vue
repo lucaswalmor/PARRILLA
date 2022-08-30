@@ -24,7 +24,7 @@
     </div>
     <div class="row mt-3">
         <div class="col">
-            <button class="btn btn-dark text-warning fw-bold" @click="pesquisar">Pesquisar</button>
+            <button class="btn btn-dark text-warning fw-bold" @click="pesquisar(this.dados)">Pesquisar</button>
         </div>
     </div>
   
@@ -35,11 +35,13 @@ export default {
     data() {
         return {
             cpf: '',
-            modo: ''
+            modo: '',
+            dados: []
         }
     },
     methods: {
         async pesquisar() {
+
             let data = {
                 cpf_cliente: this.cpf,
                 filtro_valores: null,
@@ -49,20 +51,23 @@ export default {
 
             // transforma o array de dados do pedido em texto 
             const dataJson = JSON.stringify(data);
+
             // const req = await fetch("http://127.0.0.1:8000/api/filtros", {
             const req = await fetch("https://pedidoparrilha.herokuapp.com/api/filtros", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: dataJson
             });
-            const dados = await req.json();
-            localStorage.setItem('dados', JSON.stringify(dados))
 
+            const dados = await req.json();
+
+            localStorage.setItem('dados', JSON.stringify(dados));
+            
             if(dados != '') {
                 location.reload(true);
             } else {
-                alert(`Não foi encontrado dados com o CPF: ${this.cpf}`)
-                localStorage.setItem('dados', '')
+                alert(`Não foi encontrado dados com o CPF: ${this.cpf}`);
+                localStorage.setItem('dados', '');
                 location.reload(true);
             }
         }
