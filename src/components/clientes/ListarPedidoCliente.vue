@@ -27,7 +27,7 @@ export default {
     props: ['nome_cliente', 'telefone', 'lanche', 'valor_total', 'rua', 'bairro', 'forma_pagamento', 'created_at', 'id'],
     data() {
       return {
-        
+        gasto_total: ''
       }
     },
     computed: {
@@ -44,7 +44,8 @@ export default {
         let dataAtualFormatada = (adicionaZero(dataAtual.getDate().toString()) + "/" + (adicionaZero(dataAtual.getMonth()+1).toString()) + "/" + dataAtual.getFullYear());
         return dataAtualFormatada;
       }
-    }
+    },
+    
 }
 </script>
 

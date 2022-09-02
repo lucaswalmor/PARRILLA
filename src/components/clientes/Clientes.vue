@@ -4,7 +4,7 @@
         <div class="row col-md-12">
             <FormPesquisaCliente />
         </div>
-        <div class="row mt-5 col-12" v-if="gasto_total != ''">
+        <div class="row mt-5 col-12" v-if="dados">
             <div class="col-md-7">
                 <h4>{{gasto_total}}</h4>
             </div>
@@ -39,28 +39,17 @@ export default {
         return {
             dados: [],
             gasto_total: '',
+            soma_total: '',
             modo: '',
             valor_data_atual: ''
         }
     },
     methods: {
         dadosStorage() {
-            // console.log(JSON.parse(localStorage.getItem('dados')))
             this.dados = JSON.parse(localStorage.getItem('dados'));
+            let soma_total = JSON.parse(localStorage.getItem('soma_total'));
+            this.gasto_total = `Este cliente já comprou um total de R$ ${soma_total}`
         },
-        somaGastoTotal() {
-            let quant = this.dados;
-            let arr_valores = []
-            let soma = 0
-
-            for (var i = 0; i < quant.length; i++){
-                arr_valores[i] = parseInt(quant[i].valor_total);      
-                soma += parseInt(arr_valores[i]);
-            }  
-
-            this.gasto_total = `Este cliente já gastou R$ ${soma} em seu restaurante!`;
-        },
-        
         async pesquisarCPF(event) {
             const option = event.target.value;
             const data_atual = new Date();
@@ -93,6 +82,7 @@ export default {
 
             const dados = await req.json();
             
+
             let quant = dados;
             let arr_valores = []
             let soma = 0

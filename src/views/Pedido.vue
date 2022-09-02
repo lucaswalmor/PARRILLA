@@ -58,6 +58,8 @@
             v-model="dadosPedido.telefone"
             name="telefone"
             id="telefone"
+            minlength="15"
+            maxlength="15"
             class="form-control telefone"
           />
           <div
@@ -744,12 +746,40 @@ export default {
       } else if (this.dadosPedido.numero < 0) {
         alert('Digite um NÚMERO válido')
       }
+      
+      let cpf = this.dadosPedido.cpf;
+      let telefone = this.dadosPedido.telefone;
 
-      if ( !this.dadosPedido.nome ||
-      !this.dadosPedido.telefone ||
-      !this.cep || 
-      !this.dadosPedido.numero ||
-      !this.dadosPedido.residencia ) {
+      if(cpf.length != 14 ||
+        cpf == "000.000.000-00" ||
+        cpf == "111.111.111-11" ||
+        cpf == "222.222.222-22" ||
+        cpf == "333.333.333-33" ||
+        cpf == "444.444.444-44" ||
+        cpf == "555.555.555-55" ||
+        cpf == "666.666.666-66" ||
+        cpf == "777.777.777-77" ||
+        cpf == "888.888.888-88" ||
+        cpf == "999.999.999-99") {
+          alert(`O CPF: ${cpf} é inválido`)
+      } else if(telefone.length != 15 ||
+        telefone == "(00) 00000-0000" ||
+        telefone == "(11) 11111-1111" ||
+        telefone == "(22) 22222-2222" ||
+        telefone == "(33) 33333-3333" ||
+        telefone == "(44) 44444-4444" ||
+        telefone == "(55) 55555-5555" ||
+        telefone == "(66) 66666-6666" ||
+        telefone == "(77) 77777-7777" ||
+        telefone == "(88) 88888-8888" ||
+        telefone == "(99) 99999-9999") {
+          alert(`O Telefone: ${telefone} é inválido`)
+      } else if (!this.dadosPedido.nome ||
+        !this.dadosPedido.telefone ||
+        !this.cep || !this.dadosPedido.cpf ||
+        !this.dadosPedido.numero ||
+        !this.dadosPedido.residencia
+      ) {
         this.hasError = !this.hasError;
         e.preventDefault();
       } else {
@@ -788,6 +818,7 @@ export default {
         this.pedido_wpp = '*Agradecemos pela preferência, seu pedido está sendo preparado!*' +
           '%0A' +
           '%0A*--------------------------------------------------------------------------------* ' +
+          '%0A' +
           '%0A*Nome:* ' + this.dadosPedido.nome +
           '%0A' +
           '%0A*Rua:* ' + this.dadosPedido.rua + ' Nº ' + this.dadosPedido.numero +
@@ -818,6 +849,7 @@ export default {
         this.pedido_wpp = '*Agradecemos pela preferência, seu pedido está sendo preparado!*' +
           '%0A' +
           '%0A*--------------------------------------------------------------------------------* ' +
+          '%0A' +
           '%0A*Nome:* ' + this.dadosPedido.nome +
           '%0A' +
           '%0A*Rua:* ' + this.dadosPedido.rua + ' Nº ' + this.dadosPedido.numero +
@@ -842,6 +874,7 @@ export default {
         this.pedido_wpp = '*Agradecemos pela preferência, seu pedido está sendo preparado!*' +
             '%0A' +
             '%0A*--------------------------------------------------------------------------------* ' +
+            '%0A' +
             '%0A*Nome:* ' + this.dadosPedido.nome +
             '%0A' +
             '%0A*Rua:* ' + this.dadosPedido.rua + ' Nº ' + this.dadosPedido.numero +'%0A' +
@@ -858,9 +891,10 @@ export default {
       } else {
         // se não tiver troco, ap e bloco no pedido, entrara neste bloco 
         // variavel pedido monta o pedido que será enviado no html 
-        this.pedido_wpp = '*Agradecemos pela preferência, seu pedido está sendo preparado!*%0A*Nome:*' +
+        this.pedido_wpp = '*Agradecemos pela preferência, seu pedido está sendo preparado!*' +
             '%0A' +
             '%0A*--------------------------------------------------------------------------------* ' +
+            '%0A' +
             '%0A*Nome:* ' + this.dadosPedido.nome +
             '%0A' +
             '%0A*Rua:* ' + this.dadosPedido.rua + ' Nº ' + this.dadosPedido.numero +'%0A' +
@@ -1031,6 +1065,7 @@ export default {
     this.listarBairros();
     this.listarLanche();
   }
+  
 }
 </script>
 

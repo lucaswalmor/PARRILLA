@@ -4,6 +4,7 @@
         <div class="row p-5">
             <h2>Editar Taxa de Entrega</h2>
         </div>
+        <Message :msg="msg" v-show="msg" />
         <form class="row g-3" autocomplete="off" @submit.prevent>
             <div class="col-md-6">
                 <label for="bairro" class="form-label">Bairro:</label>
@@ -26,9 +27,10 @@
 
 <script>
 import Sidenav from '../conteudo/Sidenav.vue';
+import Message from '../message/Message.vue';
 export default {
     name: "EditarLanche",
-    components: { Sidenav },
+    components: { Sidenav, Message },
     data() {
         return {
             bairro: null,
@@ -42,7 +44,7 @@ export default {
             var id = this.$route.params.id;
             const data = {
                 bairro: this.dadosTaxa.bairro,
-                preco: 'R$ ' + this.dadosTaxa.preco,
+                preco: this.dadosTaxa.preco,
             };
 
             if(data.bairro === null || data.preco === null) {
@@ -55,7 +57,7 @@ export default {
                     headers: { "Content-Type": "application/json" },
                     body: dataJson
                 });
-
+                console.log(req)
                 if (req.status === 200) {
                     this.msg = "Taxa editada com sucesso";
                     this.bairro = "";

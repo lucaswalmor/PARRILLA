@@ -11,15 +11,6 @@
                     maxlength="14" 
                     v-maska="'###.###.###-##'">
         </div>
-        <!-- <div class="col">
-            <label for="" class="form-label">Escolha o modo:</label>
-            <select name="modo" id="modo" class="form-select" v-model="modo" @change="$event">
-                <option value="" disabled>Selecione...</option>
-                <option value="dia">Dia</option>
-                <option value="mes">Mês</option>
-                <option value="ano">Ano</option>
-            </select>
-        </div> -->
         <div class="form-text">Obs: Todos os campos são obrigatórios</div>
     </div>
     <div class="row mt-3">
@@ -60,7 +51,10 @@ export default {
             });
 
             const dados = await req.json();
+            
+            var soma = dados.reduce((a, b) => a + parseFloat(b.valor_total), 0)
 
+            localStorage.setItem('soma_total', JSON.stringify(soma));
             localStorage.setItem('dados', JSON.stringify(dados));
             
             if(dados != '') {

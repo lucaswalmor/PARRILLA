@@ -24,7 +24,7 @@
                 <tr v-for="taxa in dadosTaxa" :key="taxa">
                     <th>{{taxa.id}}</th>
                     <td>{{taxa.bairro}}</td>
-                    <td>{{taxa.preco}}</td>
+                    <td>R$ {{taxa.preco}}</td>
                     <td class="botao-acao-tabela">
                         <button class="btn btn-primary botao-acao-tabela" @click="editTaxa(taxa.id)"><i class="fa-solid fa-user-pen"></i></button>
                     </td>
