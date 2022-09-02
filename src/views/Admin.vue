@@ -106,7 +106,6 @@ export default {
                 this.$router.push({ path: `/dashboard/${this.token}`, params: {token: res.access_token}} );
             }
         },
-        
     }
 }
 </script>
