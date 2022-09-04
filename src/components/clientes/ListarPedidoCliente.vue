@@ -13,6 +13,7 @@
             <li>Pagamento: {{forma_pagamento}}</li>
             <li>Rua: {{rua}}</li>
             <li>Bairro: {{bairro}}</li>
+            <li v-if="ponto_referencia != null">Ponto de referência: {{ponto_referencia}}</li>
             <li v-if="apartamento != null">Apartamento: {{apartamento}}</li>
             <li v-if="bloco != null">Bloco: {{bloco}}</li>
             <li>Data: {{getCreated}}</li>
@@ -24,7 +25,7 @@
 <script>
 export default {
     name: 'ListarPedidoCliente',
-    props: ['nome_cliente', 'telefone', 'lanche', 'valor_total', 'rua', 'bairro', 'forma_pagamento', 'created_at', 'id'],
+    props: ['nome_cliente', 'telefone', 'lanche', 'valor_total', 'rua', 'bairro', 'forma_pagamento', 'created_at', 'id', 'ponto_referencia'],
     data() {
       return {
         gasto_total: ''

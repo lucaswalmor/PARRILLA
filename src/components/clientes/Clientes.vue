@@ -81,7 +81,6 @@ export default {
             });
 
             const dados = await req.json();
-            
 
             let quant = dados;
             let arr_valores = []

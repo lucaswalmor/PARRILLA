@@ -11,6 +11,9 @@
       <div><strong>CPF:</strong> {{ dadosPedido.cpf }}</div>
       <div><strong>Rua:</strong> {{ dadosPedido.rua }}</div>
       <div><strong>Bairro:</strong> {{ dadosPedido.bairro }}</div>
+      <div v-if="dadosPedido.ponto_referencia != null">
+        <strong>Ponto de Referência:</strong> {{ dadosPedido.ponto_referencia }}
+      </div>
       <div v-if="dadosPedido.apartamento != null">
         <strong>Apartamento:</strong> {{ dadosPedido.apartamento }}
       </div>
@@ -64,6 +67,7 @@ export default {
                 const req = await fetch(`https://pedidoparrilha.herokuapp.com/api/pedidos/${id}`);
                 // const req = await fetch(`http://127.0.0.1:8000/api/pedidos/${id}`);
                 const data = await req.json();
+            console.log(data)
                 this.dadosPedido = data;
                 let data_pedido = this.dadosPedido.created_at;
                 let dataAtual = new Date(data_pedido);

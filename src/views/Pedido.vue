@@ -8,193 +8,247 @@
     <form class="g-3" action="#" method="post" @submit.prevent>
       <!-- DADOS DO USUÁRIO -->
       <div id="dadosPedido" class="row mt-4" v-show="divDataUser">
-        <div class="col-md-4">
-          <label for="nome" class="form-label">Nome</label>
-          <input
-            type="text"
-            v-model="dadosPedido.nome"
-            name="nome"
-            id="nome"
-            class="form-control"
-          />
-          <div
-            class="alert alert-warning fade show mt-2"
-            v-show="hasError"
-            v-if="!dadosPedido.nome"
-            role="alert"
-            id="validacao-nome"
-          >
-            preencha este campo!
+        <!-- NOME -->
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-4">
+            <label for="nome" class="form-label">Nome</label>
+            <input
+              type="text"
+              v-model="dadosPedido.nome"
+              name="nome"
+              id="nome"
+              class="form-control"
+            />
+            <div
+              class="alert alert-warning fade show mt-2"
+              v-show="hasError"
+              v-if="!dadosPedido.nome"
+              role="alert"
+              id="validacao-nome"
+            >
+              preencha este campo!
           </div>
         </div>
-        <div class="col-md-4">
-          <label for="cpf" class="form-label">CPF</label>
-          <input
-            type="text"
-            v-model="dadosPedido.cpf"
-            name="cpf"
-            id="cpf"
-            class="form-control"
-            placeholder="Ex: 00000000000"
-            minlength="14"
-            maxlength="14" 
-            v-maska="'###.###.###-##'"
-          />
-          <div
-            class="alert alert-warning fade show mt-2"
-            v-show="hasError"
-            v-if="!dadosPedido.cpf"
-            role="alert"
-            id="validacao-cpf"
-          >
-            preencha este campo!
+      </div>
+
+        <!-- CPF -->
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-4">
+            <label for="cpf" class="form-label">CPF</label>
+            <input
+              type="text"
+              v-model="dadosPedido.cpf"
+              name="cpf"
+              id="cpf"
+              class="form-control"
+              placeholder="Ex: 00000000000"
+              minlength="14"
+              maxlength="14" 
+              v-maska="'###.###.###-##'"
+            />
+            <div
+              class="alert alert-warning fade show mt-2"
+              v-show="hasError"
+              v-if="!dadosPedido.cpf"
+              role="alert"
+              id="validacao-cpf"
+            >
+              preencha este campo!
+            </div>
           </div>
+
         </div>
-        <div class="col-md-4">
-          <label for="telefone" class="form-label">Telefone</label>
-          <input
-            type="text"
-            v-maska="'(##) #####-####'"
-            v-model="dadosPedido.telefone"
-            name="telefone"
-            id="telefone"
-            minlength="15"
-            maxlength="15"
-            class="form-control telefone"
-          />
-          <div
-            class="alert alert-warning fade show mt-2"
-            role="alert"
-            id="validacao-telefone"
-            v-show="hasError"
-            v-if="!dadosPedido.telefone"
-          >
-            preencha este campo!
+
+        <!-- TELEFONE -->
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-4">
+            <label for="telefone" class="form-label">Telefone</label>
+            <input
+              type="text"
+              v-maska="'(##) #####-####'"
+              v-model="dadosPedido.telefone"
+              name="telefone"
+              id="telefone"
+              minlength="15"
+              maxlength="15"
+              class="form-control telefone"
+            />
+            <div
+              class="alert alert-warning fade show mt-2"
+              role="alert"
+              id="validacao-telefone"
+              v-show="hasError"
+              v-if="!dadosPedido.telefone"
+            >
+              preencha este campo!
+            </div>
           </div>
+
         </div>
-        <div class="col-md-2">
-          <label for="cep" class="form-label">CEP</label>
-          <input
-            type="text"
-            placeholder="Ex: 00000000"
-            v-model="cep"
-            name="cep"
-            id="cep"
-            class="form-control"
-            maxlength="8" 
-          />
-          <div
-            class="alert alert-warning fade show mt-2 alerta-validacao"
-            role="alert"
-            id="validacao-cep"
-            v-show="hasError"
-            v-if="!cep"
-          >
-            preencha este campo!
+
+        <!-- CEP E TAXA DE ENTREGA-->
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-3">
+            <label for="cep" class="form-label">CEP</label>
+            <input
+              type="text"
+              placeholder="Ex: 00000000"
+              v-model="cep"
+              name="cep"
+              id="cep"
+              class="form-control"
+              maxlength="8" 
+            />
+            <div
+              class="alert alert-warning fade show mt-2 alerta-validacao"
+              role="alert"
+              id="validacao-cep"
+              v-show="hasError"
+              v-if="!cep"
+            >
+              preencha este campo!
+            </div>
           </div>
-        </div>
-        <div class="col-md-6">
-          <label for="rua" class="form-label">Rua</label>
-          <input
-            type="text"
-            v-model="dadosPedido.endereco.logradouro"
-            name="rua"
-            id="rua"
-            class="form-control"
-            readonly
-          />
-        </div>
-        <div class="col-md-4">
-          <label for="bairro" class="form-label">Bairro</label>
-          <input
-            type="text"
-            name="bairro"
-            v-model="dadosPedido.endereco.bairro"
-            id="bairro"
-            class="form-control"
-            readonly
-          />
-        </div>
-        <div class="col-md-2">
-          <label for="taxa_entrega" class="form-label">Taxa de Entrega</label>
-          <input
-            type="text"
-            v-model="dadosPedido.taxa_entrega"
-            name="taxa_entrega"
-            id="taxa_entrega"
-            class="form-control"
-            readonly
-          />
-        </div>
-        <div class="col-md-2">
-          <label for="numero" class="form-label">Nº</label>
-          <input
-            type="number"
-            v-model="dadosPedido.numero"
-            name="numero"
-            id="numero"
-            min=1
-            class="form-control"
-          />
-          <div
-            class="alert alert-warning fade show mt-2 alerta-validacao"
-            role="alert"
-            id="validacao-numero"
-            v-show="hasError"
-            v-if="!dadosPedido.numero"
-          >
-            preencha este campo!
+          <div class="col-md-1">
+            <label for="taxa_entrega" class="form-label">Frete</label>
+            <input
+              style="background-color: transparent; color: #fff; outline: none;"
+              type="text"
+              v-model="dadosPedido.taxa_entrega"
+              name="taxa_entrega"
+              id="taxa_entrega"
+              class="form-control"
+              placeholder="Autopreenchido"
+              readonly
+            />
           </div>
+
         </div>
-        <div class="col-md-2">
-          <label for="residencia" class="form-label">Residência</label>
-          <select
-            id="residencia"
-            v-model="dadosPedido.residencia"
-            class="form-select"
-          >
-            <option disabled selected>Selecione...</option>
-            <option value="Casa">Casa</option>
-            <option value="Apartamento">Apartamento</option>
-          </select>
+
+        <!-- RUA E NUMERO-->
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-2">
+            <label for="rua" class="form-label">Rua</label>
+            <input
+              type="text"
+              v-model="dadosPedido.endereco.logradouro"
+              name="rua"
+              id="rua"
+              class="form-control"
+              placeholder="Autopreenchido"
+              readonly
+            />
+          </div>
+          <div class="col-md-2">
+            <label for="numero" class="form-label">Nº</label>
+            <input
+              type="number"
+              v-model="dadosPedido.numero"
+              name="numero"
+              id="numero"
+              min=1
+              class="form-control"
+            />
+            <div
+              class="alert alert-warning fade show mt-2 alerta-validacao"
+              role="alert"
+              id="validacao-numero"
+              v-show="hasError"
+              v-if="!dadosPedido.numero"
+            >
+              preencha este campo!
+            </div>
+          </div>
+
+        </div>
+
+        <!-- BAIRRO -->
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-4">
+            <label for="bairro" class="form-label">Bairro</label>
+            <input
+              type="text"
+              name="bairro"
+              placeholder="Autopreenchido"
+              v-model="dadosPedido.endereco.bairro"
+              id="bairro"
+              class="form-control"
+              readonly
+            />
+          </div>          
+        </div>
+
+        <!-- PONTO DE REFERÊNCIA -->
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-4">
+            <label for="pontoReferencia" class="form-label">Referência</label>
+            <textarea name="" id="" cols="30" rows="2" class="form-control"
+              v-model="dadosPedido.pontoReferencia"></textarea>
+          </div>          
+        </div>
+
+        <!-- RESIDÊNCIA -->
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-4">
+            <label for="residencia" class="form-label">Residência</label>
+            <select
+              id="residencia"
+              v-model="dadosPedido.residencia"
+              class="form-select"
+            >
+              <option disabled selected>Selecione...</option>
+              <option value="Casa">Casa</option>
+              <option value="Apartamento">Apartamento</option>
+            </select>
+            <div
+              class="alert alert-warning fade show mt-2 alerta-validacao"
+              role="alert"
+              id="validacao-numero"
+              v-show="hasError"
+              v-if="!dadosPedido.residencia"
+            >
+              preencha este campo!
+            </div>
+          </div>
+
+        </div>
+
+        <!-- APARTAMENTO -->
+        <div class="row d-flex justify-content-center">
           <div
-            class="alert alert-warning fade show mt-2 alerta-validacao"
-            role="alert"
-            id="validacao-numero"
-            v-show="hasError"
-            v-if="!dadosPedido.residencia"
+            class="col-md-2 res_ap"
+            v-if="dadosPedido.residencia === 'Apartamento'"
           >
-            preencha este campo!
+            <label for="apartamento" class="form-label">Apartamento</label>
+            <input
+              type="number"
+              v-model="dadosPedido.apartamento"
+              name="apartamento"
+              id="apartamento"
+              class="form-control"
+              min="0"
+            />
+          </div>
+          <div
+            class="col-md-2 res_ap"
+            v-if="dadosPedido.residencia === 'Apartamento'"
+          >
+            <label for="bloco" class="form-label">Bloco</label>
+            <input
+              type="text"
+              v-model="dadosPedido.bloco"
+              name="bloco"
+              id="bloco"
+              class="form-control"
+              style="text-transform: capitalize"
+            />
           </div>
         </div>
 
-        <div
-          class="col-md-2 res_ap"
-          v-if="dadosPedido.residencia === 'Apartamento'"
-        >
-          <label for="apartamento" class="form-label">Apartamento</label>
-          <input
-            type="number"
-            v-model="dadosPedido.apartamento"
-            name="apartamento"
-            id="apartamento"
-            class="form-control"
-          />
+        <!-- BLOCO -->
+        <div class="row d-flex justify-content-center">
         </div>
-        <div
-          class="col-md-2 res_ap"
-          v-if="dadosPedido.residencia === 'Apartamento'"
-        >
-          <label for="bloco" class="form-label">Bloco</label>
-          <input
-            type="text"
-            v-model="dadosPedido.bloco"
-            name="bloco"
-            id="bloco"
-            class="form-control"
-            style="text-transform: capitalize"
-          />
-        </div>
+
         <div class="col-12 mt-3 d-flex justify-content-center" id="proximo">
           <button type="submit" @click="etapa_1" class="btn etapa_1">
             Próxima Etapa
@@ -213,7 +267,7 @@
               v-model="tipoLanche"
               @change="alterarPrecoLanche($event)"
             >
-              <option selected>Selecione um Lanche</option>
+              <option value="" disabled>-- Selecione</option>
               <option v-for="lanche in dadosLanches" :key="lanche.id">{{ lanche.nome }}</option> 
             </select>
             <div class="form-group mt-3">
@@ -233,284 +287,10 @@
                 id="observacoes"
                 class="form-control mt-1"
                 name=""
-                rows="3"
+                rows="2"
                 v-model="dadosPedido.observacoes"
                 placeholder="Tem algo a acrescentar?"
               ></textarea>
-            </div>
-          </div>
-
-          <!-- INGREDIENTES LANCHES -->
-          <div class="col-md-4 mt-4">
-            <div
-              class="berry flex-column"
-              v-if="tipoLanche == 'PARRILLA BERRY'"
-            >
-              <div>
-                <h4>Ingredientes:</h4>
-              </div>
-              <div>
-                <ul>
-                  <li>Pão brioche</li>
-                  <li>Hambúrguer de cupim</li>
-                  <li>Queijo cheddar cremoso</li>
-                  <li>Cebola roxa</li>
-                  <li>Bacon</li>
-                  <li>Geleia de pimenta</li>
-                  <li>Doritos</li>
-                </ul>
-              </div>
-            </div>
-            <div
-              class="berry_combo flex-column"
-              v-if="tipoLanche == 'PARRILLA BERRY COMBO'"
-            >
-              <div>
-                <h4>Ingredientes:</h4>
-              </div>
-              <div>
-                <ul>
-                  <li>Pão brioche</li>
-                  <li>Hambúrguer de cupim</li>
-                  <li>Queijo cheddar cremoso</li>
-                  <li>Cebola roxa</li>
-                  <li>Bacon</li>
-                  <li>Geleia de pimenta</li>
-                  <li>Doritos</li>
-                </ul>
-                <hr />
-                <ul>
-                  <li>1 Coca cola lata</li>
-                  <li>1 Porção de batata frita</li>
-                </ul>
-              </div>
-            </div>
-            <div
-              class="candy flex-column"
-              v-if="tipoLanche == 'PARRILLA CANDY'"
-            >
-              <div>
-                <h4>Ingredientes:</h4>
-              </div>
-              <div>
-                <ul>
-                  <li>Pão brioche</li>
-                  <li>Doce de leite</li>
-                </ul>
-              </div>
-            </div>
-            <div
-              class="parrilla_grilled_herbs flex-column"
-              v-if="tipoLanche == 'PARRILLA GRILLED HERBS'"
-            >
-              <div>
-                <h4>Ingredientes:</h4>
-              </div>
-              <div>
-                <ul>
-                  <li>Pão Francês</li>
-                  <li>Hambúrguer de Fraldinha</li>
-                  <li>Queijo Prato</li>
-                  <li>Cebola Roxa</li>
-                  <li>Bacon</li>
-                  <li>Alface</li>
-                  <li>Molho de maionese com ervas</li>
-                </ul>
-              </div>
-            </div>
-            <div
-              class="parrilla_grilled_herbs_combo flex-column"
-              v-if="tipoLanche == 'PARRILLA GRILLED HERBS COMBO'"
-            >
-              <div>
-                <h4>Ingredientes:</h4>
-              </div>
-              <div>
-                <ul>
-                  <li>Pão Francês</li>
-                  <li>Hambúrguer de Fraldinha</li>
-                  <li>Queijo Prato</li>
-                  <li>Cebola Roxa</li>
-                  <li>Bacon</li>
-                  <li>Alface</li>
-                  <li>Molho de maionese com ervas</li>
-                </ul>
-                <hr />
-                <ul>
-                  <li>1 Coca cola lata</li>
-                  <li>1 Porção de batata frita</li>
-                </ul>
-              </div>
-            </div>
-            <div
-              class="burguer flex-column"
-              v-if="tipoLanche == 'PARRILLA BURGER'"
-            >
-              <div>
-                <h4>Ingredientes:</h4>
-              </div>
-              <div>
-                <ul>
-                  <li>Pão de Francês</li>
-                  <li>Hambúrguer de Angus</li>
-                  <li>Queijo cheddar</li>
-                  <li>Bacon</li>
-                </ul>
-              </div>
-            </div>
-            <div
-              class="burguer_combo flex-column"
-              v-if="tipoLanche == 'PARRILLA BURGER COMBO'"
-            >
-              <div>
-                <h4>Ingredientes:</h4>
-              </div>
-              <div>
-                <ul>
-                  <li>Pão de Francês</li>
-                  <li>Hambúrguer de Angus</li>
-                  <li>Queijo cheddar</li>
-                  <li>Bacon</li>
-                </ul>
-                <hr />
-                <ul>
-                  <li>1 Coca cola lata</li>
-                  <li>1 Porção de batata frita</li>
-                </ul>
-              </div>
-            </div>
-            <div class="catupiry_angus flex-column" v-if="tipoLanche == 'PARRILLA CATUPIRY ANGUS'">
-              <div>
-                <h4>Ingredientes:</h4>
-              </div>
-              <div>
-                <ul>
-                  <li>Pão Australiano</li>
-                  <li>Hambúrguer de Angus</li>
-                  <li>Alface</li>
-                  <li>Tomate</li>
-                  <li>Catupiry Empanado</li>
-                  <li>Cheddar fatia</li>
-                </ul>
-              </div>
-            </div>
-            <div class="catupiry_angus_combo flex-column" v-if="tipoLanche == 'PARRILLA CATUPIRY ANGUS COMBO'">
-              <div>
-                <h4>Ingredientes:</h4>
-              </div>
-              <div>
-                <ul>
-                  <li>Pão Australiano</li>
-                  <li>Hambúrguer de Angus</li>
-                  <li>Alface</li>
-                  <li>Tomate</li>
-                  <li>Catupiry Empanado</li>
-                  <li>Cheddar fatia</li>
-                </ul>
-                <ul>
-                  <li>1 Coca cola lata</li>
-                  <li>1 Porção de batata frita</li>
-                </ul>
-              </div>
-            </div>
-            <div class="classic flex-column" v-if="tipoLanche == 'PARRILLA CLASSIC'">
-              <div>
-                <h4>Ingredientes:</h4>
-              </div>
-              <div>
-                <ul>
-                  <li>Pão francês</li>
-                  <li>Hambúrguer de Cupim</li>
-                  <li>Queijo prato</li>
-                  <li>Alface</li>
-                  <li>Tomate</li>
-                  <li>Catupiry</li>
-                </ul>
-              </div>
-            </div>
-            <div class="classic_combo flex-column" v-if="tipoLanche == 'PARRILLA CLASSIC COMBO'">
-              <div>
-                <h4>Ingredientes:</h4>
-              </div>
-              <div>
-                <ul>
-                  <li>Pão francês</li>
-                  <li>Hambúrguer de Cupim</li>
-                  <li>Queijo prato</li>
-                  <li>Alface</li>
-                  <li>Tomate</li>
-                  <li>Catupiry</li>
-                </ul>
-                <hr />
-                <ul>
-                  <li>1 Coca cola lata</li>
-                  <li>1 Porção de batata frita</li>
-                </ul>
-              </div>
-            </div>
-            <div class="special flex-column" v-if="tipoLanche == 'PARRILLA SPECIAL DUPLO'">
-              <div>
-                <h4>Ingredientes:</h4>
-              </div>
-              <div>
-                <ul>
-                  <li>Pão Brioche</li>
-                  <li>2 Hambúrgueres de Angus</li>
-                  <li>Cheddar</li>
-                  <li>Bacon</li>
-                </ul>
-              </div>
-            </div>
-            <div class="special_combo flex-column" v-if="tipoLanche == 'PARRILLA SPECIAL DUPLO COMBO'">
-              <div>
-                <h4>Ingredientes:</h4>
-              </div>
-              <div>
-                <ul>
-                  <li>Pão Brioche</li>
-                  <li>2 Hambúrgueres de Angus</li>
-                  <li>Cheddar</li>
-                  <li>Bacon</li>
-                </ul>
-                <hr />
-                <ul>
-                  <li>1 Coca cola lata</li>
-                  <li>1 Porção de batata frita</li>
-                </ul>
-              </div>
-            </div>
-            <div class="chicken flex-column" v-if="tipoLanche == 'PARRILLA CHICKEN'">
-              <div>
-                <h4>Ingredientes:</h4>
-              </div>
-              <div>
-                <ul>
-                  <li>Pão Francês</li>
-                  <li>Hambúrguer de Frango</li>
-                  <li>Maionese de Limão Siciliano</li>
-                  <li>Mix de salada de Ruúcula</li>
-                  <li>Tomate</li>
-                </ul>
-              </div>
-            </div>
-            <div class="chicken_combo flex-column" v-if="tipoLanche == 'PARRILLA CHICKEN COMBO'">
-              <div>
-                <h4>Ingredientes:</h4>
-              </div>
-              <div>
-                <ul>
-                  <li>Pão Francês</li>
-                  <li>Hambúrguer de Frango</li>
-                  <li>Maionese de Limão Siciliano</li>
-                  <li>Mix de salada de Ruúcula</li>
-                  <li>Tomate</li>
-                </ul>
-                <hr />
-                <ul>
-                  <li>1 Coca cola lata</li>
-                  <li>1 Porção de batata frita</li>
-                </ul>
-              </div>
             </div>
           </div>
 
@@ -528,7 +308,7 @@
           <div class="col-md-4">
             <label for="bebida" class="form-label">Bebidas</label>
             <select id="bebida" class="form-select" @change="alterarPrecoBebida($event)">
-              <option selected>Selecione uma bebida</option>
+              <option value="" disabled>-- Selecione</option>
               <option v-for="bebida in dadosBebidas" :key="bebida.id">{{bebida.nome}}</option> 
             </select>
             <div class="form-group mt-3">
@@ -552,7 +332,7 @@
 
       <!-- FORMAS DE PAGAMENTO -->
       <div class="row mt-3" id="pagamento" v-show="divPagamento">
-        <div class="row d-flex justify-content-around">
+        <div class="row d-flex justify-content-center">
           <div class="col-md-4">
             <label for="forma_pagamento" class="form-label"
               >Forma de pagamento</label
@@ -569,23 +349,25 @@
               o pedido
             </p>
           </div>
-          <div
-            class="col-md-4 justify-content-center chave_pix text-center"
-            v-if="dadosPedido.forma_pagamento === 'Pix'"
-          >
-            <label for="chave-pix" class="form-label">Chave pix:</label>
-            <p>c4c0cd2f-e0b9-4697-af80-0600e14e062e</p>
-          </div>
-          <div
-            class="col-md-4 chave_pix justify-content-center"
-            id="qrcode"
-            v-if="dadosPedido.forma_pagamento === 'Pix'"
-          >
-            <img src="/img/qrcode.png" style="width: 250px" />
+        </div>
+
+        <!-- TROCO -->
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-4 dinheiro"
+            v-if="dadosPedido.forma_pagamento === 'Dinheiro'">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" role="switch" id="tem_troco" v-model="dadosPedido.tem_troco"
+                      true-value="Sim" false-value="Não">
+              <label class="form-check-label" for="tem_troco">Deseja Troco?</label>
+            </div>
           </div>
 
-          <div class="col-md-2 dinheiro"
-            v-if="dadosPedido.forma_pagamento === 'Dinheiro'">
+        </div>
+
+        <!-- TROCO -->
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-4 dinheiro"
+            v-if="dadosPedido.tem_troco === 'Sim'">
             <label for="troco" class="form-label">Troco para quanto:</label>
             <input
               type="number"
@@ -597,6 +379,31 @@
             />
           </div>
 
+        </div>
+
+        <!-- CHAVE PIX -->
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-4 justify-content-center chave_pix text-center"
+            v-if="dadosPedido.forma_pagamento === 'Pix'"
+          >
+            <label for="chave-pix" class="form-label">Chave pix:</label>
+            <p>c4c0cd2f-e0b9-4697-af80-0600e14e062e</p>
+          </div>
+        </div>
+
+        <!-- QRCODE PIX -->
+        <div class="row d-flex justify-content-center text-center">
+          <div
+            class="col-md-4 chave_pix justify-content-center"
+            id="qrcode"
+            v-if="dadosPedido.forma_pagamento === 'Pix'"
+          >
+            <img src="/img/qrcode.png" style="width: 250px" />
+          </div>
+        </div>
+
+        <!-- CONFIRMAR PEDIDO -->
+        <div class="row d-flex justify-content-center">
           <div class="col-12 mt-3 text-center" id="botao">
             <button type="submit" @click="etapa_4" class="btn confirmar_pedido">
               Confirmar Pedido
@@ -605,53 +412,58 @@
         </div>
       </div>
 
+      <!-- DADOS DO PEDIDO FEITO -->
       <div class="row mt-3" id="pedido_montado" v-show="divFinPedido">
         <div class="row col-12 text-center">
           <h4>Agradecemos pela preferência, agora só resta enviar o pedido &#x1F60A;</h4>
         </div> 
-        <div class="row col-12 text-center">
-          <div>
+        <div class="row col-12 text-justify d-flex flex-column align-items-center">
+          <div class="col-md-6">
             <strong>Nome:</strong> {{ dadosPedido.nome }}
           </div>
-          <div>
+          <div class="col-md-6">
             <strong>CPF:</strong> {{ dadosPedido.cpf }}
           </div>
-          <div>
+          <div class="col-md-6">
             <strong>Rua:</strong> {{ dadosPedido.rua }}
           </div>
-          <div>
+          <div class="col-md-6">
             <strong>Bairro:</strong> {{ dadosPedido.bairro }}
           </div>
-          <div v-if="dadosPedido.apartamento != ''">
+          <div class="col-md-6" v-if="dadosPedido.pontoReferencia != ''">
+            <strong>Ponto de Referência:</strong> {{ dadosPedido.pontoReferencia }}
+          </div>
+          <div class="col-md-6" v-if="dadosPedido.apartamento != ''">
             <strong>Apartamento:</strong> {{ dadosPedido.apartamento }}
           </div>
-          <div v-if="dadosPedido.bloco != ''">
+          <div class="col-md-6" v-if="dadosPedido.bloco != ''">
             <strong>Bloco:</strong> {{ dadosPedido.bloco }}
           </div>
-          <div>
+          <div class="col-md-6">
             <strong>Telefone:</strong> {{ dadosPedido.telefone }}
           </div>
-          <div>
+          <div class="col-md-6">
             <strong>Lanche:</strong> {{ dadosPedido.lanche }}
           </div>
-          <div v-if="dadosPedido.observacoes != ''">
+          <div class="col-md-6" v-if="dadosPedido.observacoes != ''">
             <strong>Observações:</strong> {{ dadosPedido.observacoes }}
           </div>
-          <div v-if="dadosPedido.bebida != ''">
+          <div class="col-md-6" v-if="dadosPedido.bebida != ''">
             <strong>Bebida:</strong> {{ dadosPedido.bebida }}
           </div>
-          <div>
+          <div class="col-md-6">
             <strong>Valor Total: R$</strong> {{ dadosPedido.valor_total }}
           </div>
-          <div v-if="dadosPedido.troco != ''">
+          <div class="col-md-6" v-if="dadosPedido.troco != ''">
             <strong> Troco: </strong> R$ {{ dadosPedido.troco }}
           </div>
-          <div>
+          <div class="col-md-6">
             <strong>Forma de pagamento:</strong> {{ dadosPedido.forma_pagamento }}
           </div>
         </div>
       </div>
       
+      <!-- BOTAO DE ENVIAR O PEDIDO -->
       <div
         class="col-12 mt-3 text-center"
         v-show="divFinPedido"
@@ -664,6 +476,8 @@
 
       <hr />
     </form>
+
+    <!-- FOOTER -->
     <div class="row col-12 pb-4">
         <div class="col-12 text-center">
             <div class="row">
@@ -720,8 +534,10 @@ export default {
         preco_bebida: "",
         observacoes: "",
         forma_pagamento: "",
+        tem_troco: "Não",
         troco: "",
-        valor_total: ""
+        valor_total: "",
+        pontoReferencia: ""
       },
       cep: "",
       errors: [],
@@ -738,6 +554,7 @@ export default {
     };
   },
   methods: {
+    // recebe os dados do usuario e vai para os lanches
     etapa_1(e) {
       this.errors = [];
       
@@ -793,6 +610,8 @@ export default {
       }
 
     },
+
+    // altera as divs e vai para as bebidas 
     etapa_2() {
       if(this.dadosPedido.lanche === '') {
         alert('Porfavor selecione seu lanche')
@@ -801,6 +620,8 @@ export default {
         this.divLanches = !this.divLanches;
       }
     },
+
+    // soma o pedido e vai para a forma de pagamento 
     etapa_3() {
         // formata o texto dos preços e transforma em float para somar 
         // var preco_bebida = parseFloat(this.dadosPedido.preco_bebida.replace('R$ ', ''));
@@ -812,38 +633,75 @@ export default {
         this.divBebida = !this.divBebida;
         this.divPagamento = !this.divPagamento;
     },
+
+    // monta o pedido para ser enviado para o whatsapp
     etapa_4() {
       // se tiver troco, ap e bloco no pedido, entrara neste bloco 
-      if (this.dadosPedido.troco != '' && this.dadosPedido.apartamento != '' && this.dadosPedido.bloco != '') {
-        this.pedido_wpp = '*Agradecemos pela preferência, seu pedido está sendo preparado!*' +
+      if (this.dadosPedido.troco != '' && this.dadosPedido.apartamento != '' && this.dadosPedido.bloco != '' && this.dadosPedido.pontoReferencia != '') {
+        this.pedido_wpp = 
+          '*Agradecemos pela preferência, seu pedido está sendo preparado!*' +
+          '%0A*--------------* ' +
           '%0A' +
-          '%0A*--------------------------------------------------------------------------------* ' +
+          '%0A*Olá, meu nome é* ' + this.dadosPedido.nome +
           '%0A' +
-          '%0A*Nome:* ' + this.dadosPedido.nome +
+          '%0A*e meu contato:* ' + this.dadosPedido.telefone +
+          '%0A' +
+          '%0A*--------------*' +
+          '%0A' +
+          '%0A*Pedido* ' +
+          '%0A' +
+          '%0A*Lanche:* ' + this.dadosPedido.lanche + '( R$ '+ this.dadosPedido.preco_lanche +')' +
+          '%0A' +
+          '%0A*Bebida:* ' + this.dadosPedido.bebida + '( R$ '+ this.dadosPedido.preco_bebida +')' +
+          '%0A' +
+          '%0A*Observações:* ' + this.dadosPedido.observacoes +
+          '%0A' +
+          '%0A*--------------* ' +
+          '%0A' +
+          '%0A*Total* ' +
+          '%0A' +
+          '%0A*Valor:* R$ ' + this.dadosPedido.valor_total +
+          '%0A' +
+          '%0A*Troco para:* R$ ' + this.dadosPedido.troco +
+          '%0A' +
+          '%0A*Forma de pagamento:* ' + this.dadosPedido.forma_pagamento +
+          '%0A' +
+          '%0A*--------------* ' +
+          '%0A' +
+          '%0A*Endereço de entrega* ' +
           '%0A' +
           '%0A*Rua:* ' + this.dadosPedido.rua + ' Nº ' + this.dadosPedido.numero +
           '%0A' +
           '%0A*Bairro:* ' + this.dadosPedido.bairro +
           '%0A' +
+          '%0A*Ponto de referência:* ' + this.dadosPedido.pontoReferencia +
+          '%0A' +
           '%0A*Apartamento:* ' + this.dadosPedido.apartamento +
           '%0A' +
           '%0A*Bloco:* ' + this.dadosPedido.bloco +
+          '%0A*--------------*' +
           '%0A' +
-          '%0A*Telefone:* ' + this.dadosPedido.telefone +
-          '%0A' +
-          '%0A*Lanche:* ' + this.dadosPedido.lanche +
-          '%0A' +
-          '%0A*Bebida:* ' + this.dadosPedido.bebida +
-          '%0A' +
-          '%0A*Observações:* ' + this.dadosPedido.observacoes +
-          '%0A' +
-          '%0A*Preço Total:* R$ ' + this.dadosPedido.valor_total +
-          '%0A' +
-          '%0A*Troco para:* R$ ' + this.dadosPedido.troco +
-          '%0A' +
-          '%0A*Forma de pagamento:* ' + this.dadosPedido.forma_pagamento +
-          '%0A*--------------------------------------------------------------------------------* ';
-      } else if (this.dadosPedido.troco === '' && this.dadosPedido.apartamento != '' && this.dadosPedido.bloco != '') {
+          '%0A*LK Pedidos Whatsapp* ' +
+          '%0Ahttps://lucaswalmor.github.io/lk-whatsapp/' +
+          '%0A'
+          '%0A*--------------*';
+          // '%0A' +
+          // '%0A*Nome:* ' + this.dadosPedido.nome +
+          // '%0A' +
+          // '%0A*Telefone:* ' + this.dadosPedido.telefone +
+          // '%0A' +
+          // '%0A*Lanche:* ' + this.dadosPedido.lanche +
+          // '%0A' +
+          // '%0A*Bebida:* ' + this.dadosPedido.bebida +
+          // '%0A' +
+          // '%0A*Observações:* ' + this.dadosPedido.observacoes +
+          // '%0A' +
+          // '%0A*Preço Total:* R$ ' + this.dadosPedido.valor_total +
+          // '%0A' +
+          // '%0A*Troco para:* R$ ' + this.dadosPedido.troco +
+          // '%0A' +
+          // '%0A*Forma de pagamento:* ' + this.dadosPedido.forma_pagamento +
+      } else if (this.dadosPedido.troco === '' && this.dadosPedido.apartamento != '' && this.dadosPedido.bloco != '' && this.dadosPedido.pontoReferencia != '') {
         // se tiver ap e bloco no pedido, entrara neste bloco
         // variavel pedido monta o pedido que será enviado no html 
         this.pedido_wpp = '*Agradecemos pela preferência, seu pedido está sendo preparado!*' +
@@ -856,6 +714,8 @@ export default {
           '%0A' +
           '%0A*Bairro:* ' + this.dadosPedido.bairro +
           '%0A' +
+          '%0A*Ponto de referência:* ' + this.dadosPedido.pontoReferencia +
+          '%0A' +
           '%0A*Apartamento:* ' + this.dadosPedido.apartamento +
           '%0A' +
           '%0A*Bloco:* ' + this.dadosPedido.bloco +
@@ -867,7 +727,7 @@ export default {
           '%0A*Preço Total:* R$ ' + this.dadosPedido.valor_total +'%0A' +
           '%0A*Forma de pagamento:* ' + this.dadosPedido.forma_pagamento
           '%0A*--------------------------------------------------------------------------------* ';
-      } else if (this.dadosPedido.troco != '' && this.dadosPedido.apartamento != '') {
+      } else if (this.dadosPedido.troco != '' && this.dadosPedido.apartamento != '' && this.dadosPedido.pontoReferencia != '') {
         // se tiver ap e troco no pedido, entrara neste bloco 
 
         // variavel pedido monta o pedido que será enviado no html 
@@ -877,17 +737,116 @@ export default {
             '%0A' +
             '%0A*Nome:* ' + this.dadosPedido.nome +
             '%0A' +
-            '%0A*Rua:* ' + this.dadosPedido.rua + ' Nº ' + this.dadosPedido.numero +'%0A' +
-            '%0A*Bairro:* ' + this.dadosPedido.bairro +'%0A' +
-            '%0A*Apartamento:* ' + this.dadosPedido.apartamento +'%0A' +
-            '%0A*Telefone:* ' + this.dadosPedido.telefone +'%0A' +
-            '%0A*Lanche:* ' + this.dadosPedido.lanche +'%0A' +
-            '%0A*Bebida:* ' + this.dadosPedido.bebida +'%0A' +
-            '%0A*Observações:* ' + this.dadosPedido.observacoes +'%0A' +
-            '%0A*Preço Total:* R$ ' + this.dadosPedido.valor_total +'%0A' +
-            '%0A*Troco para:* R$ ' + this.dadosPedido.troco +'%0A' +
+            '%0A*Rua:* ' + this.dadosPedido.rua + ' Nº ' + this.dadosPedido.numero +
+            '%0A' +
+            '%0A*Bairro:* ' + this.dadosPedido.bairro +
+            '%0A' +
+            '%0A*Ponto de referência:* ' + this.dadosPedido.pontoReferencia +
+            '%0A' +
+            '%0A*Apartamento:* ' + this.dadosPedido.apartamento +
+            '%0A' +
+            '%0A*Telefone:* ' + this.dadosPedido.telefone +
+            '%0A' +
+            '%0A*Lanche:* ' + this.dadosPedido.lanche +
+            '%0A' +
+            '%0A*Bebida:* ' + this.dadosPedido.bebida +
+            '%0A' +
+            '%0A*Observações:* ' + this.dadosPedido.observacoes +
+            '%0A' +
+            '%0A*Preço Total:* R$ ' + this.dadosPedido.valor_total +
+            '%0A' +
+            '%0A*Troco para:* R$ ' + this.dadosPedido.troco +
+            '%0A' +
             '%0A*Forma de pagamento:* ' + this.dadosPedido.forma_pagamento
-          '%0A*--------------------------------------------------------------------------------* ';
+            '%0A*--------------------------------------------------------------------------------* ';
+      } else if (this.dadosPedido.apartamento != '' && this.dadosPedido.pontoReferencia != '') {
+        // se tiver ap e troco no pedido, entrara neste bloco 
+
+        // variavel pedido monta o pedido que será enviado no html 
+        this.pedido_wpp = '*Agradecemos pela preferência, seu pedido está sendo preparado!*' +
+            '%0A' +
+            '%0A*--------------------------------------------------------------------------------* ' +
+            '%0A' +
+            '%0A*Nome:* ' + this.dadosPedido.nome +
+            '%0A' +
+            '%0A*Rua:* ' + this.dadosPedido.rua + ' Nº ' + this.dadosPedido.numero +
+            '%0A' +
+            '%0A*Bairro:* ' + this.dadosPedido.bairro +
+            '%0A' +
+            '%0A*Ponto de referência:* ' + this.dadosPedido.pontoReferencia +
+            '%0A' +
+            '%0A*Apartamento:* ' + this.dadosPedido.apartamento +
+            '%0A' +
+            '%0A*Telefone:* ' + this.dadosPedido.telefone +
+            '%0A' +
+            '%0A*Lanche:* ' + this.dadosPedido.lanche +
+            '%0A' +
+            '%0A*Bebida:* ' + this.dadosPedido.bebida +
+            '%0A' +
+            '%0A*Observações:* ' + this.dadosPedido.observacoes +
+            '%0A' +
+            '%0A*Preço Total:* R$ ' + this.dadosPedido.valor_total +
+            '%0A' +
+            '%0A*Forma de pagamento:* ' + this.dadosPedido.forma_pagamento
+            '%0A*--------------------------------------------------------------------------------* ';
+      } else if (this.dadosPedido.troco != '' && this.dadosPedido.pontoReferencia != '') {
+        // se tiver ap e troco no pedido, entrara neste bloco 
+
+        // variavel pedido monta o pedido que será enviado no html 
+        this.pedido_wpp = '*Agradecemos pela preferência, seu pedido está sendo preparado!*' +
+            '%0A' +
+            '%0A*--------------------------------------------------------------------------------* ' +
+            '%0A' +
+            '%0A*Nome:* ' + this.dadosPedido.nome +
+            '%0A' +
+            '%0A*Rua:* ' + this.dadosPedido.rua + ' Nº ' + this.dadosPedido.numero +
+            '%0A' +
+            '%0A*Bairro:* ' + this.dadosPedido.bairro +
+            '%0A' +
+            '%0A*Ponto de referência:* ' + this.dadosPedido.pontoReferencia +
+            '%0A' +
+            '%0A*Telefone:* ' + this.dadosPedido.telefone +
+            '%0A' +
+            '%0A*Lanche:* ' + this.dadosPedido.lanche +
+            '%0A' +
+            '%0A*Bebida:* ' + this.dadosPedido.bebida +
+            '%0A' +
+            '%0A*Observações:* ' + this.dadosPedido.observacoes +
+            '%0A' +
+            '%0A*Preço Total:* R$ ' + this.dadosPedido.valor_total +
+            '%0A' +
+            '%0A*Troco para:* R$ ' + this.dadosPedido.troco +
+            '%0A' +
+            '%0A*Forma de pagamento:* ' + this.dadosPedido.forma_pagamento
+            '%0A*--------------------------------------------------------------------------------* ';
+      } else if (this.dadosPedido.pontoReferencia != '') {
+        // se tiver ap e troco no pedido, entrara neste bloco 
+
+        // variavel pedido monta o pedido que será enviado no html 
+        this.pedido_wpp = '*Agradecemos pela preferência, seu pedido está sendo preparado!*' +
+            '%0A' +
+            '%0A*--------------------------------------------------------------------------------* ' +
+            '%0A' +
+            '%0A*Nome:* ' + this.dadosPedido.nome +
+            '%0A' +
+            '%0A*Rua:* ' + this.dadosPedido.rua + ' Nº ' + this.dadosPedido.numero +
+            '%0A' +
+            '%0A*Bairro:* ' + this.dadosPedido.bairro +
+            '%0A' +
+            '%0A*Ponto de referência:* ' + this.dadosPedido.pontoReferencia +
+            '%0A' +
+            '%0A*Telefone:* ' + this.dadosPedido.telefone +
+            '%0A' +
+            '%0A*Lanche:* ' + this.dadosPedido.lanche +
+            '%0A' +
+            '%0A*Bebida:* ' + this.dadosPedido.bebida +
+            '%0A' +
+            '%0A*Observações:* ' + this.dadosPedido.observacoes +
+            '%0A' +
+            '%0A*Preço Total:* R$ ' + this.dadosPedido.valor_total +
+            '%0A' +
+            '%0A*Forma de pagamento:* ' + this.dadosPedido.forma_pagamento
+            '%0A*--------------------------------------------------------------------------------* ';
       } else {
         // se não tiver troco, ap e bloco no pedido, entrara neste bloco 
         // variavel pedido monta o pedido que será enviado no html 
@@ -918,6 +877,8 @@ export default {
       this.divFinPedido = !this.divFinPedido;
       this.divPagamento = !this.divPagamento;
     },
+
+    // altera divs da forma de pagamento 
     formaPagamento(event) {
       const option = event.target.value;
       if(option === 'Cartão de crédito') {
@@ -930,6 +891,8 @@ export default {
         this.dadosPedido.forma_pagamento = option
       }
     },
+
+    // Salvar o pedido gerado no banco de dados
     async salvarPedidoDB() {
         // cria um array com os dados do pedido 
         const data = {
@@ -937,6 +900,7 @@ export default {
             cpf: this.dadosPedido.cpf,
             rua: this.dadosPedido.rua,
             bairro: this.dadosPedido.bairro,
+            ponto_referencia: this.dadosPedido.pontoReferencia,
             apartamento: this.dadosPedido.apartamento,
             bloco: this.dadosPedido.bloco,
             telefone: this.dadosPedido.telefone,
@@ -1160,7 +1124,7 @@ hr {
 }
 
 .container-fluid.body {
-  height: 100vh;
+  height: auto;
 }
 
 @media screen and (max-width: 425px) {

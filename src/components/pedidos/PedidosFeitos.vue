@@ -70,6 +70,7 @@ export default {
             // const req = await fetch("http://127.0.0.1:8000/api/pedidos");
             const req = await fetch("https://pedidoparrilha.herokuapp.com/api/pedidos");
             const data = await req.json();
+
             this.pedidos = data[0].pedidos;
             this.somaValorTotal = data[0].somas;
             this.totalPedidos = this.pedidos.length;
