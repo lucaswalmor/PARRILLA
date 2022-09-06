@@ -73,7 +73,6 @@ export default {
             for(let item in data) {
                 arr.push(data[item].nome)
                 this.ingredientesCadastrados = arr
-                console.log(this.ingredientesCadastrados)
             }
 
         },
@@ -84,7 +83,7 @@ export default {
                 "ingredientes": this.ingredientes,
                 "image": this.selectedFile
             }
-
+            
             const dataJson = JSON.stringify(data)
 
             if (this.nome === null || this.preco === null) {
