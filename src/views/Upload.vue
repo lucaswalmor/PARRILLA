@@ -26,7 +26,8 @@ export default {
             fd.append('image', this.selectedFile, this.selectedFile.name)
 
 
-            const req = fetch("http://127.0.0.1:8000/api/upload", {
+            // const req = fetch("http://127.0.0.1:8000/api/upload", {
+            const req = fetch("https://pedidoparrilha.herokuapp.com/api/upload", {
                 method: "POST",
                 body: fd
             });

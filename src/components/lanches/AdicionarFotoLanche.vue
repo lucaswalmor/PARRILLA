@@ -66,7 +66,8 @@ export default {
             if(this.selectedFile == null) {
               alert('Porfavor selecionar uma imagem para seu lanche')
             } else {
-              const req = await fetch("http://127.0.0.1:8000/api/upload", {
+              // const req = await fetch("http://127.0.0.1:8000/api/upload", {
+              const req = await fetch("https://pedidoparrilha.herokuapp.com/api/upload", {
                   method: "POST",
                   body: fd,
               });

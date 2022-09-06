@@ -66,8 +66,8 @@ export default {
     methods: {
         // carregar lista de usuarios
         async listarIngredientes() {
-            const req = await fetch("http://127.0.0.1:8000/api/ingredientes");
-            // const req = await fetch("https://pedidoparrilha.herokuapp.com/api/ingredientes");
+            // const req = await fetch("http://127.0.0.1:8000/api/ingredientes");
+            const req = await fetch("https://pedidoparrilha.herokuapp.com/api/ingredientes");
             const data = await req.json();
             let arr = []
             for(let item in data) {
@@ -90,8 +90,8 @@ export default {
             if (this.nome === null || this.preco === null) {
                 alert("Porfavor preencha todos os campos");
             } else {
-                const req = await fetch("http://127.0.0.1:8000/api/lanches", {
-                // const req = await fetch("https://pedidoparrilha.herokuapp.com/api/lanches", {
+                // const req = await fetch("http://127.0.0.1:8000/api/lanches", {
+                const req = await fetch("https://pedidoparrilha.herokuapp.com/api/lanches", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: dataJson

@@ -2,11 +2,6 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
   {
-    path: '/adicionar-foto/:token',
-    name: 'AdicionarFotoLanche',
-    component: () => import('../components/lanches/AdicionarFotoLanche.vue')
-  },
-  {
     path: '/admin',
     name: 'admin',
     component: () => import('../views/Admin.vue')
