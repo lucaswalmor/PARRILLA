@@ -1,11 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Pedido from '../views/Pedido.vue'
 
 const routes = [
   {
-    path: '/',
-    name: 'Pedido',
-    component: Pedido
+    path: '/adicionar-foto/:token',
+    name: 'AdicionarFotoLanche',
+    component: () => import('../components/lanches/AdicionarFotoLanche.vue')
   },
   {
     path: '/admin',
@@ -35,6 +34,11 @@ const routes = [
   },
   
   // ROTAS DE LANCHES
+  {
+    path: '/cadastrar-ingredientes/:token',
+    name: 'CadastrarIngredientes',
+    component: () => import('../components/lanches/CadastrarIngredientes.vue')
+  },
   {
     path: '/cadastrar-lanche/:token',
     name: 'CadastrarLanche',
@@ -87,6 +91,21 @@ const routes = [
     path: '/ver-pedido/:token/:id',
     name: 'VerPedido',
     component: () => import('../components/pedidos/VerPedido.vue')
+  },
+  {
+    path: '/dados-usuario',
+    name: 'DadosUsuario',
+    component: () => import('../components/pedidos/DadosUsuario.vue')
+  },
+  {
+    path: '/',
+    name: 'DadosUsuario',
+    component: () => import('../components/pedidos/DadosUsuario.vue')
+  },
+  {
+    path: '/dadosLanche',
+    name: 'DadosLanche',
+    component: () => import('../components/pedidos/DadosLanche.vue')
   },
   // ROTAS DE CLIENTES
   {

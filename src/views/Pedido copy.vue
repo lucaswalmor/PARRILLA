@@ -4,14 +4,479 @@
     <div class="col-12 row d-flex justify-content-center">
       <img src="/img/logo.jpg" alt="logo" class="logo" />
     </div>
-
     <hr />
-    
     <form class="g-3" action="#" method="post" @submit.prevent>
-      <dados-usuario></dados-usuario>
+      <!-- DADOS DO USUÁRIO -->
+      <div id="dadosPedido" class="row mt-4" v-show="divDataUser">
+        <!-- NOME -->
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-4">
+            <label for="nome" class="form-label">Nome</label>
+            <input
+              type="text"
+              v-model="dadosPedido.nome"
+              name="nome"
+              id="nome"
+              class="form-control"
+            />
+            <div
+              class="alert alert-warning fade show mt-2"
+              v-show="hasError"
+              v-if="!dadosPedido.nome"
+              role="alert"
+              id="validacao-nome"
+            >
+              preencha este campo!
+          </div>
+        </div>
+      </div>
+
+        <!-- CPF -->
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-4">
+            <label for="cpf" class="form-label">CPF</label>
+            <input
+              type="text"
+              v-model="dadosPedido.cpf"
+              name="cpf"
+              id="cpf"
+              class="form-control"
+              placeholder="Ex: 00000000000"
+              minlength="14"
+              maxlength="14" 
+              v-maska="'###.###.###-##'"
+            />
+            <div
+              class="alert alert-warning fade show mt-2"
+              v-show="hasError"
+              v-if="!dadosPedido.cpf"
+              role="alert"
+              id="validacao-cpf"
+            >
+              preencha este campo!
+            </div>
+          </div>
+
+        </div>
+
+        <!-- TELEFONE -->
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-4">
+            <label for="telefone" class="form-label">Telefone</label>
+            <input
+              type="text"
+              v-maska="'(##) #####-####'"
+              v-model="dadosPedido.telefone"
+              name="telefone"
+              id="telefone"
+              minlength="15"
+              maxlength="15"
+              class="form-control telefone"
+            />
+            <div
+              class="alert alert-warning fade show mt-2"
+              role="alert"
+              id="validacao-telefone"
+              v-show="hasError"
+              v-if="!dadosPedido.telefone"
+            >
+              preencha este campo!
+            </div>
+          </div>
+
+        </div>
+
+        <!-- CEP E TAXA DE ENTREGA-->
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-3">
+            <label for="cep" class="form-label">CEP</label>
+            <input
+              type="text"
+              placeholder="Ex: 00000000"
+              v-model="cep"
+              name="cep"
+              id="cep"
+              class="form-control"
+              maxlength="8" 
+            />
+            <div
+              class="alert alert-warning fade show mt-2 alerta-validacao"
+              role="alert"
+              id="validacao-cep"
+              v-show="hasError"
+              v-if="!cep"
+            >
+              preencha este campo!
+            </div>
+          </div>
+          <div class="col-md-1">
+            <label for="taxa_entrega" class="form-label">Frete</label>
+            <input
+              style="background-color: transparent; color: #fff; outline: none;"
+              type="text"
+              v-model="dadosPedido.taxa_entrega"
+              name="taxa_entrega"
+              id="taxa_entrega"
+              class="form-control"
+              placeholder="Autopreenchido"
+              readonly
+            />
+          </div>
+
+        </div>
+
+        <!-- RUA E NUMERO-->
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-2">
+            <label for="rua" class="form-label">Rua</label>
+            <input
+              type="text"
+              v-model="dadosPedido.endereco.logradouro"
+              name="rua"
+              id="rua"
+              class="form-control"
+              placeholder="Autopreenchido"
+              readonly
+            />
+          </div>
+          <div class="col-md-2">
+            <label for="numero" class="form-label">Nº</label>
+            <input
+              type="number"
+              v-model="dadosPedido.numero"
+              name="numero"
+              id="numero"
+              min=1
+              class="form-control"
+            />
+            <div
+              class="alert alert-warning fade show mt-2 alerta-validacao"
+              role="alert"
+              id="validacao-numero"
+              v-show="hasError"
+              v-if="!dadosPedido.numero"
+            >
+              preencha este campo!
+            </div>
+          </div>
+
+        </div>
+
+        <!-- BAIRRO -->
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-4">
+            <label for="bairro" class="form-label">Bairro</label>
+            <input
+              type="text"
+              name="bairro"
+              placeholder="Autopreenchido"
+              v-model="dadosPedido.endereco.bairro"
+              id="bairro"
+              class="form-control"
+              readonly
+            />
+          </div>          
+        </div>
+
+        <!-- PONTO DE REFERÊNCIA -->
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-4">
+            <label for="pontoReferencia" class="form-label">Referência</label>
+            <textarea name="" id="" cols="30" rows="2" class="form-control"
+              v-model="dadosPedido.pontoReferencia"></textarea>
+          </div>          
+        </div>
+
+        <!-- RESIDÊNCIA -->
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-4">
+            <label for="residencia" class="form-label">Residência</label>
+            <select
+              id="residencia"
+              v-model="dadosPedido.residencia"
+              class="form-select"
+            >
+              <option disabled selected>Selecione...</option>
+              <option value="Casa">Casa</option>
+              <option value="Apartamento">Apartamento</option>
+            </select>
+            <div
+              class="alert alert-warning fade show mt-2 alerta-validacao"
+              role="alert"
+              id="validacao-numero"
+              v-show="hasError"
+              v-if="!dadosPedido.residencia"
+            >
+              preencha este campo!
+            </div>
+          </div>
+
+        </div>
+
+        <!-- APARTAMENTO -->
+        <div class="row d-flex justify-content-center">
+          <div
+            class="col-md-2 res_ap"
+            v-if="dadosPedido.residencia === 'Apartamento'"
+          >
+            <label for="apartamento" class="form-label">Apartamento</label>
+            <input
+              type="number"
+              v-model="dadosPedido.apartamento"
+              name="apartamento"
+              id="apartamento"
+              class="form-control"
+              min="0"
+            />
+          </div>
+          <div
+            class="col-md-2 res_ap"
+            v-if="dadosPedido.residencia === 'Apartamento'"
+          >
+            <label for="bloco" class="form-label">Bloco</label>
+            <input
+              type="text"
+              v-model="dadosPedido.bloco"
+              name="bloco"
+              id="bloco"
+              class="form-control"
+              style="text-transform: capitalize"
+            />
+          </div>
+        </div>
+
+        <!-- BLOCO -->
+        <div class="row d-flex justify-content-center">
+        </div>
+
+        <div class="col-12 mt-3 d-flex justify-content-center" id="proximo">
+          <button type="submit" @click="etapa_1" class="btn etapa_1">
+            Próxima Etapa
+          </button>
+        </div>
+      </div>
+
+      <!-- PEDIDO DE LANCHE -->
+      <div class="row mt-3" id="pedido_lanche" v-show="divLanches">
+        <div class="row d-flex justify-content-around">
+          <div class="col-md-4">
+            <label for="lanche" class="form-label">Lanche</label>
+            <select
+              id="lanche"
+              class="form-select"
+              v-model="tipoLanche"
+              @change="alterarPrecoLanche($event)"
+            >
+              <option value="" disabled>-- Selecione</option>
+              <option v-for="lanche in dadosLanches" :key="lanche.id">{{ lanche.nome }}</option> 
+            </select>
+            <div class="form-group mt-3">
+              <label for="preco_lanche">Preço</label>
+              <input
+                type="text"
+                class="form-control mt-1"
+                id="preco_lanche"
+                name="preco_lanche"
+                readonly
+                v-model="dadosPedido.preco_lanche"
+              />
+            </div>
+            <div class="form-group mt-3">
+              <label for="observacoes">Observações</label>
+              <textarea
+                id="observacoes"
+                class="form-control mt-1"
+                name=""
+                rows="2"
+                v-model="dadosPedido.observacoes"
+                placeholder="Tem algo a acrescentar?"
+              ></textarea>
+            </div>
+          </div>
+
+          <div class="col-12 mt-3 text-center" id="botao_etapa_2">
+            <button type="submit" @click="etapa_2" class="btn etapa_2">
+              Próxima Etapa
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PEDIDO DE BEBIDA -->
+      <div class="row mt-3" id="pedido_bebida" v-show="divBebida">
+        <div class="row d-flex justify-content-around">
+          <div class="col-md-4">
+            <label for="bebida" class="form-label">Bebidas</label>
+            <select id="bebida" class="form-select" @change="alterarPrecoBebida($event)">
+              <option value="" disabled>-- Selecione</option>
+              <option v-for="bebida in dadosBebidas" :key="bebida.id">{{bebida.nome}}</option> 
+            </select>
+            <div class="form-group mt-3">
+              <label for="preco_bebida">Preço</label>
+              <input
+                type="text"
+                class="form-control mt-1"
+                id="preco_bebida"
+                readonly
+                v-model="dadosPedido.preco_bebida"
+              />
+            </div>
+          </div>
+          <div class="col-12 mt-3 text-center" id="botao">
+            <button type="submit" @click="etapa_3($event)" class="btn etapa_3">
+              Confirmar Pedido
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- FORMAS DE PAGAMENTO -->
+      <div class="row mt-3" id="pagamento" v-show="divPagamento">
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-4">
+            <label for="forma_pagamento" class="form-label"
+              >Forma de pagamento</label
+            >
+            <select id="forma_pagamento" class="form-select" @change="formaPagamento($event)">
+              <option disabled selected>Selecione...</option>
+              <option value="Cartão de crédito">Cartão de crédito</option>
+              <option value="Cartão de débito">Cartão de débito</option>
+              <option value="Pix">Pix</option>
+              <option value="Dinheiro">Dinheiro</option>
+            </select>
+            <p>
+              Caso sua escolha seja pix, enviar o comprovante assim que efetuar
+              o pedido
+            </p>
+          </div>
+        </div>
+
+        <!-- TROCO -->
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-4 dinheiro"
+            v-if="dadosPedido.forma_pagamento === 'Dinheiro'">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" role="switch" id="tem_troco" v-model="dadosPedido.tem_troco"
+                      true-value="Sim" false-value="Não">
+              <label class="form-check-label" for="tem_troco">Deseja Troco?</label>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- TROCO -->
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-4 dinheiro"
+            v-if="dadosPedido.tem_troco === 'Sim'">
+            <label for="troco" class="form-label">Troco para quanto:</label>
+            <input
+              type="number"
+              id="troco"
+              class="form-control"
+              placeholder="R$"
+              name="troco"
+              v-model="dadosPedido.troco"
+            />
+          </div>
+
+        </div>
+
+        <!-- CHAVE PIX -->
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-4 justify-content-center chave_pix text-center"
+            v-if="dadosPedido.forma_pagamento === 'Pix'"
+          >
+            <label for="chave-pix" class="form-label">Chave pix:</label>
+            <p>c4c0cd2f-e0b9-4697-af80-0600e14e062e</p>
+          </div>
+        </div>
+
+        <!-- QRCODE PIX -->
+        <div class="row d-flex justify-content-center text-center">
+          <div
+            class="col-md-4 chave_pix justify-content-center"
+            id="qrcode"
+            v-if="dadosPedido.forma_pagamento === 'Pix'"
+          >
+            <img src="/img/qrcode.png" style="width: 250px" />
+          </div>
+        </div>
+
+        <!-- CONFIRMAR PEDIDO -->
+        <div class="row d-flex justify-content-center">
+          <div class="col-12 mt-3 text-center" id="botao">
+            <button type="submit" @click="etapa_4" class="btn confirmar_pedido">
+              Confirmar Pedido
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- DADOS DO PEDIDO FEITO -->
+      <div class="row mt-3" id="pedido_montado" v-show="divFinPedido">
+        <div class="row col-12 text-center">
+          <h4>Agradecemos pela preferência, agora só resta enviar o pedido &#x1F60A;</h4>
+        </div> 
+        <div class="row col-12 text-justify d-flex flex-column align-items-center">
+          <div class="col-md-6">
+            <strong>Nome:</strong> {{ dadosPedido.nome }}
+          </div>
+          <div class="col-md-6">
+            <strong>CPF:</strong> {{ dadosPedido.cpf }}
+          </div>
+          <div class="col-md-6">
+            <strong>Rua:</strong> {{ dadosPedido.rua }}
+          </div>
+          <div class="col-md-6">
+            <strong>Bairro:</strong> {{ dadosPedido.bairro }}
+          </div>
+          <div class="col-md-6" v-if="dadosPedido.pontoReferencia != ''">
+            <strong>Ponto de Referência:</strong> {{ dadosPedido.pontoReferencia }}
+          </div>
+          <div class="col-md-6" v-if="dadosPedido.apartamento != ''">
+            <strong>Apartamento:</strong> {{ dadosPedido.apartamento }}
+          </div>
+          <div class="col-md-6" v-if="dadosPedido.bloco != ''">
+            <strong>Bloco:</strong> {{ dadosPedido.bloco }}
+          </div>
+          <div class="col-md-6">
+            <strong>Telefone:</strong> {{ dadosPedido.telefone }}
+          </div>
+          <div class="col-md-6">
+            <strong>Lanche:</strong> {{ dadosPedido.lanche }}
+          </div>
+          <div class="col-md-6" v-if="dadosPedido.observacoes != ''">
+            <strong>Observações:</strong> {{ dadosPedido.observacoes }}
+          </div>
+          <div class="col-md-6" v-if="dadosPedido.bebida != ''">
+            <strong>Bebida:</strong> {{ dadosPedido.bebida }}
+          </div>
+          <div class="col-md-6">
+            <strong>Valor Total: R$</strong> {{ dadosPedido.valor_total }}
+          </div>
+          <div class="col-md-6" v-if="dadosPedido.troco != ''">
+            <strong> Troco: </strong> R$ {{ dadosPedido.troco }}
+          </div>
+          <div class="col-md-6">
+            <strong>Forma de pagamento:</strong> {{ dadosPedido.forma_pagamento }}
+          </div>
+        </div>
+      </div>
+      
+      <!-- BOTAO DE ENVIAR O PEDIDO -->
+      <div
+        class="col-12 mt-3 text-center"
+        v-show="divFinPedido"
+        id="link_wpp"
+      >
+        <a :href="href" @click="salvarPedidoDB" class="enviar_pedido mb-3"
+          >Enviar Pedido</a
+        >
+      </div>
+
       <hr />
     </form>
-    
+
     <!-- FOOTER -->
     <div class="row col-12 pb-4">
         <div class="col-12 text-center">
@@ -40,15 +505,18 @@
 </template>
 
 <script>
-import DadosUsuario from '@/components/pedidos/DadosUsuario.vue'
 
 export default {
   name: "Pedido",
-  components: {
-    DadosUsuario
-  },
   data() {
     return {
+      divDataUser: true,
+      divTipoResidencia: false,
+      divLanches: false,
+      divBebida: false,
+      divPagamento: false,
+      divFinPedido: false,
+      divHTMLpedido: false,
       dadosPedido: {
         nome: "",
         cpf: "",

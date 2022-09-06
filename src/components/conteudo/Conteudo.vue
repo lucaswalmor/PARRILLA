@@ -299,7 +299,6 @@ export default {
 
 <style scoped>
 
-
 .botao-acao-tabela button {
     margin-left: 10px !important;
 }

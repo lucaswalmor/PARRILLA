@@ -31,6 +31,7 @@
             <tbody id="tabela_lanches">
                 <tr v-for="lanche in dadosLanches" :key="lanche">
                     <th>{{lanche.id}}</th>
+                    <!-- <th><img :src="'http://127.0.0.1:8000/storage/' + lanche.path" alt=""></th> -->
                     <td>{{lanche.nome}}</td>
                     <td>R$ {{lanche.preco}}</td>
                     <td class="botao-acao-tabela">
@@ -68,10 +69,11 @@ export default {
         // carregar lista de usuarios
         async listarLanche() {
             // cria um array com os dados do pedido 
-            // const req = await fetch("http://127.0.0.1:8000/api/lanches");
-            const req = await fetch("https://pedidoparrilha.herokuapp.com/api/lanches");
+            const req = await fetch("http://127.0.0.1:8000/api/lanches");
+            // const req = await fetch("https://pedidoparrilha.herokuapp.com/api/lanches");
             const data = await req.json();
             this.dadosLanches = data;
+            console.log(this.dadosLanches)
         },
         // deletar usuario 
         async deletarLanche(id) {

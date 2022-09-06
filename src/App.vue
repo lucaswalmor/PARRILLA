@@ -1,13 +1,13 @@
 <template>
-
-  <div>
+  <div class="container-fluid background">
     <router-view/>
   </div>
 </template>
 
 <script>
+
 export default {
-  name: 'App',
+    name: "App",
 }
 </script>
 
@@ -18,7 +18,9 @@ export default {
   box-sizing: border-box;
 }
 
-body {
-  overflow-y: scroll !important;
+label {
+  color: #f9a529;
+  padding-top: 10px;
 }
+
 </style>
