@@ -52,7 +52,7 @@ export default {
             } else {
                 const dataJson = JSON.stringify(data);
                 // const req = await fetch(`http://127.0.0.1:8000/api/taxa_entrega/${id}`, {
-                const req = await fetch(`https://pedidoparrilha.herokuapp.com/api/taxa_entrega/${id}`, {
+                const req = await fetch(`https://www.projetoadocao.com/api/taxa_entrega/${id}`, {
                     method: "PATCH",
                     headers: { "Content-Type": "application/json" },
                     body: dataJson
@@ -73,7 +73,7 @@ export default {
         async listarTaxa() {
             var id = this.$route.params.id;
             // cria um array com os dados do pedido 
-            const req = await fetch(`https://pedidoparrilha.herokuapp.com/api/taxa_entrega/${id}`);
+            const req = await fetch(`https://www.projetoadocao.com/api/taxa_entrega/${id}`);
             const data = await req.json();
             this.dadosTaxa = data;
         },

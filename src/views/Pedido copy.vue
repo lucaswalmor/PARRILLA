@@ -915,7 +915,7 @@ export default {
         const dataJson = JSON.stringify(data);
 
         // const req = await fetch("http://127.0.0.1:8000/api/pedidos", {
-        const req = await fetch("https://pedidoparrilha.herokuapp.com/api/pedidos", {
+        const req = await fetch("https://www.projetoadocao.com/api/pedidos", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: dataJson
@@ -925,14 +925,14 @@ export default {
     async listarLanche() {
         // cria um array com os dados do pedido 
         // const req = await fetch("http://127.0.0.1:8000/api/lanches");
-        const req = await fetch("https://pedidoparrilha.herokuapp.com/api/lanches");
+        const req = await fetch("https://www.projetoadocao.com/api/lanches");
         const data = await req.json();
         this.dadosLanches = data;
     },
     // carregar lista de usuarios
     async listarBebidas() {
         // cria um array com os dados do pedido 
-        const req = await fetch("https://pedidoparrilha.herokuapp.com/api/bebidas");
+        const req = await fetch("https://www.projetoadocao.com/api/bebidas");
         const data = await req.json();
         this.dadosBebidas = data;
     },
@@ -993,7 +993,7 @@ export default {
     },
     async listarBairros() {
         // const req = await fetch("http://127.0.0.1:8000/api/taxa_entrega");
-        const req = await fetch("https://pedidoparrilha.herokuapp.com/api/taxa_entrega");
+        const req = await fetch("https://www.projetoadocao.com/api/taxa_entrega");
         const data = await req.json();
         this.bairros_banco = data;
     }

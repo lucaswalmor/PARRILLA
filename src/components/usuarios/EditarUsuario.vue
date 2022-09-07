@@ -60,7 +60,7 @@ export default {
             } else {
                 const dataJson = JSON.stringify(data);
                 // const req = await fetch(`http://127.0.0.1:8000/api/usuarios/${id}`, {
-                const req = await fetch(`https://pedidoparrilha.herokuapp.com/api/usuarios/${id}`, {
+                const req = await fetch(`https://www.projetoadocao.com/api/usuarios/${id}`, {
                     method: "PATCH",
                     headers: { "Content-Type": "application/json" },
                     body: dataJson
@@ -83,7 +83,7 @@ export default {
             // cria um array com os dados do pedido 
             
             try {
-                const req = await fetch(`https://pedidoparrilha.herokuapp.com/api/usuarios/${id}`);
+                const req = await fetch(`https://www.projetoadocao.com/api/usuarios/${id}`);
                 const data = await req.json();
                 this.dadosUsuarios = data;
             } catch (err) {

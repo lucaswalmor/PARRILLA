@@ -68,7 +68,7 @@ export default {
         async editarUsuario() {
             // cria um array com os dados do pedido 
             // const req = await fetch("http://127.0.0.1:8000/api/usuarios");
-            const req = await fetch("https://pedidoparrilha.herokuapp.com/api/usuarios");
+            const req = await fetch("https://www.projetoadocao.com/api/usuarios");
             const data = await req.json();
             this.dadosUsuario = data;
         },
@@ -77,7 +77,7 @@ export default {
         async deleteUser(id) {
             if (confirm(`Você realmente deseja deletar o pedido Nº ${id} `)) {
                 // requisicao feita para o backend
-                const req = await fetch(`https://pedidoparrilha.herokuapp.com/api/usuarios/${id}`, {
+                const req = await fetch(`https://www.projetoadocao.com/api/usuarios/${id}`, {
                     method: "DELETE"
                 });
                 const res = await req.json();

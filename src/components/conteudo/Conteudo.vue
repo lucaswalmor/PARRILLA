@@ -112,7 +112,7 @@ export default {
         async listarPedidos() {
             // cria um array com os dados do pedido 
             // const req = await fetch("http://127.0.0.1:8000/api/pedidos");
-            const req = await fetch("https://pedidoparrilha.herokuapp.com/api/pedidos");
+            const req = await fetch("https://www.projetoadocao.com/api/pedidos");
             const data = await req.json();
             this.pedidos = data[0].pedidos;
             this.somaValorTotal = data[0].somas;
@@ -144,7 +144,7 @@ export default {
                 const dataJson = JSON.stringify(data);
 
                 // const req = await fetch("http://127.0.0.1:8000/api/filtros", {
-                const req = await fetch("https://pedidoparrilha.herokuapp.com/api/filtros", {
+                const req = await fetch("https://www.projetoadocao.com/api/filtros", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: dataJson
@@ -166,7 +166,7 @@ export default {
                 // transforma o array de dados do pedido em texto 
                 const dataJson = JSON.stringify(data);
                 // const req = await fetch("http://127.0.0.1:8000/api/filtros", {
-                const req = await fetch("https://pedidoparrilha.herokuapp.com/api/filtros", {
+                const req = await fetch("https://www.projetoadocao.com/api/filtros", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: dataJson
@@ -187,7 +187,7 @@ export default {
                 // transforma o array de dados do pedido em texto 
                 const dataJson = JSON.stringify(data);
                 // const req = await fetch("http://127.0.0.1:8000/api/filtros", {
-                const req = await fetch("https://pedidoparrilha.herokuapp.com/api/filtros", {
+                const req = await fetch("https://www.projetoadocao.com/api/filtros", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: dataJson
@@ -218,7 +218,7 @@ export default {
                 const dataJson = JSON.stringify(data);
 
                 // const req = await fetch("http://127.0.0.1:8000/api/filtros", {
-                const req = await fetch("https://pedidoparrilha.herokuapp.com/api/filtros", {
+                const req = await fetch("https://www.projetoadocao.com/api/filtros", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: dataJson
@@ -242,7 +242,7 @@ export default {
                 const dataJson = JSON.stringify(data);
 
                 // const req = await fetch("http://127.0.0.1:8000/api/filtros", {
-                const req = await fetch("https://pedidoparrilha.herokuapp.com/api/filtros", {
+                const req = await fetch("https://www.projetoadocao.com/api/filtros", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: dataJson
@@ -266,7 +266,7 @@ export default {
                 const dataJson = JSON.stringify(data);
 
                 // const req = await fetch("http://127.0.0.1:8000/api/filtros", {
-                const req = await fetch("https://pedidoparrilha.herokuapp.com/api/filtros", {
+                const req = await fetch("https://www.projetoadocao.com/api/filtros", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: dataJson

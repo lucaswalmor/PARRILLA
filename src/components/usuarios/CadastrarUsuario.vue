@@ -62,9 +62,10 @@ export default {
                 alert('Porfavor preencha todos os campos');
             } else {
                 // const req = await fetch("http://127.0.0.1:8000/api/register", {
-                const req = await fetch("https://pedidoparrilha.herokuapp.com/api/register", {
+                // const req = await fetch("https://www.projetoadocao.com/api/register", {
+                const req = await fetch("https://www.projetoadocao.com/api/register", {
                     method: "POST",
-                    headers: { "Content-Type": "application/json", "X-CSRF-Token": this.csrf },
+                    headers: { "Content-Type": "application/json" },
                     body: dataJson
                 });
 

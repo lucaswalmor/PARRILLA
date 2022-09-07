@@ -70,7 +70,7 @@ export default {
         async listarLanche() {
             // cria um array com os dados do pedido 
             // const req = await fetch("http://127.0.0.1:8000/api/lanches");
-            const req = await fetch("https://pedidoparrilha.herokuapp.com/api/lanches");
+            const req = await fetch("https://www.projetoadocao.com/api/lanches");
             const data = await req.json();
             this.dadosLanches = data;
         },
@@ -78,7 +78,7 @@ export default {
         async deletarLanche(id) {
             if (confirm(`Você realmente deseja deletar o pedido Nº ${id} `)) {
                 // const req = await fetch(`http://127.0.0.1:8000/api/lanches/${id}`, {
-                const req = await fetch(`https://pedidoparrilha.herokuapp.com/api/lanches/${id}`, {
+                const req = await fetch(`https://www.projetoadocao.com/api/lanches/${id}`, {
                     method: "DELETE"
                 });
                 const res = await req.json();

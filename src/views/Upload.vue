@@ -27,7 +27,7 @@ export default {
 
 
             // const req = fetch("http://127.0.0.1:8000/api/upload", {
-            const req = fetch("https://pedidoparrilha.herokuapp.com/api/upload", {
+            const req = fetch("https://www.projetoadocao.com/api/upload", {
                 method: "POST",
                 body: fd
             });

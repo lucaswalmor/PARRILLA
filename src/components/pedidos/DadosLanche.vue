@@ -52,7 +52,7 @@
             <div class="card-body">
               <!-- <img src="img/sem_imagem.png" alt=""> -->
               <!-- <img src="img/burger.jpg" alt=""> -->
-              <img :src="'http://127.0.0.1:8000/storage/' + lanche.path">
+              <img :src="'https://www.projetoadocao.com/storage/' + lanche.path">
             </div>
             <div class="card-footer">
               <span class="fw-bold">Ingredientes: </span>{{lanche.ingredientes}}
@@ -110,7 +110,7 @@
         async listarLanche() {
             // cria um array com os dados do pedido 
             // const req = await fetch("http://127.0.0.1:8000/api/lanches");
-            const req = await fetch("https://pedidoparrilha.herokuapp.com/api/lanches");
+            const req = await fetch("https://www.projetoadocao.com/api/lanches");
             const data = await req.json();
             this.dadosLanches = data;
         },

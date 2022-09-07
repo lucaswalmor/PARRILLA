@@ -44,7 +44,7 @@ export default {
             const dataJson = JSON.stringify(data);
 
             // const req = await fetch("http://127.0.0.1:8000/api/filtros", {
-            const req = await fetch("https://pedidoparrilha.herokuapp.com/api/filtros", {
+            const req = await fetch("https://www.projetoadocao.com/api/filtros", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: dataJson

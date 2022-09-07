@@ -53,7 +53,7 @@ export default {
             } else {
                 const dataJson = JSON.stringify(data);
                 // const req = await fetch(`http://127.0.0.1:8000/api/lanches/${id}`, {
-                const req = await fetch(`https://pedidoparrilha.herokuapp.com/api/lanches/${id}`, {
+                const req = await fetch(`https://www.projetoadocao.com/api/lanches/${id}`, {
                     method: "PATCH",
                     headers: { "Content-Type": "application/json" },
                     body: dataJson
@@ -74,7 +74,7 @@ export default {
         async listarLanche() {
             var id = this.$route.params.id;
             // cria um array com os dados do pedido 
-            const req = await fetch(`https://pedidoparrilha.herokuapp.com/api/lanches/${id}`);
+            const req = await fetch(`https://www.projetoadocao.com/api/lanches/${id}`);
             const data = await req.json();
             this.dadosLanche = data;
         },

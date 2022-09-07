@@ -19,7 +19,7 @@ export default {
     methods: {
         async dados() {
             // const req = await fetch("http://127.0.0.1:8000/api/filtros");
-            const req = await fetch("https://pedidoparrilha.herokuapp.com/api/filtros");
+            const req = await fetch("https://www.projetoadocao.com/api/filtros");
             
             const dadosBackend = await req.json();
 

@@ -341,7 +341,7 @@ export default {
         },
         async listarBairros() {
             // const req = await fetch("http://127.0.0.1:8000/api/taxa_entrega");
-            const req = await fetch("https://pedidoparrilha.herokuapp.com/api/taxa_entrega");
+            const req = await fetch("https://www.projetoadocao.com/api/taxa_entrega");
             const data = await req.json();
             this.bairros_banco = data;
         },
