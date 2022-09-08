@@ -10,8 +10,7 @@
               {{bebida.nome}}
             </div>
             <div class="card-body">
-              <!-- <img :src="'https://www.projetoadocao.com/storage/' + bebida.path"> -->
-              <img :src="'http://127.0.0.1:8000/storage/' + bebida.path">
+              <img :src="'https://www.projetoadocao.com/storage/' + bebida.path">
             </div>
             <div class="card-footer">
               <span class="fw-bold">Valor: </span>R$ {{bebida.preco}}
