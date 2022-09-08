@@ -3,7 +3,7 @@
 <div class="container">
   <div class="row">
     <div class="titulo col-md-12 p-5">
-      <h1 class="text-secondary">Adicionar foto Lanche</h1>
+      <h1 class="text-secondary">Adicionar foto Bebida</h1>
     </div>
   </div>
 
@@ -66,8 +66,8 @@ export default {
             if(this.selectedFile == null) {
               alert('Porfavor selecionar uma imagem para seu lanche')
             } else {
-              // const req = await fetch("http://127.0.0.1:8000/api/upload", {
-              const req = await fetch("https://www.projetoadocao.com/api/upload", {
+                // const req = await fetch("http://127.0.0.1:8000/api/fotoBebida", {
+                  const req = await fetch("https://www.projetoadocao.com/api/fotoBebida", {
                   method: "POST",
                   body: fd,
               });

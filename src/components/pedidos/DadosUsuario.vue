@@ -279,7 +279,7 @@ export default {
             errors: [],
             hasError: false,
             bairros_banco: [],
-            teste: ""
+            itemsPedido: []
         };
     },
     methods: {
@@ -335,7 +335,7 @@ export default {
                 }
                 const data = this.dadosPedido;
                 const dataJson = JSON.stringify(data);
-                localStorage.setItem("dados_usuario", dataJson);
+                localStorage.setItem('pedido', dataJson)
                 this.$router.push('/dadosLanche');
             }
         },

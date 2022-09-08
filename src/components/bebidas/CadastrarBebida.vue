@@ -62,6 +62,8 @@ export default {
                     this.msg = "Bebida cadastrada com sucesso!";
                     this.nome = "";
                     this.preco = "";
+                    var token = this.$route.params.token;
+                    this.$router.push({ path: `/adicionar-foto-bebida/${token}`, params: {token: token } });
                     setTimeout(() => {
                         this.msg = "";
                     }, 2000);

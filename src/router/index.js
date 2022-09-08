@@ -2,11 +2,6 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
   {
-    path: '/adicionar-foto/:token',
-    name: 'AdicionarFotoLanche',
-    component: () => import('../components/lanches/AdicionarFotoLanche.vue')
-  },
-  {
     path: '/admin',
     name: 'admin',
     component: () => import('../views/Admin.vue')
@@ -40,6 +35,11 @@ const routes = [
     component: () => import('../components/lanches/CadastrarIngredientes.vue')
   },
   {
+    path: '/adicionar-foto/:token',
+    name: 'AdicionarFotoLanche',
+    component: () => import('../components/lanches/AdicionarFotoLanche.vue')
+  },
+  {
     path: '/cadastrar-lanche/:token',
     name: 'CadastrarLanche',
     component: () => import('../components/lanches/CadastrarLanche.vue')
@@ -59,6 +59,11 @@ const routes = [
     path: '/cadastrar-bebida/:token',
     name: 'CadastrarBebida',
     component: () => import('../components/bebidas/CadastrarBebida.vue')
+  },
+  {
+    path: '/adicionar-foto-bebida/:token',
+    name: 'AdicionarFotoBebida',
+    component: () => import('../components/bebidas/AdicionarFotoBebida.vue')
   },
   {
     path: '/listar-bebida/:token',
@@ -93,9 +98,9 @@ const routes = [
     component: () => import('../components/pedidos/VerPedido.vue')
   },
   {
-    path: '/dados-usuario',
-    name: 'DadosUsuario',
-    component: () => import('../components/pedidos/DadosUsuario.vue')
+    path: '/dadosbebida',
+    name: 'DadosBebida',
+    component: () => import('../components/pedidos/DadosBebida.vue')
   },
   {
     path: '/',
@@ -106,6 +111,11 @@ const routes = [
     path: '/dadosLanche',
     name: 'DadosLanche',
     component: () => import('../components/pedidos/DadosLanche.vue')
+  },
+  {
+    path: '/carrinho',
+    name: 'Carrinho',
+    component: () => import('../components/pedidos/Carrinho.vue')
   },
   // ROTAS DE CLIENTES
   {
