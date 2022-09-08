@@ -5,7 +5,7 @@
       <button @click="adicionarLanche" class="btn btn-warning fw-bold m-3">Adicionar Lanche</button>
     </div>
     <div class="">
-      <button @click="adicionarLanche" class="btn btn-warning fw-bold m-3">Adicionar Bebida</button>
+      <button @click="adicionarBebida" class="btn btn-warning fw-bold m-3">Adicionar Bebida</button>
     </div>
     <div class="">
       <button @click="formaPagamento" class="btn btn-success fw-bold m-3">Finalizar Pedido</button>
@@ -43,23 +43,23 @@
       </div>
 
       <!-- card bebidas -->
-      <div class="row d-flex justify-content-center align-items-center h-100" v-for="(dados, index) in this.dadosPedido.bebida" :key="index">
+      <div class="row d-flex justify-content-center align-items-center h-100" v-for="(bebida, index) in this.dadosPedido.bebida" :key="index">
         <div class="col">
           <div class="card mb-3">
             <div class="card-body">
               <div class="d-flex justify-content-between mobile-card">
                 <div class="d-flex flex-row align-items-center col-md-8">
                   <div>
-                    <img :src="'https://www.projetoadocao.com/storage/' + dados.path" class="img-fluid rounded-3" style="width: 65px">
+                    <img :src="'https://www.projetoadocao.com/storage/' + bebida.path" class="img-fluid rounded-3" style="width: 65px">
                   </div>
                   <div class="ms-3">
-                    <h5>{{dados.nome}}</h5>
-                    <p class="small mb-0">{{dados.ingredientes}}</p>
+                    <h5>{{bebida.nome}}</h5>
+                    <p class="small mb-0">{{bebida.ingredientes}}</p>
                   </div>
                 </div>
                 <div class="d-flex flex-row align-items-center col-md-4">
                   <div class="col-md-8">
-                    <h5 class="mb-0">R$ {{dados.preco}}</h5>
+                    <h5 class="mb-0">R$ {{bebida.preco}}</h5>
                   </div>
                   <div class="col-md-4 mobile-card-dados">
                     <a style="color: #cecece"  @click="removerBebida(index)"><i class="fas fa-trash-alt"></i></a>
@@ -123,6 +123,19 @@ export default {
       this.valorPedido = somaLanche + somaBebida
       this.valorTotalPedido = somaLanche + parseInt(pedido.taxa_entrega) + somaBebida
     },
+    removerLanche(index) {
+      const arrLanche = this.dadosPedido.lanche;
+      arrLanche.splice(arrLanche[index], 1);
+      // traz o array de dados do localstorage e adicionar ao array de dadospedido
+      var arr = JSON.parse(localStorage.getItem("pedido"));
+      this.dadosPedido = arr;
+      // pega o lanche adicionado e adiciona ao array de dados do localStorage
+      this.dadosPedido.lanche = arrLanche;
+      // seta o novo valor de dadospedido ao localstorage
+      localStorage.setItem("pedido", JSON.stringify(this.dadosPedido));
+
+      this.$router.go(this.$router.currentRoute)
+    },
     removerBebida(index) {
       const arrBebida = this.dadosPedido.bebida;
       arrBebida.splice(arrBebida[index], 1);
@@ -139,6 +152,9 @@ export default {
     adicionarLanche() {
         this.$router.push('/dadosLanche')
     },
+    adicionarBebida() {
+        this.$router.push('/dadosbebida')
+    },
     formaPagamento() {
 
     }
@@ -151,6 +167,10 @@ export default {
 </script>
 
 <style scoped>
+  .mobile-card-dados a{
+    cursor: pointer;
+  }
+
   @media screen and (max-width: 480px) {
     .mobile-card {
       flex-wrap: wrap;
