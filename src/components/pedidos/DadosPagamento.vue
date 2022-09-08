@@ -1,4 +1,6 @@
 <template>
+  
+<div class="container-fluid bg-dark">
       <!-- FORMAS DE PAGAMENTO -->
       <div class="row mt-3" id="pagamento" v-show="divPagamento">
         <div class="row d-flex justify-content-center">
@@ -80,6 +82,7 @@
           </div>
         </div>
       </div>
+</div>
 </template>
 
 <script>

@@ -1,7 +1,5 @@
 <template>
-  <div class="container-fluid background">
     <router-view/>
-  </div>
 </template>
 
 <script>
@@ -22,5 +20,4 @@ label {
   color: #f9a529;
   padding-top: 10px;
 }
-
 </style>

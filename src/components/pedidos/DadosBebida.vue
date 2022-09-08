@@ -1,4 +1,6 @@
 <template>
+  
+<div class="container-fluid bg-dark">
     <HeaderPedido />    
     <Message :msg="msg" v-show="msg"/>
     <div class="mt-3 container-fluid" id="pedido_lanche">
@@ -38,6 +40,7 @@
         </div>
       </div>
     </div>
+</div>
 </template>
 
 <script>

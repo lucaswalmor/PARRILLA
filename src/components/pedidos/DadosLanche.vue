@@ -1,4 +1,6 @@
 <template>
+  
+<div class="container-fluid bg-dark">
     <HeaderPedido />
     <Message :msg="msg" v-show="msg"/>
     <div class="mt-3 container-fluid" id="pedido_lanche">
@@ -41,6 +43,7 @@
       </div>
     </div>
     <Footer />
+</div>
 </template>
 
 <script>
@@ -142,8 +145,6 @@ import Message from '../message/Message.vue';
   }
 
   .background {
-    margin: 0;
-    padding: 0;
-    background-color: #333;
+    background: #333 !important;
   }
 </style>

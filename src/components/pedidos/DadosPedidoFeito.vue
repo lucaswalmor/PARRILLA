@@ -1,4 +1,5 @@
 <template>
+<div class="container-fluid bg-dark">
   <!-- DADOS DO PEDIDO FEITO -->
   <div class="row mt-3" id="pedido_montado" v-show="divFinPedido">
     <div class="row col-12 text-center">
@@ -55,7 +56,7 @@
         >Enviar Pedido</a
     >
     </div>
-
+</div>
 </template>
 
 <script>

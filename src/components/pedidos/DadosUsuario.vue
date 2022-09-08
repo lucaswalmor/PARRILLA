@@ -1,4 +1,5 @@
 <template>
+<div class="container-fluid bg-dark">
   <HeaderPedido />
   <div id="dadosPedido">
     <!-- NOME -->
@@ -251,6 +252,7 @@
     <Footer />
 
   </div>
+</div>
 </template>
 
 <script>
@@ -392,5 +394,7 @@ export default {
 </script>
 
 <style scoped> 
-
+.background {
+  background: #333;
+}
 </style>

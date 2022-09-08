@@ -1,4 +1,6 @@
 <template>
+  
+<div class="container-fluid bg-dark">
   <HeaderPedido />
   <div class="d-flex text-end">
     <div class="">
@@ -11,7 +13,7 @@
       <button @click="formaPagamento" class="btn btn-success fw-bold m-3">Finalizar Pedido</button>
     </div>
   </div>
-  <section class="h-100 h-custom mb-5" style="background-color: #eee">
+  <section class="h-100 h-custom" style="background-color: #eee">
     <div class="container py-5 h-100">
       <!-- card lanches -->
       <div class="row d-flex justify-content-center align-items-center h-100" v-for="(dados, index) in this.dadosPedido.lanche" :key="index">
@@ -92,6 +94,7 @@
       </div>
     </div>
   </section>
+</div>
 </template>
 
 <script>

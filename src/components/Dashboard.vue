@@ -1,5 +1,5 @@
 <template>
-  <Conteudo />
+    <Conteudo />
 </template>
 
 <script>
@@ -11,7 +11,4 @@ export default {
 </script>
 
 <style scoped>
-  body {
-    background: #fff !important;
-  }
 </style>
