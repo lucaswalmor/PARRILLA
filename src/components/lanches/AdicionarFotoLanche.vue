@@ -46,6 +46,8 @@
 <script>
 import Sidenav from '../conteudo/Sidenav.vue';
 import Message from '../message/Message.vue';
+import { useToast } from "vue-toastification";
+
 export default {
     name: "AdicionarFotoLanche",
     data() {
@@ -75,6 +77,8 @@ export default {
               if (req.status === 200) {
                   this.msg = "Foto cadastrada com sucesso!";
                   this.file = '';
+                  const toast = useToast();
+                  toast.success(`Lanche cadastrado com sucesso!`);
                   var token = this.$route.params.token;
                   this.$router.push({ path: `/dashboard/${token}`, params: {token: token } });
                   setTimeout(() => {

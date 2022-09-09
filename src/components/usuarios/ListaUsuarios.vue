@@ -54,6 +54,8 @@ $(document).ready(function(){
 });
 import Message from '../message/Message.vue';
 import Sidenav from '../conteudo/Sidenav.vue';
+import { useToast } from "vue-toastification";
+
 export default {
     name: "ListaUsuarios",
     components: { Message, Sidenav },
@@ -84,6 +86,8 @@ export default {
 
                 // msg de pedido deletado
                 this.msg = `Usuário Nº ${id} deletado com sucesso`;
+                const toast = useToast();
+                toast.success(`Usuário Nº ${id} deletado com sucesso`);
                 setTimeout(() => {
                     this.msg = "";
                     location.reload();

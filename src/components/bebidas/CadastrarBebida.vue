@@ -30,6 +30,8 @@
 <script>
 import Sidenav from '../conteudo/Sidenav.vue';
 import Message from '../message/Message.vue';
+import { useToast } from "vue-toastification";
+
 export default {
     name: "CadastarBebida",
     data() {
@@ -62,6 +64,8 @@ export default {
                     this.msg = "Bebida cadastrada com sucesso!";
                     this.nome = "";
                     this.preco = "";
+                    const toast = useToast();
+                    toast.info(`Adicione uma foto da bebida`);
                     var token = this.$route.params.token;
                     this.$router.push({ path: `/adicionar-foto-bebida/${token}`, params: {token: token } });
                     setTimeout(() => {

@@ -27,6 +27,7 @@
 <script>
 import Sidenav from '../conteudo/Sidenav.vue';
 import Message from '../message/Message.vue';
+import { useToast } from "vue-toastification";
 
 export default {
     name: 'CadastrarIngredientes',
@@ -59,6 +60,10 @@ export default {
                 if (req.status === 200) {
                     this.msg = "Ingrediente cadastrado com sucesso!";
                     this.ingrediente = "";
+                    const toast = useToast();
+                    toast.success(`Ingrediente cadastrado com sucesso!`);
+                    var token = this.$route.params.token;
+                    this.$router.push({ path: `/cadastrar-lanche/${token}`, params: {token: token } });
                     setTimeout(() => {
                         this.msg = "";
                     }, 2000);

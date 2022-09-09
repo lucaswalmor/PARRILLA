@@ -35,6 +35,7 @@
 <script>
 import Message from '../message/Message.vue';
 import Sidenav from '../conteudo/Sidenav.vue';
+import { useToast } from "vue-toastification";
 
 export default {
     name: "CadastrarUsuario",
@@ -49,6 +50,7 @@ export default {
     },
     methods: {
         async createUser() {
+            const toast = useToast();
             // cria um array com os dados do pedido 
             const data = {
                 name: this.name,
@@ -68,10 +70,10 @@ export default {
                     headers: { "Content-Type": "application/json" },
                     body: dataJson
                 });
-
                 // traz a resposta dos dados criado
                 const res = await req.json();
                 if (res.message === "User successfully register.") {
+                    toast.success("Cadastro realizado com sucesso!",);
                     this.msg = "Usuario criado com sucesso"
                     this.name = "";
                     this.email = "";
@@ -79,6 +81,8 @@ export default {
                     setTimeout(() => {
                         this.msg = ''
                     }, 2000);
+                } else if(res.errors.email[0]) {
+                    toast.error("Dados inválidos!");
                 }
             }
         },

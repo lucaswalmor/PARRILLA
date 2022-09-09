@@ -55,6 +55,8 @@ $(document).ready(function(){
 });
 import Message from '../message/Message.vue';
 import Sidenav from '../conteudo/Sidenav.vue';
+import { useToast } from "vue-toastification";
+
 export default {
     name: "ListarBebidas",
     components: { Message, Sidenav },
@@ -87,6 +89,8 @@ export default {
 
                 // msg de pedido deletado
                 this.msg = `bebida Nº ${id} deletado com sucesso`;
+                const toast = useToast();
+                toast.success(`Bebida deletada com sucesso`);
                 setTimeout(() => {
                     this.msg = "";
                     location.reload();

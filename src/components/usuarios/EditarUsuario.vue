@@ -33,6 +33,8 @@
 <script>
 import Sidenav from '../conteudo/Sidenav.vue';
 import Message from '../message/Message.vue';
+import { useToast } from "vue-toastification";
+
 export default {
     name: "EditarUsuario",
     components: { Sidenav, Message },
@@ -70,6 +72,10 @@ export default {
                     this.msg = "Usuario editado com sucesso";
                     this.name = "";
                     this.preco = "";
+                    const toast = useToast();
+                    toast.success(`Usuário Nº ${id} editado com sucesso`);
+                    var token = this.$route.params.token;
+                    this.$router.push({ path: `/listar-usuario/${token}`, params: {token: token } });
                     setTimeout(() => {
                         this.msg = ''
                     }, 2000);

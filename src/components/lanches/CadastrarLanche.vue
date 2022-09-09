@@ -49,6 +49,7 @@
 import Sidenav from '../conteudo/Sidenav.vue';
 import Message from '../message/Message.vue';
 import Multiselect from '@vueform/multiselect';
+import { useToast } from "vue-toastification";
 
 export default {
     name: "CadastarLanche",
@@ -101,6 +102,8 @@ export default {
                     this.nome = "";
                     this.preco = "";
                     this.ingredientes = [];
+                    const toast = useToast();
+                    toast.info(`Agora adicione uma foto do lanche`);
                     var token = this.$route.params.token;
                     this.$router.push({ path: `/adicionar-foto/${token}`, params: {token: token } });
                     setTimeout(() => {

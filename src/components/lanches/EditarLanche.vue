@@ -28,6 +28,7 @@
 <script>
 import Sidenav from '../conteudo/Sidenav.vue';
 import Message from '../message/Message.vue';
+import { useToast } from "vue-toastification";
 
 export default {
     name: "EditarLanche",
@@ -63,6 +64,11 @@ export default {
                     this.msg = "Lanche editado com sucesso";
                     this.nome = "";
                     this.preco = "";
+                    const toast = useToast();
+                    toast.success(`Lanche ${id} editado com sucesso!`);
+                    var token = this.$route.params.token;
+                    this.$router.push({ path: `/listar-lanche/${token}`, params: {token: token } });
+
                     setTimeout(() => {
                         this.msg = ''
                     }, 2000);

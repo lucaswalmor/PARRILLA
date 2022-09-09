@@ -56,6 +56,8 @@ $(document).ready(function(){
 });
 import Message from '../message/Message.vue';
 import Sidenav from '../conteudo/Sidenav.vue';
+import { useToast } from "vue-toastification";
+
 export default {
     name: "ListaLanches",
     components: { Message, Sidenav },
@@ -85,6 +87,8 @@ export default {
 
                 // msg de pedido deletado
                 this.msg = `Lanche Nº ${id} deletado com sucesso`;
+                const toast = useToast();
+                toast.success(`Lanche Nº ${id} deletado com sucesso`);
 
                 setTimeout(() => {
                     this.msg = "";
