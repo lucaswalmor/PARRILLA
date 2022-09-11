@@ -2,6 +2,8 @@
   
 <div class="container-fluid bg-dark">
   <HeaderPedido />
+
+  <!-- botões add lanche e bebida -->
   <div class="d-flex text-end">
     <div class="">
       <button @click="adicionarLanche" class="btn btn-warning fw-bold m-3">Adicionar Lanche</button>
@@ -9,10 +11,9 @@
     <div class="">
       <button @click="adicionarBebida" class="btn btn-warning fw-bold m-3">Adicionar Bebida</button>
     </div>
-    <div class="">
-      <button @click="formaPagamento" class="btn btn-success fw-bold m-3">Finalizar Pedido</button>
-    </div>
   </div>
+
+  <!-- card de pedidos -->
   <section class="h-100 h-custom" style="background-color: #eee">
     <div class="container py-5 h-100">
       <!-- card lanches -->
@@ -72,6 +73,8 @@
           </div>
         </div>
       </div>
+
+      <!-- resumo de valores -->
       <div class="row">
         <div class="col-md-12 text-end">
           <div class="">
@@ -90,15 +93,21 @@
             <span>Total</span>
             <span>R$ {{valorTotalPedido}}</span>
           </div>
+          <div class="fw-bold d-flex justify-content-end">
+            <button @click="formaPagamento" class="btn btn-success fw-bold m-3">Forma de pagamento</button>
+          </div>
         </div>
       </div>
     </div>
   </section>
+  <Footer />
 </div>
 </template>
 
 <script>
 import HeaderPedido from "../conteudo/HeaderPedido.vue";
+import Footer from "../conteudo/Footer.vue";
+
 export default {
   name: "Carrinho",
   data() {
@@ -112,7 +121,7 @@ export default {
     pedido() {
       this.dadosPedido = JSON.parse(localStorage.getItem("pedido"));
       const pedido = this.dadosPedido;
-      console.log(pedido)
+
       let somaLanche = 0
       for(let item in pedido.lanche) {
         somaLanche += parseInt(pedido.lanche[item].preco);
@@ -125,6 +134,10 @@ export default {
       
       this.valorPedido = somaLanche + somaBebida
       this.valorTotalPedido = somaLanche + parseInt(pedido.taxa_entrega) + somaBebida
+
+      this.dadosPedido.valor_total = this.valorTotalPedido;
+      
+      localStorage.setItem('pedido', JSON.stringify(this.dadosPedido))
     },
     removerLanche(index) {
       const arrLanche = this.dadosPedido.lanche;
@@ -159,13 +172,13 @@ export default {
         this.$router.push('/dadosbebida')
     },
     formaPagamento() {
-
+      this.$router.push('/forma-pagamento')
     }
   },
   created() {
     this.pedido();
   },
-  components: { HeaderPedido },
+  components: { HeaderPedido, Footer },
 };
 </script>
 

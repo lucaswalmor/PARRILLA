@@ -40,11 +40,15 @@
         </div>
       </div>
     </div>
+    <Footer />
 </div>
 </template>
 
 <script>
 import HeaderPedido from '../conteudo/HeaderPedido.vue';
+import Footer from '../conteudo/Footer.vue';
+import { useToast } from "vue-toastification";
+
 export default {
     name: "DadosBebida",
     data() {
@@ -83,27 +87,23 @@ export default {
         adicionarBebida(bebida) {
             // traz o array de dados do localstorage e adicionar ao array de dadospedido
             var arr = JSON.parse(localStorage.getItem("pedido"));
-            this.dadosPedido = arr;
 
-            if (this.dadosPedido.bebida == undefined) {
-                // pega o bebida adicionado e adiciona ao array de dados do localStorage
-                this.pedido.push(bebida);
-                this.dadosPedido.bebida = this.pedido;
-                // seta o novo valor de dadospedido ao localstorage 
-                localStorage.setItem("pedido", JSON.stringify(this.dadosPedido));
+            if(arr.hasOwnProperty("bebida")){
+              arr.bebida.push(Object.assign({}, bebida))
+              localStorage.setItem('pedido', JSON.stringify(arr))
+            } else {
+              this.pedido.push(bebida);
+              arr.bebida = this.pedido
+              localStorage.setItem('pedido', JSON.stringify(arr))
             }
-            if (this.dadosPedido.bebida != undefined) {
-                // busca os bebidas que ja estao no pedido e preenche o array de pedidos 
-                this.pedido = this.dadosPedido.bebida;
-                // adiciona o item adicional ao array de pedidos
-                this.pedido.push(bebida);
-                // seta o novo valor de dadospedido ao localstorage 
-                localStorage.setItem("pedido", JSON.stringify(this.dadosPedido));
-            }
-            this.msg = `1 ${bebida.nome} foi adicionado ao carrinho`;
-            setTimeout(() => {
-                this.msg = "";
-            }, 2500);
+            // this.pedido.push(bebida);
+            // arr.bebida = this.pedido
+            // localStorage.setItem('pedido', JSON.stringify(arr))
+
+
+
+            const toast = useToast();
+            toast.success(`1 ${bebida.nome} foi adicionado ao carrinho`);
         },
         adicionarLanche() {
           this.$router.push('/dadosLanche');
@@ -115,7 +115,7 @@ export default {
     mounted() {
         this.listarBebidas();
     },
-    components: { HeaderPedido }
+    components: { HeaderPedido, Footer }
 }
 </script>
 

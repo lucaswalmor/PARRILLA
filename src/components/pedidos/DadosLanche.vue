@@ -2,7 +2,6 @@
   
 <div class="container-fluid bg-dark">
     <HeaderPedido />
-    <Message :msg="msg" v-show="msg"/>
     <div class="mt-3 container-fluid" id="pedido_lanche">
       <!-- card de lanches -->
       <div class="row">
@@ -29,10 +28,18 @@
           </div>
         </div>
       </div>
-
+      <div class="row">
+        <div class="col-md-6">
+          <label for="observacoes" class="form-label">Observações</label>
+          <textarea class="form-control" cols="30" rows="3" v-model="observacoes"></textarea>
+        </div>
+      </div>
       <!-- adicionar bebida / carrinho -->
       <div class="row pt-3 d-flex justify-content-center align-items-center">
         <div class="col-md-4 text-center">
+          <button type="button" class="btn btn-warning text-dark fw-bold w-75" @click="adicionarObservacao">
+            <i class="fa-lg fa-solid fa-eye"></i> Observações 
+          </button>
           <button type="submit" @click="adicionarBebida" class="btn btn-warning text-dark fw-bold w-75">
             <i class="fa-lg fa-solid fa-wine-bottle"></i> Adicionar Bebida
           </button>
@@ -49,19 +56,17 @@
 <script>
   import HeaderPedido from '../conteudo/HeaderPedido.vue';
   import Footer from '../conteudo/Footer.vue';
-import Message from '../message/Message.vue';
+  import { useToast } from "vue-toastification";
 
   export default {
       name: "DadosLanche",
-      components: { HeaderPedido, Footer, Message },
+      components: { HeaderPedido, Footer },
       data() {
         return {
             dadosLanches: [],
-            dadosPedido: {
-                lanche: null,
-            },
             pedido: [],
-            msg: ''
+            msg: '',
+            observacoes: ''
         };
       },
       methods: {
@@ -72,6 +77,9 @@ import Message from '../message/Message.vue';
             const req = await fetch("https://www.projetoadocao.com/api/lanches");
             const data = await req.json();
             this.dadosLanches = data;
+            // traz o array de dados do localstorage e adicionar ao array de dadospedido
+            var arr = JSON.parse(localStorage.getItem('pedido'))
+            this.observacoes = arr.observacoes
         },
         alterarPrecoLanche(event) {
           const option = event.target.value;
@@ -89,39 +97,30 @@ import Message from '../message/Message.vue';
         adicionarLanche(lanche) {
           // traz o array de dados do localstorage e adicionar ao array de dadospedido
           var arr = JSON.parse(localStorage.getItem('pedido'))
-          this.dadosPedido = arr
 
-          if (this.dadosPedido.lanche == undefined) {
-            // pega o lanche adicionado e adiciona ao array de dados do localStorage
-            this.pedido.push(lanche)
-            this.dadosPedido.lanche = this.pedido
-            
-            // seta o novo valor de dadospedido ao localstorage 
-            localStorage.setItem('pedido', JSON.stringify(this.dadosPedido))
-          }
-            
-          if(this.dadosPedido.lanche != undefined) {
-            // busca os lanches que ja estao no pedido e preenche o array de pedidos 
-            this.pedido = this.dadosPedido.lanche
-
-            // adiciona o item adicional ao array de pedidos
+          if(arr.hasOwnProperty("lanche")){
+            arr.lanche.push(Object.assign({}, lanche))
+            localStorage.setItem('pedido', JSON.stringify(arr))
+          } else {
             this.pedido.push(lanche);
-            
-            // seta o novo valor de dadospedido ao localstorage 
-            localStorage.setItem('pedido', JSON.stringify(this.dadosPedido))
+            arr.lanche = this.pedido
+            localStorage.setItem('pedido', JSON.stringify(arr))
           }
-          
-          this.msg = `1 ${lanche.nome} foi adicionado ao carrinho`
 
-          setTimeout(() => {
-            this.msg = ""
-          }, 2500);
+          const toast = useToast();
+          toast.success(`1 ${lanche.nome} foi adicionado ao carrinho`);
         },
         adicionarBebida() {
           this.$router.push('/dadosbebida');
         },
         carrinho() {
           this.$router.push('/carrinho');
+        },
+        adicionarObservacao() {
+          // traz o array de dados do localstorage e adicionar ao array de dadospedido
+          var arr = JSON.parse(localStorage.getItem('pedido'))
+          arr.observacoes = this.observacoes;
+          localStorage.setItem('pedido', JSON.stringify(arr))
         }
       },
       mounted() {

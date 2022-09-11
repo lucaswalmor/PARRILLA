@@ -104,7 +104,7 @@
       <div class="col-md-1">
         <label for="taxa_entrega" class="form-label">Frete</label>
         <input
-          style="background-color: transparent; color: black; outline: none"
+          style="background-color: transparent; color: #fff; outline: none"
           type="text"
           v-model="dadosPedido.taxa_entrega"
           name="taxa_entrega"

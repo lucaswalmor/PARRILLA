@@ -98,11 +98,6 @@ const routes = [
     component: () => import('../components/pedidos/VerPedido.vue')
   },
   {
-    path: '/dadosbebida',
-    name: 'DadosBebida',
-    component: () => import('../components/pedidos/DadosBebida.vue')
-  },
-  {
     path: '/',
     name: 'DadosUsuario',
     component: () => import('../components/pedidos/DadosUsuario.vue')
@@ -113,9 +108,24 @@ const routes = [
     component: () => import('../components/pedidos/DadosLanche.vue')
   },
   {
+    path: '/dadosbebida',
+    name: 'DadosBebida',
+    component: () => import('../components/pedidos/DadosBebida.vue')
+  },
+  {
     path: '/carrinho',
     name: 'Carrinho',
     component: () => import('../components/pedidos/Carrinho.vue')
+  },
+  {
+    path: '/forma-pagamento',
+    name: 'DadosPagamento',
+    component: () => import('../components/pedidos/DadosPagamento.vue')
+  },
+  {
+    path: '/confirmar-pedido',
+    name: 'ConfirmarPedido',
+    component: () => import('../components/pedidos/ConfirmarPedido.vue')
   },
   // ROTAS DE CLIENTES
   {
