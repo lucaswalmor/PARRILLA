@@ -56,7 +56,7 @@
   </div>
     <!-- BOTAO DE ENVIAR O PEDIDO -->
     <div class="mt-3 text-center" id="link_wpp">
-      <a :href="href" @click="salvarPedidoDB(), enviarPedido()" class="enviar_pedido mb-3 fw-bold text-dark btn btn-warning">Enviar Pedido</a>
+      <a :href="href" target="_blank" @click="salvarPedidoDB(), enviarPedido()" class="enviar_pedido mb-3 fw-bold text-dark btn btn-warning">Enviar Pedido</a>
     </div>
     <Footer />
 </div>
@@ -492,7 +492,7 @@ export default {
           .replace(" ", "").replace("-", "");
 
           // ao finalizar o pedido será gerado o link com o pedido do whatsapp para redirecionar o cliente 
-          // this.href = 'https://api.whatsapp.com/send?phone=55' + telefone_replace + '&text=' + this.pedido_wpp;
+          this.href = 'https://api.whatsapp.com/send?phone=55' + telefone_replace + '&text=' + this.pedido_wpp;
         }
     },
     mounted() {
