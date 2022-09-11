@@ -79,7 +79,12 @@
             this.dadosLanches = data;
             // traz o array de dados do localstorage e adicionar ao array de dadospedido
             var arr = JSON.parse(localStorage.getItem('pedido'))
-            this.observacoes = arr.observacoes
+            if(arr.hasOwnProperty("observacoes")){
+              this.observacoes = arr.observacoes
+            } else {
+              arr.observacoes = ""
+              localStorage.setItem('pedido', JSON.stringify(arr))
+            }
         },
         alterarPrecoLanche(event) {
           const option = event.target.value;

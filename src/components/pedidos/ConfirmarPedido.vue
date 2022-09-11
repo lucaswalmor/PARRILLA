@@ -132,9 +132,11 @@ export default {
           // fetch para envio de dados ao backend
           this.axios({
             method: 'POST',
-            url: 'http://127.0.0.1:8000/api/pedidos',
-            // url: 'https://www.projetoadocao.com/api/pedidos',
+            // url: 'http://127.0.0.1:8000/api/pedidos',
+            url: 'https://www.projetoadocao.com/api/pedidos',
             data: data
+          }).then(res => {
+            console.log(res)
           })
         },
         enviarPedido() {
@@ -490,7 +492,7 @@ export default {
           .replace(" ", "").replace("-", "");
 
           // ao finalizar o pedido será gerado o link com o pedido do whatsapp para redirecionar o cliente 
-          this.href = 'https://api.whatsapp.com/send?phone=55' + telefone_replace + '&text=' + this.pedido_wpp;
+          // this.href = 'https://api.whatsapp.com/send?phone=55' + telefone_replace + '&text=' + this.pedido_wpp;
         }
     },
     mounted() {
