@@ -11,7 +11,6 @@
     <div class="row col-12 text-justify d-flex flex-column align-items-center">
       <div class="col-md-6"><strong>Código do pedido:</strong> {{ dadosPedido.codigoPedido }}</div>
       <div class="col-md-6"><strong>Nome:</strong> {{ dadosPedido.nome }}</div>
-      <div class="col-md-6"><strong>CPF:</strong> {{ dadosPedido.cpf }}</div>
       <div class="col-md-6"><strong>Rua:</strong> {{ dadosPedido.rua }}</div>
       <div class="col-md-6">
         <strong>Bairro:</strong> {{ dadosPedido.bairro }}
@@ -34,7 +33,7 @@
           <li v-for="(lanche, index) in dadosPedido.lanche" :key="index">{{index + 1}} - {{lanche.nome}}</li>
         </ul>
       </div>
-      <div class="col-md-6" v-if="dadosPedido.observacoes != undefined">
+      <div class="col-md-6" v-if="dadosPedido.observacoes != ''">
         <strong>Observações:</strong> {{ dadosPedido.observacoes }}
       </div>
       <div class="col-md-6" v-if="dadosPedido.bebida != undefined">
@@ -56,7 +55,17 @@
   </div>
     <!-- BOTAO DE ENVIAR O PEDIDO -->
     <div class="mt-3 text-center" id="link_wpp">
-      <a :href="href" target="_blank" @click="salvarPedidoDB(), enviarPedido()" class="enviar_pedido mb-3 fw-bold text-dark btn btn-warning">Enviar Pedido</a>
+    <div class="">
+    </div>
+    <div class="">
+    </div>
+      <button @click="adicionarLanche" class="text-dark btn btn-warning fw-bold m-3">
+        <i class="fa-lg fa-solid fa-burger"></i> Adicionar Lanche
+      </button>
+      <button @click="adicionarBebida" class="text-dark btn btn-warning fw-bold m-3">
+        <i class="fa-lg fa-solid fa-wine-bottle"></i> Adicionar Bebida
+      </button>
+      <a :href="href" target="_blank" @click="salvarPedidoDB(), enviarPedido()" class="enviar_pedido m-3 fw-bold btn btn-success"><i class="fa-lg fa-brands fa-whatsapp"></i> Enviar Pedido</a>
     </div>
     <Footer />
 </div>
@@ -84,18 +93,20 @@ export default {
             var arr = JSON.parse(localStorage.getItem("pedido"));
             this.dadosPedido = arr;
             const pedido = arr;
-            
+
             const a = []
             arr.lanche.filter((lanche) => {
               a.push(lanche.nome)
               this.lanche_pedido = a.join('%0A')
             })
-            
-            const b = []
-            arr.bebida.filter((bebida) => {
-              b.push(bebida.nome)
-              this.bebida_pedido = b.join('%0A')
-            })
+            console.log()
+            if(arr.hasOwnProperty("bebida")){
+              const b = []
+              arr.bebida.filter((bebida) => {
+                b.push(bebida.nome)
+                this.bebida_pedido = b.join('%0A')
+              })
+            }
 
             let somaLanche = 0
             for(let item in pedido.lanche) {
@@ -115,7 +126,6 @@ export default {
           const data = {
               nome_cliente: this.dadosPedido.nome,
               codigo_pedido: this.dadosPedido.codigoPedido,
-              cpf: this.dadosPedido.cpf,
               rua: this.dadosPedido.rua,
               bairro: this.dadosPedido.bairro,
               ponto_referencia: this.dadosPedido.pontoReferencia,
@@ -489,7 +499,13 @@ export default {
 
           // ao finalizar o pedido será gerado o link com o pedido do whatsapp para redirecionar o cliente 
           this.href = 'https://api.whatsapp.com/send?phone=55' + telefone_replace + '&text=' + this.pedido_wpp;
-        }
+        },
+        adicionarBebida() {
+          this.$router.push('/dadosbebida');
+        },
+        adicionarLanche() {
+          this.$router.push('/dadosLanche');
+        },
     },
     mounted() {
         this.listarPedido();

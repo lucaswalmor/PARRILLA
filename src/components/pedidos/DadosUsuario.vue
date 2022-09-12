@@ -25,33 +25,6 @@
       </div>
     </div>
 
-    <!-- CPF -->
-    <div class="row d-flex justify-content-center">
-      <div class="col-md-4">
-        <label for="cpf" class="form-label">CPF</label> <span style="color: red;">*</span>
-        <input
-          type="text"
-          v-model="dadosPedido.cpf"
-          name="cpf"
-          id="cpf"
-          class="form-control"
-          placeholder="Ex: 00000000000"
-          minlength="14"
-          maxlength="14"
-          v-maska="'###.###.###-##'"
-        />
-        <div
-          class="alert alert-warning fade show mt-2"
-          v-show="hasError"
-          v-if="!dadosPedido.cpf"
-          role="alert"
-          id="validacao-cpf"
-        >
-          preencha este campo!
-        </div>
-      </div>
-    </div>
-
     <!-- TELEFONE -->
     <div class="row d-flex justify-content-center">
       <div class="col-md-4">
@@ -265,7 +238,6 @@ export default {
         return {
             dadosPedido: {
                 nome: "",
-                cpf: "",
                 telefone: "",
                 rua: "",
                 bairro: "",
@@ -293,22 +265,8 @@ export default {
             else if (this.dadosPedido.numero < 0) {
                 alert("Digite um NÚMERO válido");
             }
-            let cpf = this.dadosPedido.cpf;
             let telefone = this.dadosPedido.telefone;
-            if (cpf.length != 14 ||
-                cpf == "000.000.000-00" ||
-                cpf == "111.111.111-11" ||
-                cpf == "222.222.222-22" ||
-                cpf == "333.333.333-33" ||
-                cpf == "444.444.444-44" ||
-                cpf == "555.555.555-55" ||
-                cpf == "666.666.666-66" ||
-                cpf == "777.777.777-77" ||
-                cpf == "888.888.888-88" ||
-                cpf == "999.999.999-99") {
-                alert(`O CPF: ${cpf} é inválido`);
-            }
-            else if (telefone.length != 15 ||
+            if (telefone.length != 15 ||
                 telefone == "(00) 00000-0000" ||
                 telefone == "(11) 11111-1111" ||
                 telefone == "(22) 22222-2222" ||
@@ -324,7 +282,6 @@ export default {
             else if (!this.dadosPedido.nome ||
                 !this.dadosPedido.telefone ||
                 !this.cep ||
-                !this.dadosPedido.cpf ||
                 !this.dadosPedido.numero ||
                 !this.dadosPedido.residencia) {
                 this.hasError = !this.hasError;
@@ -350,7 +307,7 @@ export default {
         codigoPedido() {
             const generateRandomString = () => {
                 const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-                let result1 = " ";
+                let result1 = "";
                 const charactersLength = characters.length;
                 for (let i = 0; i < 7; i++) {
                     result1 += characters.charAt(Math.floor(Math.random() * charactersLength));

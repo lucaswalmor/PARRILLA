@@ -21,10 +21,6 @@
             <input type="text" readonly v-model="telefone" class="form-control">
           </div>
           <div class="col-md-4 pt-2">
-            <label for="" class="form-label">CPF: </label>
-            <input type="text" readonly v-model="cpf" class="form-control">
-          </div>
-          <div class="col-md-4 pt-2">
             <label for="" class="form-label">Valor Pedido: </label>
             <input type="text" readonly v-model="valor_total" class="form-control">
           </div>
@@ -92,7 +88,6 @@ export default {
             nome_cliente: '',
             codigo_pedido: '',
             telefone: '',
-            cpf: '',
             rua: '',
             bairro: '',
             ponto_referencia: '',
@@ -119,7 +114,6 @@ export default {
                 this.nome_cliente = res.data[0].pedido.nome_cliente
                 this.codigo_pedido = res.data[0].pedido.codigo_pedido
                 this.telefone = res.data[0].pedido.telefone
-                this.cpf = res.data[0].pedido.cpf
                 this.rua = res.data[0].pedido.rua
                 this.bairro = res.data[0].pedido.bairro
                 this.ponto_referencia = res.data[0].pedido.ponto_referencia
