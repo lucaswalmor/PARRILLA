@@ -28,16 +28,10 @@
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-6">
-          <label for="observacoes" class="form-label">Observações</label>
-          <textarea class="form-control" cols="30" rows="3" v-model="observacoes"></textarea>
-        </div>
-      </div>
       <!-- adicionar bebida / carrinho -->
       <div class="row pt-3 d-flex justify-content-center align-items-center">
         <div class="col-md-4 text-center">
-          <button type="button" class="btn btn-warning text-dark fw-bold w-75" @click="adicionarObservacao">
+          <button type="button" class="btn btn-warning text-dark fw-bold w-75" data-bs-toggle="modal" data-bs-target="#exampleModal">
             <i class="fa-lg fa-solid fa-eye"></i> Observações 
           </button>
           <button type="submit" @click="adicionarBebida" class="btn btn-warning text-dark fw-bold w-75">
@@ -46,6 +40,27 @@
           <button type="submit" @click="carrinho" class="btn btn-warning text-dark fw-bold w-75">
             <i class="fa-lg fa-solid fa-cart-shopping"></i> Carrinho
           </button>
+        </div>
+      </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Observação</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="">
+                <textarea class="form-control" cols="30" rows="3" v-model="observacoes"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" @click="adicionarObservacao"><i class="fa-solid pe-2 fa-floppy-disk"></i> Salvar</button>
+          </div>
         </div>
       </div>
     </div>
@@ -66,7 +81,7 @@
             dadosLanches: [],
             pedido: [],
             msg: '',
-            observacoes: ''
+            observacoes: '',
         };
       },
       methods: {

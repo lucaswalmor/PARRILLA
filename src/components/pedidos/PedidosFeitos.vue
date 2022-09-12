@@ -68,12 +68,16 @@ export default {
         async listarPedidos() {
             // cria um array com os dados do pedido 
             // const req = await fetch("http://127.0.0.1:8000/api/pedidos");
-            const req = await fetch("https://www.projetoadocao.com/api/pedidos");
-            const data = await req.json();
+            // const req = await fetch("https://www.projetoadocao.com/api/pedidos");
+            // const data = await req.json();
+            // this.axios(`http://127.0.0.1:8000/api/pedidos/`)
+            this.axios(`https://www.projetoadocao.com/api/pedidos/`)
+            .then(res => {
+                this.pedidos = res.data[0].pedidos;
+                this.somaValorTotal = res.data[0].somas;
+                this.totalPedidos = this.pedidos.length;
+            });
 
-            this.pedidos = data[0].pedidos;
-            this.somaValorTotal = data[0].somas;
-            this.totalPedidos = this.pedidos.length;
         },
         async cancelarPedido(id) {
             if (confirm(`Você realmente deseja deletar o pedido Nº ${id} `)) {

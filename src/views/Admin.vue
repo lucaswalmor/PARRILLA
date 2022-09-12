@@ -69,8 +69,8 @@ export default {
             // transforma o array de dados do pedido em texto 
             const dataJson = JSON.stringify(data);
 
-            const req = await fetch("http://127.0.0.1:8000/api/register", {
-            // const req = await fetch("https://www.projetoadocao.com/api/register", {
+            // const req = await fetch("http://127.0.0.1:8000/api/register", {
+            const req = await fetch("https://www.projetoadocao.com/api/register", {
                 method: "POST",
                 headers: { "Content-Type": "application/json", "X-CSRF-Token": this.csrf },
                 body: dataJson

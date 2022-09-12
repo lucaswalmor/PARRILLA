@@ -4,12 +4,11 @@
     </div>
     <div class="row mt-5">
         <div class="col-6">
-            <label for="" class="form-label">Digite o CPF:</label>
-            <input type="text" name="cpf" class="form-control" v-model="cpf"
-                    placeholder="Ex: 00000000000"
-                    minlength="14"
-                    maxlength="14" 
-                    v-maska="'###.###.###-##'">
+            <label for="" class="form-label">Digite o Telefone:</label>
+            <input type="text" name="telefone" class="form-control" v-model="telefone"
+                    minlength="15"
+                    maxlength="15" 
+                    v-maska="'(##) #####-####'">
         </div>
         <div class="form-text">Obs: Todos os campos são obrigatórios</div>
     </div>
@@ -25,45 +24,47 @@
 export default {
     data() {
         return {
-            cpf: '',
+            telefone: '',
             modo: '',
             dados: []
         }
     },
     methods: {
         async pesquisar() {
-
-            let data = {
-                cpf_cliente: this.cpf,
+            if(this.telefone === '') {
+                alert(`Não foi encontrado dados com este telefone`);
+                localStorage.setItem('dados', '');
+                location.reload(true);
+            } else {
+                let data = {
+                telefone: this.telefone,
                 filtro_valores: null,
                 filtro_total_pedidos: null,
                 compra_cliente_dia: null
+                }
+
+                // transforma o array de dados do pedido em texto 
+                const dataJson = JSON.stringify(data);
+
+                // const req = await fetch("http://127.0.0.1:8000/api/filtros", {
+                const req = await fetch("https://www.projetoadocao.com/api/filtros", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: dataJson
+                });
+
+                const dados = await req.json();
+                
+                var soma = dados.reduce((a, b) => a + parseFloat(b.valor_total), 0)
+                localStorage.setItem('soma_total', JSON.stringify(soma));
+                localStorage.setItem('dados', JSON.stringify(dados));
+
+                if(req.status === 200) {
+                    location.reload(true);
+                }
             }
 
-            // transforma o array de dados do pedido em texto 
-            const dataJson = JSON.stringify(data);
-
-            // const req = await fetch("http://127.0.0.1:8000/api/filtros", {
-            const req = await fetch("https://www.projetoadocao.com/api/filtros", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: dataJson
-            });
-
-            const dados = await req.json();
             
-            var soma = dados.reduce((a, b) => a + parseFloat(b.valor_total), 0)
-
-            localStorage.setItem('soma_total', JSON.stringify(soma));
-            localStorage.setItem('dados', JSON.stringify(dados));
-            
-            if(dados != '') {
-                location.reload(true);
-            } else {
-                alert(`Não foi encontrado dados com o CPF: ${this.cpf}`);
-                localStorage.setItem('dados', '');
-                location.reload(true);
-            }
         }
     }
 

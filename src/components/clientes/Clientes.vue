@@ -4,8 +4,8 @@
         <div class="row col-md-12">
             <FormPesquisaCliente />
         </div>
-        <div class="row mt-5 col-12" v-if="dados">
-            <div class="col-md-7">
+        <div class="row mt-5 col-12" v-if="this.dados != null">
+            <div class="col-md-7" >
                 <h4>{{gasto_total}}</h4>
             </div>
             <div class="col-md-5">
@@ -47,8 +47,8 @@ export default {
     methods: {
         dadosStorage() {
             this.dados = JSON.parse(localStorage.getItem('dados'));
-            let soma_total = JSON.parse(localStorage.getItem('soma_total'));
-            this.gasto_total = `Este cliente já comprou um total de R$ ${soma_total}`
+            this.soma_total = JSON.parse(localStorage.getItem('soma_total'));
+            this.gasto_total = `Este cliente já comprou um total de R$ ${this.soma_total}`;
         },
         async pesquisarCPF(event) {
             const option = event.target.value;
@@ -63,9 +63,9 @@ export default {
             }
 
             let data = {
-                cpf_cliente: this.dados[0].cpf,
-                filtro_valores: null,
-                filtro_total_pedidos: null,
+                telefone_cliente: this.dados[0].telefone,
+                filtro_valores: '',
+                filtro_total_pedidos: '',
                 compra_cliente_dia: this.modo,
                 data: this.valor_data_atual
             }
@@ -81,54 +81,15 @@ export default {
             });
 
             const dados = await req.json();
-
-            let quant = dados;
-            let arr_valores = []
-            let soma = 0
-
-            for (var i = 0; i < quant.length; i++){
-                arr_valores[i] = parseInt(quant[i].valor_total);      
-                soma += parseInt(arr_valores[i]);
-            }  
-
+            
             if(option == 'mes') {
-                this.gasto_total = `Este cliente já gastou neste mês R$ ${soma} em seu restaurante!`;
+                this.gasto_total = `Este cliente já gastou neste mês R$ ${dados} em seu restaurante!`;
             } else if(option == 'ano') {
-                this.gasto_total = `Este cliente já gastou este ano R$ ${soma} em seu restaurante!`;
+                this.gasto_total = `Este cliente já gastou este ano R$ ${dados} em seu restaurante!`;
             } else {
-                this.gasto_total = `Este cliente já gastou R$ ${soma} em seu restaurante!`;
+                this.gasto_total = `Este cliente já gastou R$ ${dados} em seu restaurante!`;
             }
         },
-        
-        async pesquisar() {
-            let data = {
-                cpf_cliente: this.cpf,
-                filtro_valores: null,
-                filtro_total_pedidos: null,
-                compra_cliente_dia: null
-            }
-
-            // transforma o array de dados do pedido em texto 
-            const dataJson = JSON.stringify(data);
-            // const req = await fetch("http://127.0.0.1:8000/api/filtros", {
-            const req = await fetch("https://www.projetoadocao.com/api/filtros", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: dataJson
-            });
-
-            const dados = await req.json();
-
-            localStorage.setItem('dados', JSON.stringify(dados))
-            // this.$emit('dadosBack', p)
-            if(dados != '') {
-                location.reload(true);
-            } else {
-                alert(`Não foi encontrado dados com o CPF: ${this.cpf}`)
-                localStorage.setItem('dados', '')
-                location.reload(true);
-            }
-        }
     },
     mounted() {
         this.dadosStorage();

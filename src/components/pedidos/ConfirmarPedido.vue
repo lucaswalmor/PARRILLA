@@ -85,16 +85,16 @@ export default {
             this.dadosPedido = arr;
             const pedido = arr;
             
-            arr.lanche.filter((lanche) => {
             const a = []
+            arr.lanche.filter((lanche) => {
               a.push(lanche.nome)
-              this.lanche_pedido = a.join(' ')
+              this.lanche_pedido = a.join('%0A')
             })
             
+            const b = []
             arr.bebida.filter((bebida) => {
-              const b = []
               b.push(bebida.nome)
-              this.bebida_pedido = b.join(' ')
+              this.bebida_pedido = b.join('%0A')
             })
 
             let somaLanche = 0
@@ -143,9 +143,9 @@ export default {
 
           // se tiver troco, ap e bloco no pedido, entrara neste bloco 
           if (this.dadosPedido.troco != ''
-           && this.dadosPedido.apartamento != '' 
-           && this.dadosPedido.bloco != '' 
-           && this.dadosPedido.pontoReferencia != '') {
+            && this.dadosPedido.apartamento != '' 
+            && this.dadosPedido.bloco != '' 
+            && this.dadosPedido.pontoReferencia != '') {
             this.pedido_wpp = 
                   '*Agradecemos pela preferência, seu pedido está sendo preparado!*' +
                   '%0A' +
@@ -161,9 +161,9 @@ export default {
                   '%0A' +
                   '%0A*Pedido* ' +
                   '%0A' +
-                  '%0A*Lanche:* %0A' + '      ' + this.lanche_pedido +
+                  '%0A*Lanche:* %0A%0A' + this.lanche_pedido +
                   '%0A' +
-                  '%0A*Bebida:* %0A' + '      ' + this.bebida_pedido +
+                  '%0A*Bebida:* %0A%0A' + this.bebida_pedido +
                   '%0A' +
                   '%0A*Observações:* ' + this.dadosPedido.observacoes +
                   '%0A' +
@@ -194,9 +194,10 @@ export default {
                   '%0A' +
                   '%0A*LK Pedidos Whatsapp* ' +
                   '%0Ahttps://lucaswalmor.github.io/lk-whatsapp/' +
-                  '%0A'
+                  '%0A' +
                   '%0A*--------------*';
-          } else if (this.dadosPedido.troco === '' && this.dadosPedido.apartamento != '' && this.dadosPedido.bloco != '' && this.dadosPedido.pontoReferencia != '') {
+          } else if (this.dadosPedido.troco === '' && this.dadosPedido.apartamento != '' 
+            && this.dadosPedido.bloco != '' && this.dadosPedido.pontoReferencia != '') {
               this.pedido_wpp = 
                   '*Agradecemos pela preferência, seu pedido está sendo preparado!*' +
                   '%0A' +
@@ -212,9 +213,9 @@ export default {
                   '%0A' +
                   '%0A*Pedido* ' +
                   '%0A' +
-                  '%0A*Lanche:* %0A' + '      ' + this.lanche_pedido +
+                  '%0A*Lanche:* %0A%0A' + this.lanche_pedido +
                   '%0A' +
-                  '%0A*Bebida:* %0A' + '      ' + this.bebida_pedido +
+                  '%0A*Bebida:* %0A%0A' + this.bebida_pedido +
                   '%0A' +
                   '%0A*Observações:* ' + this.dadosPedido.observacoes +
                   '%0A' +
@@ -243,7 +244,7 @@ export default {
                   '%0A' +
                   '%0A*LK Pedidos Whatsapp* ' +
                   '%0Ahttps://lucaswalmor.github.io/lk-whatsapp/' +
-                  '%0A'
+                  '%0A' +
                   '%0A*--------------*';
               
           } else if (this.dadosPedido.troco != '' && this.dadosPedido.apartamento != '' && this.dadosPedido.pontoReferencia != '') {
@@ -262,9 +263,9 @@ export default {
               '%0A' +
               '%0A*Pedido* ' +
               '%0A' +
-              '%0A*Lanche:* %0A' + '      ' + this.lanche_pedido +
+              '%0A*Lanche:* %0A%0A' + this.lanche_pedido +
               '%0A' +
-              '%0A*Bebida:* %0A' + '      ' + this.bebida_pedido +
+              '%0A*Bebida:* %0A%0A' + this.bebida_pedido +
               '%0A' +
               '%0A*Observações:* ' + this.dadosPedido.observacoes +
               '%0A' +
@@ -295,7 +296,7 @@ export default {
               '%0A' +
               '%0A*LK Pedidos Whatsapp* ' +
               '%0Ahttps://lucaswalmor.github.io/lk-whatsapp/' +
-              '%0A'
+              '%0A' +
               '%0A*--------------*';
           } else if (this.dadosPedido.apartamento != '' && this.dadosPedido.pontoReferencia != '') {
             this.pedido_wpp = 
@@ -313,9 +314,9 @@ export default {
                   '%0A' +
                   '%0A*Pedido* ' +
                   '%0A' +
-                  '%0A*Lanche:* %0A' + '      ' + this.lanche_pedido +
+                  '%0A*Lanche:* %0A%0A' + this.lanche_pedido +
                   '%0A' +
-                  '%0A*Bebida:* %0A' + '      ' + this.bebida_pedido +
+                  '%0A*Bebida:* %0A%0A' + this.bebida_pedido +
                   '%0A' +
                   '%0A*Observações:* ' + this.dadosPedido.observacoes +
                   '%0A' +
@@ -343,7 +344,7 @@ export default {
                   '%0A' +
                   '%0A*LK Pedidos Whatsapp* ' +
                   '%0Ahttps://lucaswalmor.github.io/lk-whatsapp/' +
-                  '%0A'
+                  '%0A' +
                   '%0A*--------------*';
           } else if (this.dadosPedido.troco != '' && this.dadosPedido.pontoReferencia != '') {
             this.pedido_wpp = 
@@ -361,9 +362,9 @@ export default {
                   '%0A' +
                   '%0A*Pedido* ' +
                   '%0A' +
-                  '%0A*Lanche:* %0A' + '      ' + this.lanche_pedido +
+                  '%0A*Lanche:* %0A%0A' + this.lanche_pedido +
                   '%0A' +
-                  '%0A*Bebida:* %0A' + '      ' + this.bebida_pedido +
+                  '%0A*Bebida:* %0A%0A' + this.bebida_pedido +
                   '%0A' +
                   '%0A*Observações:* ' + this.dadosPedido.observacoes +
                   '%0A' +
@@ -391,7 +392,7 @@ export default {
                   '%0A' +
                   '%0A*LK Pedidos Whatsapp* ' +
                   '%0Ahttps://lucaswalmor.github.io/lk-whatsapp/' +
-                  '%0A'
+                  '%0A' +
                   '%0A*--------------*';
           } else if (this.dadosPedido.pontoReferencia != '') {
             this.pedido_wpp = 
@@ -409,9 +410,9 @@ export default {
                   '%0A' +
                   '%0A*Pedido* ' +
                   '%0A' +
-                  '%0A*Lanche:* %0A' + '      ' + this.lanche_pedido +
+                  '%0A*Lanche:* %0A%0A' + this.lanche_pedido + 
                   '%0A' +
-                  '%0A*Bebida:* %0A' + '      ' + this.bebida_pedido +
+                  '%0A*Bebida:* %0A%0A' + this.bebida_pedido +
                   '%0A' +
                   '%0A*Observações:* ' + this.dadosPedido.observacoes +
                   '%0A' +
@@ -420,8 +421,6 @@ export default {
                   '%0A*Total* ' +
                   '%0A' +
                   '%0A*Valor:* R$ ' + this.dadosPedido.valor_total +
-                  '%0A' +
-                  '%0A*Troco para:* R$ ' + this.dadosPedido.troco +
                   '%0A' +
                   '%0A*Forma de pagamento:* ' + this.dadosPedido.forma_pagamento +
                   '%0A' +
@@ -435,9 +434,6 @@ export default {
                   '%0A' +
                   '%0A*Ponto de referência:* ' + this.dadosPedido.pontoReferencia +
                   '%0A' +
-                  '%0A*Apartamento:* ' + this.dadosPedido.apartamento +
-                  '%0A' +
-                  '%0A*Bloco:* ' + this.dadosPedido.bloco +
                   '%0A*--------------*' +
                   '%0A' +
                   '%0A*LK Pedidos Whatsapp* ' +
@@ -460,9 +456,9 @@ export default {
                   '%0A' +
                   '%0A*Pedido* ' +
                   '%0A' +
-                  '%0A*Lanche:* %0A' + '      ' + this.lanche_pedido +
+                  '%0A*Lanche:* %0A%0A' + this.lanche_pedido +
                   '%0A' +
-                  '%0A*Bebida:* %0A' + '      ' + this.bebida_pedido +
+                  '%0A*Bebida:* %0A%0A' + this.bebida_pedido +
                   '%0A' +
                   '%0A*--------------* ' +
                   '%0A' +

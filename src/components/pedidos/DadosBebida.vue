@@ -96,11 +96,6 @@ export default {
               arr.bebida = this.pedido
               localStorage.setItem('pedido', JSON.stringify(arr))
             }
-            // this.pedido.push(bebida);
-            // arr.bebida = this.pedido
-            // localStorage.setItem('pedido', JSON.stringify(arr))
-
-
 
             const toast = useToast();
             toast.success(`1 ${bebida.nome} foi adicionado ao carrinho`);

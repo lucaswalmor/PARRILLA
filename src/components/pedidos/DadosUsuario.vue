@@ -5,7 +5,7 @@
     <!-- NOME -->
     <div class="row d-flex justify-content-center">
       <div class="col-md-4">
-        <label for="nome" class="form-label">Nome</label>
+        <label for="nome" class="form-label">Nome</label> <span style="color: red;">*</span>
         <input
           type="text"
           v-model="dadosPedido.nome"
@@ -28,7 +28,7 @@
     <!-- CPF -->
     <div class="row d-flex justify-content-center">
       <div class="col-md-4">
-        <label for="cpf" class="form-label">CPF</label>
+        <label for="cpf" class="form-label">CPF</label> <span style="color: red;">*</span>
         <input
           type="text"
           v-model="dadosPedido.cpf"
@@ -55,7 +55,7 @@
     <!-- TELEFONE -->
     <div class="row d-flex justify-content-center">
       <div class="col-md-4">
-        <label for="telefone" class="form-label">Telefone</label>
+        <label for="telefone" class="form-label">Telefone</label> <span style="color: red;">*</span>
         <input
           type="text"
           v-maska="'(##) #####-####'"
@@ -81,7 +81,7 @@
     <!-- CEP E TAXA DE ENTREGA-->
     <div class="row d-flex justify-content-center">
       <div class="col-md-3">
-        <label for="cep" class="form-label">CEP</label>
+        <label for="cep" class="form-label">CEP</label> <span style="color: red;">*</span>
         <input
           type="text"
           placeholder="Ex: 00000000"
@@ -131,7 +131,7 @@
         />
       </div>
       <div class="col-md-2">
-        <label for="numero" class="form-label">Nº</label>
+        <label for="numero" class="form-label">Nº</label> <span style="color: red;">*</span>
         <input
           type="number"
           v-model="dadosPedido.numero"
@@ -186,7 +186,7 @@
     <!-- RESIDÊNCIA -->
     <div class="row d-flex justify-content-center">
       <div class="col-md-4">
-        <label for="residencia" class="form-label">Residência</label>
+        <label for="residencia" class="form-label">Residência</label> <span style="color: red;">*</span>
         <select
           id="residencia"
           v-model="dadosPedido.residencia"

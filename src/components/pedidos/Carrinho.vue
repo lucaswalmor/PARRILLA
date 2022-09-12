@@ -74,6 +74,11 @@
         </div>
       </div>
 
+      <div class="container">
+        <h5>Observações</h5>
+        {{ dadosPedido.observacoes }}
+      </div>
+
       <!-- resumo de valores -->
       <div class="row">
         <div class="col-md-12 text-end">
@@ -121,7 +126,7 @@ export default {
     pedido() {
       this.dadosPedido = JSON.parse(localStorage.getItem("pedido"));
       const pedido = this.dadosPedido;
-
+      console.log(pedido)
       let somaLanche = 0
       for(let item in pedido.lanche) {
         somaLanche += parseInt(pedido.lanche[item].preco);
