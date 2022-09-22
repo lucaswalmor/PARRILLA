@@ -493,12 +493,9 @@ export default {
                   '%0A'
                   '%0A*--------------*';
           }
-          var telefone_replace = this.dadosPedido.telefone.replace("(", "")
-          .replace(")", "").replace(" ", "")
-          .replace(" ", "").replace("-", "");
 
           // ao finalizar o pedido será gerado o link com o pedido do whatsapp para redirecionar o cliente 
-          this.href = 'https://api.whatsapp.com/send?phone=55' + telefone_replace + '&text=' + this.pedido_wpp;
+          this.href = 'https://api.whatsapp.com/send?phone=55' + 34996390605 + '&text=' + this.pedido_wpp;
         },
         adicionarBebida() {
           this.$router.push('/dadosbebida');
