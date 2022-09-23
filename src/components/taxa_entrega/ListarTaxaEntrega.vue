@@ -26,7 +26,7 @@
                     <td>{{taxa.bairro}}</td>
                     <td>R$ {{taxa.preco}}</td>
                     <td class="botao-acao-tabela">
-                        <button class="btn btn-primary botao-acao-tabela" @click="editTaxa(taxa.id)"><i class="fa-solid fa-user-pen"></i></button>
+                        <button class="btn btn-primary botao-acao-tabela" @click="editTaxa(taxa.id)"><i class="fa-solid fa-pen-to-square"></i></button>
                     </td>
                 </tr>
             </tbody>
@@ -70,7 +70,6 @@ export default {
                     method: "DELETE"
                 });
                 const res = await req.json();
-                console.log(req);
                 // msg de pedido deletado
                 this.msg = `Lanche Nº ${id} deletado com sucesso`;
                 setTimeout(() => {

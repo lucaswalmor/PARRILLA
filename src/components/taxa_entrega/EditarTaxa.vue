@@ -57,7 +57,6 @@ export default {
                     headers: { "Content-Type": "application/json" },
                     body: dataJson
                 });
-                console.log(req)
                 if (req.status === 200) {
                     this.msg = "Taxa editada com sucesso";
                     this.bairro = "";

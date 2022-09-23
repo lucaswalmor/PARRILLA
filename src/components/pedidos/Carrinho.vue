@@ -126,7 +126,6 @@ export default {
     pedido() {
       this.dadosPedido = JSON.parse(localStorage.getItem("pedido"));
       const pedido = this.dadosPedido;
-      console.log(pedido)
       let somaLanche = 0
       for(let item in pedido.lanche) {
         somaLanche += parseInt(pedido.lanche[item].preco);

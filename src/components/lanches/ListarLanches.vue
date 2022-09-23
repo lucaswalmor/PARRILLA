@@ -35,7 +35,7 @@
                     <td>{{lanche.nome}}</td>
                     <td>R$ {{lanche.preco}}</td>
                     <td class="botao-acao-tabela">
-                        <button class="btn btn-primary" @click="editarLanche(lanche.id)"><i class="fa-solid fa-user-pen"></i></button>
+                        <button class="btn btn-primary" @click="editarLanche(lanche.id)"><i class="fa-solid fa-pen-to-square"></i></button>
                         <button @click="deletarLanche(lanche.id)" class="btn btn-danger"><i class="fa-solid fa-user-xmark"></i></button>
                     </td>
                 </tr>
@@ -57,6 +57,7 @@ $(document).ready(function(){
 import Message from '../message/Message.vue';
 import Sidenav from '../conteudo/Sidenav.vue';
 import { useToast } from "vue-toastification";
+import axios from 'axios'
 
 export default {
     name: "ListaLanches",

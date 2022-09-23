@@ -99,7 +99,7 @@ export default {
               a.push(lanche.nome)
               this.lanche_pedido = a.join('%0A')
             })
-            console.log()
+
             if(arr.hasOwnProperty("bebida")){
               const b = []
               arr.bebida.filter((bebida) => {
@@ -161,6 +161,8 @@ export default {
                   '%0A' +
                   '%0A*Código pedido* ' + this.dadosPedido.codigoPedido +
                   '%0A' +
+                  '%0A*Prazo de entrega: 40 à 110 minutos' +
+                  '%0A' +
                   '%0A*--------------* ' +
                   '%0A' +
                   '%0A*Olá, meu nome é* ' + this.dadosPedido.nome +
@@ -212,6 +214,8 @@ export default {
                   '*Agradecemos pela preferência, seu pedido está sendo preparado!*' +
                   '%0A' +
                   '%0A*Código pedido* ' + this.dadosPedido.codigoPedido +
+                  '%0A' +
+                  '%0A*Prazo de entrega: 40 à 120 minutos' +
                   '%0A' +
                   '%0A*--------------* ' +
                   '%0A' +
@@ -314,6 +318,8 @@ export default {
                   '%0A' +
                   '%0A*Código pedido* ' + this.dadosPedido.codigoPedido +
                   '%0A' +
+                '%0A*Prazo de entrega: 40 à 110 minutos' +
+                  '%0A' +
                   '%0A*--------------* ' +
                   '%0A' +
                   '%0A*Olá, meu nome é* ' + this.dadosPedido.nome +
@@ -361,6 +367,8 @@ export default {
                   '*Agradecemos pela preferência, seu pedido está sendo preparado!*' +
                   '%0A' +
                   '%0A*Código pedido* ' + this.dadosPedido.codigoPedido +
+                  '%0A' +
+                '%0A*Prazo de entrega: 40 à 110 minutos' +
                   '%0A' +
                   '%0A*--------------* ' +
                   '%0A' +
@@ -410,6 +418,8 @@ export default {
                   '%0A' +
                   '%0A*Código pedido* ' + this.dadosPedido.codigoPedido +
                   '%0A' +
+                '%0A*Prazo de entrega: 40 à 110 minutos' +
+                  '%0A' +
                   '%0A*--------------* ' +
                   '%0A' +
                   '%0A*Olá, meu nome é* ' + this.dadosPedido.nome +
@@ -455,6 +465,8 @@ export default {
                   '*Agradecemos pela preferência, seu pedido está sendo preparado!*' +
                   '%0A' +
                   '%0A*Código pedido* ' + this.dadosPedido.codigoPedido +
+                  '%0A' +
+                '%0A*Prazo de entrega: 40 à 110 minutos' +
                   '%0A' +
                   '%0A*--------------* ' +
                   '%0A' +

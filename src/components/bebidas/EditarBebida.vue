@@ -5,7 +5,6 @@
             <h2>Editar Bebida</h2>
         </div>
         <Message :msg="msg" v-show="msg"/>
-        {{dadosBebidas}}
         <form class="row g-3" autocomplete="off" @submit.prevent>
             <div class="col-md-6">
                 <label for="nome" class="form-label">Nome:</label>
@@ -78,8 +77,10 @@ export default {
         // carregar lista de usuarios
         async listarBebida() {
             // cria um array com os dados do pedido 
-            // const req = await fetch("http://127.0.0.1:8000/api/bebidas");
-            const req = await fetch("https://www.projetoadocao.com/api/bebidas");
+            var id = this.$route.params.id;
+            // cria um array com os dados do pedido 
+            // const req = await fetch(`http://127.0.0.1:8000/api/bebidas/${id}`);
+            const req = await fetch(`https://www.projetoadocao.com/api/bebidas/${id}`);
             const data = await req.json();
             this.dadosBebidas = data;
         },

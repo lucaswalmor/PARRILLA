@@ -51,6 +51,7 @@ $(document).ready(function(){
   });
 });
 
+import axios from 'axios'
 import Sidenav from '../conteudo/Sidenav.vue';
 export default {
     name: "Pedidos",
@@ -70,8 +71,9 @@ export default {
             // const req = await fetch("http://127.0.0.1:8000/api/pedidos");
             // const req = await fetch("https://www.projetoadocao.com/api/pedidos");
             // const data = await req.json();
+
             // this.axios(`http://127.0.0.1:8000/api/pedidos/`)
-            this.axios(`https://www.projetoadocao.com/api/pedidos/`)
+            axios.get(`https://www.projetoadocao.com/api/pedidos`)
             .then(res => {
                 this.pedidos = res.data[0].pedidos;
                 this.somaValorTotal = res.data[0].somas;

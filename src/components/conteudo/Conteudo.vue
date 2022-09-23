@@ -249,7 +249,6 @@ export default {
                 });
 
                 const dados_data = await req.json();
-                console.log(dados_data)
                 if(req.status === 200) {
                     this.somaPedidoMesAtual = dados_data;
                     this.text_pedido = 'Total pedido mês';

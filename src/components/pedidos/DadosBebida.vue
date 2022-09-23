@@ -3,11 +3,12 @@
 <div class="container-fluid bg-dark">
     <HeaderPedido />    
     <Message :msg="msg" v-show="msg"/>
+    
     <div class="mt-3 container-fluid" id="pedido_lanche">
       <!-- card de lanches -->
       <div class="row">
         <div class="col-md-2 pt-3" v-for="bebida in dadosBebidas" :key="bebida.id">
-          <div class="card">
+          <div class="card" v-if="bebida.status === 'Ativo'">
             <div class="card-header text-center fw-bold">
               {{bebida.nome}}
             </div>

@@ -18,7 +18,8 @@
         </div>
         <div class="row">
             <div class="col-md-4">
-                <button class="btn btn-warning text-dark fw-bold mt-4" @click="createIngredientes">Adicionar</button>
+                <button class="btn btn-warning w-100 text-dark fw-bold mt-4" @click="createIngredientes">Adicionar</button>
+                <button class="btn btn-secondary w-100 fw-bold mt-4" @click="voltar">Voltar</button>
             </div>
         </div>
     </div>
@@ -70,6 +71,10 @@ export default {
                 }
             }
         },
+        voltar() {
+            var token = this.$route.params.token;
+            this.$router.push({ path: `/cadastrar-lanche/${token}`, params: {token: token } });
+        }
     }
 }
 </script>

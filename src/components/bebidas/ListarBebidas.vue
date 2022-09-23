@@ -25,6 +25,7 @@
                     <th>#</th>
                     <th>Nome</th>
                     <th>Preço</th>
+                    <th>Status</th>
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -33,8 +34,14 @@
                     <th>{{bebida.id}}</th>
                     <td>{{bebida.nome}}</td>
                     <td>R$ {{bebida.preco}}</td>
+                    <td class="d-flex justify-content-center">
+                        <select name="" id="" class="form-select w-50" @change="statusBebida($event, bebida.id)" v-model="bebida.status">
+                            <option value="Ativo">Ativo</option>
+                            <option value="Inativo">Inativo</option>
+                        </select>
+                    </td>
                     <td class="botao-acao-tabela">
-                        <button class=" btn btn-primary" @click="editarBebida(bebida.id)"><i class="fa-solid fa-user-pen"></i></button>
+                        <button class=" btn btn-primary" @click="editarBebida(bebida.id)"><i class="fa-solid fa-pen-to-square"></i></button>
                         <button @click="deletarBebida(bebida.id)" class="btn btn-danger ms-3"><i class="fa-solid fa-user-xmark"></i></button>
                     </td>
                 </tr>
@@ -53,6 +60,7 @@ $(document).ready(function(){
     });
   });
 });
+
 import Message from '../message/Message.vue';
 import Sidenav from '../conteudo/Sidenav.vue';
 import { useToast } from "vue-toastification";
@@ -65,13 +73,13 @@ export default {
             dadosBebidas: [],
             msg: "",
             updateBebidaIcon: false,
-            acoes: true
+            acoes: true,
+            status: 'Ativo'
         };
     },
     methods: {
         // carregar lista de usuarios
         async listarBebida() {
-            
             // cria um array com os dados do pedido 
             // const req = await fetch("http://127.0.0.1:8000/api/bebidas");
             const req = await fetch("https://www.projetoadocao.com/api/bebidas");
@@ -104,6 +112,19 @@ export default {
         cadastrarBebida() {
             var token = this.$route.params.token;
             this.$router.push({ path: `/cadastrar-bebida/${token}`, params: {token: token } });
+        },
+        async statusBebida(option, id) {
+            let data = {
+                status: option.target.value
+            };
+
+            const dataJson = JSON.stringify(data);
+            // const req = await fetch(`http://127.0.0.1:8000/api/bebidas/${id}`, {
+            const req = await fetch(`http://127.0.0.1:8000/api/bebidas/${id}`, {
+                method: "PATCH",
+                headers: { "Content-Type": "application/json" },
+                body: dataJson
+            });
         }
     },
     mounted() {
