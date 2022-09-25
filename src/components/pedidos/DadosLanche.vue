@@ -89,9 +89,12 @@
         async listarLanche() {
             // cria um array com os dados do pedido 
             // const req = await fetch("http://127.0.0.1:8000/api/lanches");
+
             const req = await fetch("https://www.projetoadocao.com/api/lanches");
             const data = await req.json();
+
             this.dadosLanches = data;
+
             // traz o array de dados do localstorage e adicionar ao array de dadospedido
             var arr = JSON.parse(localStorage.getItem('pedido'))
             if(arr.hasOwnProperty("observacoes")){

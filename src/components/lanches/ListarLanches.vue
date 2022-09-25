@@ -57,7 +57,6 @@ $(document).ready(function(){
 import Message from '../message/Message.vue';
 import Sidenav from '../conteudo/Sidenav.vue';
 import { useToast } from "vue-toastification";
-import axios from 'axios'
 
 export default {
     name: "ListaLanches",

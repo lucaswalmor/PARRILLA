@@ -139,6 +139,7 @@ export default {
               troco: this.dadosPedido.troco,
               forma_pagamento: this.dadosPedido.forma_pagamento,
           };
+
           // fetch para envio de dados ao backend
           this.axios({
             method: 'POST',

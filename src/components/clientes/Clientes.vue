@@ -9,7 +9,7 @@
                 <h4>{{gasto_total}}</h4>
             </div>
             <div class="col-md-5">
-                <select name="modo" id="modo" class="form-select" v-model="modo" @change="pesquisarCPF($event)">
+                <select name="modo" id="modo" class="form-select" v-model="modo" @change="pesquisarTotalCompraCliente($event)">
                     <option value="" disabled>Selecione...</option>
                     <option value="mes">Mês atual</option>
                     <option value="ano">Ano atual</option>
@@ -50,7 +50,7 @@ export default {
             this.soma_total = JSON.parse(localStorage.getItem('soma_total'));
             this.gasto_total = `Este cliente já comprou um total de R$ ${this.soma_total}`;
         },
-        async pesquisarCPF(event) {
+        async pesquisarTotalCompraCliente(event) {
             const option = event.target.value;
             const data_atual = new Date();
             let mes = (data_atual.getMonth()) + 1;
@@ -69,7 +69,6 @@ export default {
                 compra_cliente_dia: this.modo,
                 data: this.valor_data_atual
             }
-
             // transforma o array de dados do pedido em texto 
             const dataJson = JSON.stringify(data);
 
@@ -93,7 +92,7 @@ export default {
     },
     mounted() {
         this.dadosStorage();
-        this.pesquisarCPF();
+        this.pesquisarTotalCompraCliente();
     },
 }
 </script>

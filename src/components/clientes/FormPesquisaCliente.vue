@@ -14,7 +14,7 @@
     </div>
     <div class="row mt-3">
         <div class="col">
-            <button class="btn btn-dark text-warning fw-bold" @click="pesquisar(this.dados)">Pesquisar</button>
+            <button class="btn btn-dark text-warning fw-bold" @click="pesquisarSomaTotal(this.dados)">Pesquisar</button>
         </div>
     </div>
   
@@ -30,17 +30,17 @@ export default {
         }
     },
     methods: {
-        async pesquisar() {
+        async pesquisarSomaTotal() {
             if(this.telefone === '') {
                 alert(`Não foi encontrado dados com este telefone`);
                 localStorage.setItem('dados', '');
                 location.reload(true);
             } else {
                 let data = {
-                telefone: this.telefone,
-                filtro_valores: null,
-                filtro_total_pedidos: null,
-                compra_cliente_dia: null
+                    telefone: this.telefone,
+                    filtro_valores: null,
+                    filtro_total_pedidos: null,
+                    compra_cliente_dia: null
                 }
 
                 // transforma o array de dados do pedido em texto 

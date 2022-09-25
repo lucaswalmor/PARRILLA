@@ -74,7 +74,6 @@ export default {
             msg: "",
             updateBebidaIcon: false,
             acoes: true,
-            status: 'Ativo'
         };
     },
     methods: {
