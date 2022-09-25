@@ -58,13 +58,14 @@
           <div class="col-md-4 justify-content-center chave_pix text-center"
             v-if="forma_pagamento === 'Pix'"
           >
+            <p class="fw-bold">Valor Pedido: R$ {{valorTotalpedido}}</p>
             <label for="chave-pix" class="form-label">Chave pix:</label>
-            <p>c4c0cd2f-e0b9-4697-af80-0600e14e062e</p>
+            <p>10e9b194-6130-4435-a621-1ea219b87a34</p>
           </div>
         </div>
 
         <!-- QRCODE PIX -->
-        <div class="row d-flex justify-content-center text-center">
+        <!-- <div class="row d-flex justify-content-center text-center">
           <div
             class="col-md-4 chave_pix justify-content-center"
             id="qrcode"
@@ -72,7 +73,7 @@
           >
             <img src="/img/qrcode.png" style="width: 250px" />
           </div>
-        </div>
+        </div> -->
 
         <!-- CONFIRMAR PEDIDO -->
         <div class="row d-flex justify-content-center">
@@ -140,7 +141,43 @@ export default {
         localStorage.setItem('pedido', JSON.stringify(this.dadosPedido))
         this.$router.push('/confirmar-pedido')
       }
-    }
+    },
+    listarPedido() {
+        var arr = JSON.parse(localStorage.getItem("pedido"));
+        this.dadosPedido = arr;
+        const pedido = arr;
+
+        const a = []
+        arr.lanche.filter((lanche) => {
+          a.push(lanche.nome)
+          this.lanche_pedido = a.join('%0A')
+        })
+
+        if(arr.hasOwnProperty("bebida")){
+          const b = []
+          arr.bebida.filter((bebida) => {
+            b.push(bebida.nome)
+            this.bebida_pedido = b.join('%0A')
+          })
+        }
+
+        let somaLanche = 0
+        for(let item in pedido.lanche) {
+          somaLanche += parseInt(pedido.lanche[item].preco);
+        }
+        
+        let somaBebida = 0
+        for(let item in pedido.bebida) {
+          somaBebida += parseInt(pedido.bebida[item].preco);
+        }
+        
+        this.valorpedido = somaLanche + somaBebida
+        this.valorTotalpedido = somaLanche + parseInt(pedido.taxa_entrega) + somaBebida
+        console.log(this.valorTotalpedido)
+    },
+  },
+  mounted() {
+    this.listarPedido();
   }
 }
 </script>

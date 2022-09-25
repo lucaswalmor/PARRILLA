@@ -12,6 +12,9 @@
                 <button class="btn btn-warning text-dark fw-bold" @click="cadastrarIngrediente">
                     Cadastrar Ingrediente
                 </button>
+                <button class="btn btn-secondary ms-3 fw-bold" @click="cadastrarAdicionais">
+                    Cadastrar Adicionais
+                </button>
             </div>
         </div>
         <form class="row g-3" autocomplete="off" @submit.prevent="createLanche" id="formulario-lanche" enctype="multipart/form-data">
@@ -115,6 +118,10 @@ export default {
         cadastrarIngrediente() {
             var token = this.$route.params.token;
             this.$router.push({ path: `/cadastrar-ingredientes/${token}`, params: {token: token } });
+        },
+        cadastrarAdicionais() {
+            var token = this.$route.params.token;
+            this.$router.push({ path: `/cadastrar-adicionais/${token}`, params: {token: token } });
         }
     },
     mounted() {

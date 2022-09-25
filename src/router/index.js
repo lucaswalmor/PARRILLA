@@ -54,6 +54,16 @@ const routes = [
     name: 'EditarLanche',
     component: () => import('../components/lanches/EditarLanche.vue')
   },
+  {
+    path: '/cadastrar-adicionais/:token',
+    name: 'CadastrarAdicionais',
+    component: () => import('../components/lanches/CadastrarAdicionais.vue')
+  },
+  {
+    path: '/editar-adicionais/:token/:id',
+    name: 'EditarAdicionais',
+    component: () => import('../components/lanches/EditarAdicionais.vue')
+  },
   // ROTAS DE BEBIDAS
   {
     path: '/cadastrar-bebida/:token',
