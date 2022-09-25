@@ -86,10 +86,12 @@ export default {
             lanche_pedido: '',
             bebida_pedido: '',
             pedido_wpp: '',
+            tipo_pedido: ''
         };
     },
     methods: {
         listarPedido() {
+            this.tipo_pedido = localStorage.getItem("tipo_pedido");
             var arr = JSON.parse(localStorage.getItem("pedido"));
             this.dadosPedido = arr;
             const pedido = arr;
@@ -118,8 +120,14 @@ export default {
               somaBebida += parseInt(pedido.bebida[item].preco);
             }
             
-            this.valorpedido = somaLanche + somaBebida
-            this.valorTotalpedido = somaLanche + parseInt(pedido.taxa_entrega) + somaBebida
+        
+            if(this.tipo_pedido == 'Entregar') {
+              this.valorpedido = somaLanche + somaBebida
+              this.valorTotalpedido = somaLanche + parseInt(pedido.taxa_entrega) + somaBebida
+            } else if (this.tipo_pedido == 'Retirar') {
+              this.valorpedido = somaLanche + somaBebida
+              this.valorTotalpedido = somaLanche + somaBebida
+            }
         }, 
         salvarPedidoDB() {
           // cria um array com os dados do pedido 

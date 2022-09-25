@@ -26,6 +26,8 @@
 
 <script>
 import Sidenav from '../conteudo/Sidenav.vue';
+import { useToast } from "vue-toastification";
+
 export default {
     name: 'EditarAdicionais',
     components: { Sidenav },
@@ -38,13 +40,47 @@ export default {
         }
     },
     methods: {
+        async updateBebida() {
+            var id = this.$route.params.id;
 
+            const data = {
+                nome: this.dadosAdicionais.nome,
+                preco: this.dadosAdicionais.preco,
+            };
+
+            if(data.nome === null || data.preco === null) {
+                alert('Porfavor preencha os campos')
+            } else {
+                const dataJson = JSON.stringify(data);
+                const req = await fetch(`http://127.0.0.1:8000/api/adicionais/${id}`, {
+                // const req = await fetch(`https://www.projetoadocao.com/api/adicionais/${id}`, {
+                    method: "PATCH",
+                    headers: { "Content-Type": "application/json" },
+                    body: dataJson
+                });
+
+                if (req.status === 200) {
+                    this.msg = "Adicional editada com sucesso";
+                    this.nome = "";
+                    this.preco = "";
+                    const toast = useToast();
+                    toast.success(`Adicional editada com sucesso`);
+                    setTimeout(() => {
+                        this.msg = ''
+                    }, 2000);
+                }
+            }
+
+        },
+        voltar() {
+            var token = this.$route.params.token;
+            this.$router.push({ path: `/cadastrar-adicionais/${token}`, params: {token: token}} );
+        }
     },
     mounted() {
         this.axios("http://127.0.0.1:8000/api/adicionais")
         .then(res => {
-            this.adicionais = res.data
-        console.log(res.data)
+            this.dadosAdicionais = res.data[0]
         });
     }
 }

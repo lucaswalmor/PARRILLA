@@ -119,29 +119,54 @@ export default {
     return {
       dadosPedido: [],
       valorPedido: '',
-      valorTotalPedido: ''
+      valorTotalPedido: '',
+      tipo_pedido: ''
     };
   },
   methods: {
     pedido() {
-      this.dadosPedido = JSON.parse(localStorage.getItem("pedido"));
-      const pedido = this.dadosPedido;
-      let somaLanche = 0
-      for(let item in pedido.lanche) {
-        somaLanche += parseInt(pedido.lanche[item].preco);
-      }
-      
-      let somaBebida = 0
-      for(let item in pedido.bebida) {
-        somaBebida += parseInt(pedido.bebida[item].preco);
-      }
-      
-      this.valorPedido = somaLanche + somaBebida
-      this.valorTotalPedido = somaLanche + parseInt(pedido.taxa_entrega) + somaBebida
+      this.tipo_pedido = localStorage.getItem("tipo_pedido");
 
-      this.dadosPedido.valor_total = this.valorTotalPedido;
+      if(this.tipo_pedido == 'Entregar') {
+        this.dadosPedido = JSON.parse(localStorage.getItem("pedido"));
+        const pedido = this.dadosPedido;
+        let somaLanche = 0
+        for(let item in pedido.lanche) {
+          somaLanche += parseInt(pedido.lanche[item].preco);
+        }
+        
+        let somaBebida = 0
+        for(let item in pedido.bebida) {
+          somaBebida += parseInt(pedido.bebida[item].preco);
+        }
+        
+        this.valorPedido = somaLanche + somaBebida
+        this.valorTotalPedido = somaLanche + parseInt(pedido.taxa_entrega) + somaBebida
+
+        this.dadosPedido.valor_total = this.valorTotalPedido;
+        
+        localStorage.setItem('pedido', JSON.stringify(this.dadosPedido))
+      } else if(this.tipo_pedido == 'Retirar') {
+        this.dadosPedido = JSON.parse(localStorage.getItem("pedido"));
+        const pedido = this.dadosPedido;
+        let somaLanche = 0
+        for(let item in pedido.lanche) {
+          somaLanche += parseInt(pedido.lanche[item].preco);
+        }
+        
+        let somaBebida = 0
+        for(let item in pedido.bebida) {
+          somaBebida += parseInt(pedido.bebida[item].preco);
+        }
+        
+        this.valorPedido = somaLanche + somaBebida
+        this.valorTotalPedido = somaLanche + somaBebida
+
+        this.dadosPedido.valor_total = this.valorTotalPedido;
+        
+        localStorage.setItem('pedido', JSON.stringify(this.dadosPedido))
+      }
       
-      localStorage.setItem('pedido', JSON.stringify(this.dadosPedido))
     },
     removerLanche(index) {
       const arrLanche = this.dadosPedido.lanche;
