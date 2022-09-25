@@ -5,7 +5,7 @@
     <div class="mt-3 container-fluid" id="pedido_lanche">
       <!-- card de lanches -->
       <div class="row">
-        <div class="col-md-3 pt-3" v-for="lanche in dadosLanches" :key="lanche.id">
+        <div class="col-md-2 pt-3 centralizar-cards" v-for="lanche in dadosLanches" :key="lanche.id">
           <div class="card">
             <div class="card-header text-center fw-bold">
               {{lanche.nome}}
@@ -168,5 +168,20 @@
 
   .background {
     background: #333 !important;
+  }
+
+  .card {
+    min-height: 495px;
+  }
+
+  @media screen and (max-width: 480px) {
+    .card {
+      width: 75%;
+    }
+
+    .centralizar-cards {
+      display: flex;
+      justify-content: center;
+    }
   }
 </style>
