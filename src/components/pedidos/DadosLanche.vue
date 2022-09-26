@@ -41,7 +41,7 @@
             <i class="fa-lg fa-solid fa-cart-shopping"></i> Carrinho
           </button> -->
           
-          <button @click="formaPagamento" class="btn btn-warning text-dark fw-bold w-75">Forma de pagamento</button>
+          <button @click="formaPagamento" class="btn btn-warning text-dark fw-bold w-75"><i class="fa-solid fa-money-bill"></i> Forma de pagamento</button>
         </div>
       </div>
     </div>
