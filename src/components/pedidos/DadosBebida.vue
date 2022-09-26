@@ -35,9 +35,11 @@
           <button type="submit" @click="adicionarLanche" class="btn btn-warning text-dark fw-bold w-75">
             <i class="fa-lg fa-solid fa-burger"></i> Adicionar Lanche
           </button>
-          <button type="submit" @click="carrinho" class="btn btn-warning text-dark fw-bold w-75">
+          <!-- <button type="submit" @click="carrinho" class="btn btn-warning text-dark fw-bold w-75">
             <i class="fa-lg fa-solid fa-cart-shopping"></i> Carrinho
-          </button>
+          </button> -->
+          
+          <button @click="formaPagamento" class="btn btn-warning text-dark fw-bold w-75">Forma de pagamento</button>
         </div>
       </div>
     </div>
@@ -106,6 +108,9 @@ export default {
         },
         carrinho() {
           this.$router.push('/carrinho');
+        },
+        formaPagamento() {
+          this.$router.push('/forma-pagamento')
         }
     },
     mounted() {

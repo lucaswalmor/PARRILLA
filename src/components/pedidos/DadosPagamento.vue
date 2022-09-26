@@ -74,13 +74,14 @@
             <img src="/img/qrcode.png" style="width: 250px" />
           </div>
         </div> -->
-
         <!-- CONFIRMAR PEDIDO -->
         <div class="row d-flex justify-content-center">
           <div class="col-12 mt-3 text-center" id="botao">
-            <button type="submit" @click="confirmarPedido" class="btn mb-5 btn-warning fw-bold">
-              Confirmar Pedido
+            <button type="submit" @click="confirmarPedido" class="btn m-3 btn-warning fw-bold">
+              <i class="fa-solid fa-check"></i> Confirmar Pedido
             </button>
+            <button @click="adicionarLanche" class="btn btn-warning fw-bold m-3"><i class="fa-solid fa-burger"></i> Adicionar Lanche</button>
+            <button @click="adicionarBebida" class="btn btn-warning fw-bold m-3"><i class="fa-solid fa-wine-bottle"></i> Adicionar Bebida</button>
           </div>
         </div>
       </div>
@@ -181,6 +182,12 @@ export default {
           this.valorpedido = somaLanche + somaBebida
           this.valorTotalpedido = somaLanche + somaBebida
         }
+    },
+    adicionarLanche() {
+        this.$router.push('/dadosLanche')
+    },
+    adicionarBebida() {
+        this.$router.push('/dadosbebida')
     },
   },
   mounted() {

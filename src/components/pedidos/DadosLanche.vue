@@ -37,9 +37,11 @@
           <button type="submit" @click="adicionarBebida" class="btn btn-warning text-dark fw-bold w-75">
             <i class="fa-lg fa-solid fa-wine-bottle"></i> Adicionar Bebida
           </button>
-          <button type="submit" @click="carrinho" class="btn btn-warning text-dark fw-bold w-75">
+          <!-- <button type="submit" @click="carrinho" class="btn btn-warning text-dark fw-bold w-75">
             <i class="fa-lg fa-solid fa-cart-shopping"></i> Carrinho
-          </button>
+          </button> -->
+          
+          <button @click="formaPagamento" class="btn btn-warning text-dark fw-bold w-75">Forma de pagamento</button>
         </div>
       </div>
     </div>
@@ -144,6 +146,9 @@
           var arr = JSON.parse(localStorage.getItem('pedido'))
           arr.observacoes = this.observacoes;
           localStorage.setItem('pedido', JSON.stringify(arr))
+        },
+        formaPagamento() {
+          this.$router.push('/forma-pagamento')
         }
       },
       mounted() {
