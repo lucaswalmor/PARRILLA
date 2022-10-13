@@ -96,6 +96,7 @@ export default {
             this.dadosPedido = arr;
             const pedido = arr;
 
+
             const a = []
             arr.lanche.filter((lanche) => {
               a.push(lanche.nome)
@@ -119,11 +120,12 @@ export default {
             for(let item in pedido.bebida) {
               somaBebida += parseInt(pedido.bebida[item].preco);
             }
-            
         
             if(this.tipo_pedido == 'Entregar') {
               this.valorpedido = somaLanche + somaBebida
               this.valorTotalpedido = somaLanche + parseInt(pedido.taxa_entrega) + somaBebida
+            
+
             } else if (this.tipo_pedido == 'Retirar') {
               this.valorpedido = somaLanche + somaBebida
               this.valorTotalpedido = somaLanche + somaBebida

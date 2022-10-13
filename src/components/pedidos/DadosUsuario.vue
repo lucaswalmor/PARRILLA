@@ -411,6 +411,7 @@ export default {
                 const data = this.dadosPedido;
                 const dataJson = JSON.stringify(data);
                 localStorage.setItem('pedido', dataJson)
+                localStorage.setItem('tipo_pedido', this.tipoPedido)
                 this.$router.push('/dadosLanche');
               }
             }
