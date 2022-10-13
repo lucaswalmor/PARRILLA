@@ -194,7 +194,7 @@ export default {
                   '%0A' +
                   '%0A*Total* ' +
                   '%0A' +
-                  '%0A*Valor:* R$ ' + this.dadosPedido.valor_total +
+                  '%0A*Valor:* R$ ' + this.valorTotalpedido +
                   '%0A' +
                   '%0A*Troco para:* R$ ' + this.dadosPedido.troco +
                   '%0A' +
@@ -248,7 +248,7 @@ export default {
                   '%0A' +
                   '%0A*Total* ' +
                   '%0A' +
-                  '%0A*Valor:* R$ ' + this.dadosPedido.valor_total +
+                  '%0A*Valor:* R$ ' + this.valorTotalpedido +
                   '%0A' +
                   '%0A*Forma de pagamento:* ' + this.dadosPedido.forma_pagamento +
                   '%0A' +
@@ -298,7 +298,7 @@ export default {
               '%0A' +
               '%0A*Total* ' +
               '%0A' +
-              '%0A*Valor:* R$ ' + this.dadosPedido.valor_total +
+              '%0A*Valor:* R$ ' + this.valorTotalpedido +
               '%0A' +
               '%0A*Troco para:* R$ ' + this.dadosPedido.troco +
               '%0A' +
@@ -351,7 +351,7 @@ export default {
                   '%0A' +
                   '%0A*Total* ' +
                   '%0A' +
-                  '%0A*Valor:* R$ ' + this.dadosPedido.valor_total +
+                  '%0A*Valor:* R$ ' + this.valorTotalpedido +
                   '%0A' +
                   '%0A*Forma de pagamento:* ' + this.dadosPedido.forma_pagamento +
                   '%0A' +
@@ -401,7 +401,7 @@ export default {
                   '%0A' +
                   '%0A*Total* ' +
                   '%0A' +
-                  '%0A*Valor:* R$ ' + this.dadosPedido.valor_total +
+                  '%0A*Valor:* R$ ' + this.valorTotalpedido +
                   '%0A' +
                   '%0A*Troco para:* R$ ' + this.dadosPedido.troco +
                   '%0A' +
@@ -451,7 +451,7 @@ export default {
                   '%0A' +
                   '%0A*Total* ' +
                   '%0A' +
-                  '%0A*Valor:* R$ ' + this.dadosPedido.valor_total +
+                  '%0A*Valor:* R$ ' + this.valorTotalpedido +
                   '%0A' +
                   '%0A*Forma de pagamento:* ' + this.dadosPedido.forma_pagamento +
                   '%0A' +
@@ -497,7 +497,7 @@ export default {
                   '%0A' +
                   '%0A*Total* ' +
                   '%0A' +
-                  '%0A*Valor:* R$ ' + this.dadosPedido.valor_total +
+                  '%0A*Valor:* R$ ' + this.valorTotalpedido +
                   '%0A' +
                   '%0A*Forma de pagamento:* ' + this.dadosPedido.forma_pagamento +
                   '%0A' +
