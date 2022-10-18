@@ -152,7 +152,9 @@
       },
       mounted() {
         const toast = useToast();
-        toast.info(`Caso queira algum adicional, porfavor adicionar as observações o adicional e o lanche que gostaria`);
+        toast.info(`Caso queira algum adicional, porfavor adicionar as observações o adicional e o lanche que gostaria`, {
+          timeout: 4000
+        });
 
         this.listarLanche();
       }
