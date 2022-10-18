@@ -1,5 +1,4 @@
 <template>
-  
 <div class="container-fluid bg-dark">
     <HeaderPedido />
     <div class="mt-3 container-fluid" id="pedido_lanche">
@@ -152,6 +151,9 @@
         }
       },
       mounted() {
+        const toast = useToast();
+        toast.info(`Caso queira algum adicional, porfavor adicionar as observações o adicional e o lanche que gostaria`);
+
         this.listarLanche();
       }
 }
