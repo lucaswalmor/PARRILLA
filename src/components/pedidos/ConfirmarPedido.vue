@@ -113,17 +113,17 @@ export default {
 
             let somaLanche = 0
             for(let item in pedido.lanche) {
-              somaLanche += parseInt(pedido.lanche[item].preco);
+              somaLanche += parseFloat(pedido.lanche[item].preco);
             }
             
             let somaBebida = 0
             for(let item in pedido.bebida) {
-              somaBebida += parseInt(pedido.bebida[item].preco);
+              somaBebida += parseFloat(pedido.bebida[item].preco);
             }
         
             if(this.tipo_pedido == 'Entregar') {
               this.valorpedido = somaLanche + somaBebida
-              this.valorTotalpedido = somaLanche + parseInt(pedido.taxa_entrega) + somaBebida
+              this.valorTotalpedido = somaLanche + parseFloat(pedido.taxa_entrega) + somaBebida
             
 
             } else if (this.tipo_pedido == 'Retirar') {
@@ -145,7 +145,7 @@ export default {
               bebida: this.dadosPedido.bebida,
               lanche: this.dadosPedido.lanche,
               observacoes: this.dadosPedido.observacoes,
-              valor_total: this.dadosPedido.valor_total,
+              valor_total: this.valorTotalPedido,
               troco: this.dadosPedido.troco,
               forma_pagamento: this.dadosPedido.forma_pagamento,
           };
