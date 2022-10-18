@@ -95,8 +95,6 @@ export default {
             var arr = JSON.parse(localStorage.getItem("pedido"));
             this.dadosPedido = arr;
             const pedido = arr;
-
-
             const a = []
             arr.lanche.filter((lanche) => {
               a.push(lanche.nome)
@@ -124,15 +122,14 @@ export default {
             if(this.tipo_pedido == 'Entregar') {
               this.valorpedido = somaLanche + somaBebida
               this.valorTotalpedido = somaLanche + parseFloat(pedido.taxa_entrega) + somaBebida
-            
-
             } else if (this.tipo_pedido == 'Retirar') {
               this.valorpedido = somaLanche + somaBebida
               this.valorTotalpedido = somaLanche + somaBebida
             }
-        }, 
+        },
         salvarPedidoDB() {
           // cria um array com os dados do pedido 
+          
           const data = {
               nome_cliente: this.dadosPedido.nome,
               codigo_pedido: this.dadosPedido.codigoPedido,
@@ -145,7 +142,7 @@ export default {
               bebida: this.dadosPedido.bebida,
               lanche: this.dadosPedido.lanche,
               observacoes: this.dadosPedido.observacoes,
-              valor_total: this.valorTotalPedido,
+              valor_total: this.valorTotalpedido,
               troco: this.dadosPedido.troco,
               forma_pagamento: this.dadosPedido.forma_pagamento,
           };
