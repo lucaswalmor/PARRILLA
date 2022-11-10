@@ -153,7 +153,7 @@
       mounted() {
         const toast = useToast();
         toast.info(`Caso queira algum adicional, porfavor adicionar as observações o adicional e o lanche que gostaria`, {
-          timeout: 4000
+          timeout: 5000
         });
 
         this.listarLanche();

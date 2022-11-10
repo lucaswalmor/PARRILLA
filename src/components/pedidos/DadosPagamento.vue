@@ -33,7 +33,6 @@
               <label class="form-check-label" for="tem_troco">Deseja Troco?</label>
             </div>
           </div>
-
         </div>
 
         <!-- TROCO -->

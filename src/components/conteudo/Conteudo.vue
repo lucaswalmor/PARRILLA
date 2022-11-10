@@ -44,7 +44,7 @@
                         </div>
                         <div class="col-md-9 text-center">
                             <div v-if="filtro_valor_selecionado"><h6>{{text_valor}}</h6></div>
-                            <div v-if="filtro_valor_selecionado === 'soma_total'"><h1>R$ {{somaValorTotal}}</h1></div>
+                            <div v-if="filtro_valor_selecionado === 'soma_total'"><h1>{{somaValorTotal}}</h1></div>
                             <div v-if="filtro_valor_selecionado === 'dia'"><h1>{{somaValorDiaAtual}}</h1></div>
                             <div v-if="filtro_valor_selecionado === 'mes'"><h1>{{somaValorMesAtual}}</h1></div>
                             <div v-if="filtro_valor_selecionado === 'ano'"><h1>{{somaValorAnoAtual}}</h1></div>
@@ -115,12 +115,13 @@ export default {
             const req = await fetch("https://www.projetoadocao.com/api/pedidos");
             const data = await req.json();
             this.pedidos = data[0].pedidos;
-            this.somaValorTotal = data[0].somas;
+            this.somaValorTotal = data[0].somas.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'});
             this.totalPedidos = this.pedidos.length;
+
             // busca as datas atuais, dia, mes e ano
             var dia_atual = new Date().getDate();
             this.dia = dia_atual;
-            
+
             var mes_atual = new Date().getMonth() + 1;
             if(mes_atual < 10){
                 this.mes = '0' + mes_atual;
