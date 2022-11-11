@@ -4,52 +4,82 @@
         <div class="row p-5">
             <h2>Editar Lanche</h2>
         </div>
-        <Message :msg="msg" v-show="msg"/>
+        <Message :msg="msg" v-show="msg" />
         <form class="row g-3" autocomplete="off" @submit.prevent>
             <div class="col-md-6">
                 <label for="nome" class="form-label">Nome:</label>
                 <input type="text" class="form-control" id="nome" v-model="dadosLanche.nome">
             </div>
             <div class="col-md-6">
+                <label for="ingredientes" class="form-label">Ingredientes:</label>
+                <Multiselect id="ingredientes" v-model="ingredientes" mode="tags" :close-on-select="false"
+                    :searchable="true" :create-option="true" :options="ingredientesCadastrados" />
+            </div>
+            <div class="col-md-6">
                 <label for="preco" class="form-label">Preco:</label>
                 <input type="text" class="form-control" id="preco" placeholder="00.00" v-model="dadosLanche.preco">
             </div>
-            <div class="col-md-6">
-                <input type="submit" value="Atualizar" class="form-control btn btn-success" @click="updateLanche">
-            </div>
-            <div class="col-md-6">
-                <input type="submit" value="Voltar" class="form-control btn btn-secondary" @click="voltar">
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <input type="submit" value="Atualizar" class="form-control btn btn-success" @click="updateLanche">
+                </div>
+                <div class="col-md-6">
+                    <input type="submit" value="Voltar" class="form-control btn btn-secondary" @click="voltar">
+                </div>
             </div>
         </form>
-        <p class="mt-3"><small>* Favor seguir o modelo de preço na hora do cadastro "00.00", sempre colocar os valores decimais</small></p>
-    </div>    
+        <p class="mt-3"><small>* Favor seguir o modelo de preço na hora do cadastro "00.00", sempre colocar os valores
+                decimais</small></p>
+    </div>
 </template>
 
 <script>
 import Sidenav from '../conteudo/Sidenav.vue';
 import Message from '../message/Message.vue';
+import Multiselect from '@vueform/multiselect';
 import { useToast } from "vue-toastification";
 
 export default {
     name: "EditarLanche",
-    components: { Sidenav, Message },
+    components: { Sidenav, Message, Multiselect },
     data() {
         return {
             nome: null,
             preco: null,
             dadosLanche: [],
-            msg: ''
+            msg: '',
+            ingredientes: [],
+            ingredientesCadastrados: {},
         };
     },
     methods: {
+        async listarIngredientes() {
+            // const req = await fetch("http://127.0.0.1:8000/api/ingredientes");
+            const req = await fetch("https://www.projetoadocao.com/api/ingredientes");
+            const data = await req.json();
+            let arr = []
+            for (let item in data) {
+                arr.push(data[item].nome)
+                this.ingredientesCadastrados = arr
+            }
+        },
+        // carregar lista de usuarios
+        async listarLanche() {
+            var id = this.$route.params.id;
+            // cria um array com os dados do pedido 
+            const req = await fetch(`https://www.projetoadocao.com/api/lanches/${id}`);
+            const data = await req.json();
+            this.dadosLanche = data;
+        },
         async updateLanche() {
             var id = this.$route.params.id;
             const data = {
                 nome: this.dadosLanche.nome,
                 preco: this.dadosLanche.preco,
+                ingredientes: this.ingredientes,
             };
 
-            if(data.nome === null || data.preco === null) {
+            if (data.nome === null || data.preco === null) {
                 alert('Porfavor preencha os campos')
             } else {
                 const dataJson = JSON.stringify(data);
@@ -64,10 +94,11 @@ export default {
                     this.msg = "Lanche editado com sucesso";
                     this.nome = "";
                     this.preco = "";
+                    this.ingredientes = [];
                     const toast = useToast();
                     toast.success(`Lanche ${id} editado com sucesso!`);
                     var token = this.$route.params.token;
-                    this.$router.push({ path: `/listar-lanche/${token}`, params: {token: token } });
+                    this.$router.push({ path: `/listar-lanche/${token}`, params: { token: token } });
 
                     setTimeout(() => {
                         this.msg = ''
@@ -76,25 +107,21 @@ export default {
             }
 
         },
-        // carregar lista de usuarios
-        async listarLanche() {
-            var id = this.$route.params.id;
-            // cria um array com os dados do pedido 
-            const req = await fetch(`https://www.projetoadocao.com/api/lanches/${id}`);
-            const data = await req.json();
-            this.dadosLanche = data;
-        },
         voltar() {
             var token = this.$route.params.token;
-            this.$router.push({ path: `/listar-lanche/${token}`, params: {token: token}} );
+            this.$router.push({ path: `/listar-lanche/${token}`, params: { token: token } });
         }
     },
     mounted() {
         this.listarLanche();
+        this.listarIngredientes();
     }
 }
 </script>
 
+<style src="@vueform/multiselect/themes/default.css">
+
+</style>
 <style>
 
 </style>

@@ -104,30 +104,29 @@ export default {
         async pedido() {
             var id = this.$route.params.id;
             // this.axios(`http://127.0.0.1:8000/api/pedidos/${id}`)
-            let arr = this.axios(`https://www.projetoadocao.com/api/pedidos/${id}`)
+            this.axios(`https://www.projetoadocao.com/api/pedidos/${id}`)
             .then(res => {
-                this.dadosPedido = res.data[0].pedido;
-                this.lanches = res.data[0].lanches;
-                this.bebidas = res.data[0].bebidas;
-
-                this.id = res.data[0].pedido.id
-                this.nome_cliente = res.data[0].pedido.nome_cliente
-                this.codigo_pedido = res.data[0].pedido.codigo_pedido
-                this.telefone = res.data[0].pedido.telefone
-                this.rua = res.data[0].pedido.rua
-                this.bairro = res.data[0].pedido.bairro
-                this.ponto_referencia = res.data[0].pedido.ponto_referencia
-                this.apartamento = res.data[0].pedido.apartamento
-                this.bloco = res.data[0].pedido.bloco
-                this.valor_total = res.data[0].pedido.valor_total
-                this.troco = res.data[0].pedido.troco
-                this.forma_pagamento = res.data[0].pedido.forma_pagamento
-
-
-                let data_pedido = res.data[0].pedido.created_at;
+                console.log(res.data)
+                this.dadosPedido = res.data;
+                this.lanches = res.data.lanches;
+                this.bebidas = res.data.bebidas;
+                this.id = res.data.id
+                this.nome_cliente = res.data.nome_cliente
+                this.codigo_pedido = res.data.codigo_pedido
+                this.telefone = res.data.telefone
+                this.rua = res.data.rua
+                this.bairro = res.data.bairro
+                this.ponto_referencia = res.data.ponto_referencia
+                this.apartamento = res.data.apartamento
+                this.bloco = res.data.bloco
+                this.valor_total = res.data.valor_total
+                this.troco = res.data.troco
+                this.forma_pagamento = res.data.forma_pagamento
+                let data_pedido = res.data.created_at;
                 let dataAtual = new Date(data_pedido);
                 let dataPublicacao = new Date(dataAtual);
                 this.dataDoPedido = dataPublicacao.toLocaleDateString('pt-BR')
+
             });
         },
         voltar() {

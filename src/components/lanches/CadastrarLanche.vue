@@ -78,7 +78,6 @@ export default {
                 arr.push(data[item].nome)
                 this.ingredientesCadastrados = arr
             }
-
         },
         async createLanche() {
             const data = {
