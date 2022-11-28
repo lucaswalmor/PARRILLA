@@ -8,7 +8,8 @@
                     <h1 class="text-secondary">Editar Bebida</h1>
                 </div>
                 <div class="col-md-5 pt-2">
-                    <input type="text" name="filtr_bebida" id="filtr_bebida" class="form-control" placeholder="Pesquisar...">
+                    <input type="text" name="filtr_bebida" id="filtr_bebida" class="form-control"
+                        placeholder="Pesquisar...">
                 </div>
             </div>
         </div>
@@ -19,46 +20,52 @@
                 </button>
             </div>
         </div>
-        <table class="table text-center table-striped">
-            <thead class="table-dark">
-                <tr>
-                    <th>#</th>
-                    <th>Nome</th>
-                    <th>Preço</th>
-                    <th>Status</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody id="tabela_bebidas">
-                <tr v-for="bebida in dadosBebidas" :key="bebida">
-                    <th>{{bebida.id}}</th>
-                    <td>{{bebida.nome}}</td>
-                    <td>R$ {{bebida.preco}}</td>
-                    <td class="d-flex justify-content-center">
-                        <select name="" id="" class="form-select w-50" @change="statusBebida($event, bebida.id)" v-model="bebida.status">
-                            <option value="Ativo">Ativo</option>
-                            <option value="Inativo">Inativo</option>
-                        </select>
-                    </td>
-                    <td class="botao-acao-tabela">
-                        <button class=" btn btn-primary" @click="editarBebida(bebida.id)"><i class="fa-solid fa-pen-to-square"></i></button>
-                        <button @click="deletarBebida(bebida.id)" class="btn btn-danger ms-3"><i class="fa-solid fa-user-xmark"></i></button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+
+        <div class="tbodyDiv">
+            <table class="table text-center table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Nome</th>
+                        <th>Preço</th>
+                        <th>Status</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="tabela_bebidas">
+                    <tr v-for="bebida in dadosBebidas" :key="bebida">
+                        <th>{{ bebida.id }}</th>
+                        <td>{{ bebida.nome }}</td>
+                        <td>R$ {{ bebida.preco }}</td>
+                        <td class="d-flex justify-content-center">
+                            <select name="" id="" class="form-select w-50" @change="statusBebida($event, bebida.id)"
+                                v-model="bebida.status">
+                                <option value="Ativo">Ativo</option>
+                                <option value="Inativo">Inativo</option>
+                            </select>
+                        </td>
+                        <td class="botao-acao-tabela">
+                            <button class=" btn btn-primary" @click="editarBebida(bebida.id)"><i
+                                    class="fa-solid fa-pen-to-square"></i></button>
+                            <button @click="deletarBebida(bebida.id)" class="btn btn-danger ms-3"><i
+                                    class="fa-solid fa-user-xmark"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </template>
 
 <script>
 // script de filtro de tabela
-$(document).ready(function(){
-  $("#filtr_bebida").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    $("#tabela_bebidas tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+$(document).ready(function () {
+    $("#filtr_bebida").on("keyup", function () {
+        var value = $(this).val().toLowerCase();
+        $("#tabela_bebidas tr").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
     });
-  });
 });
 
 import Message from '../message/Message.vue';
@@ -106,11 +113,11 @@ export default {
         },
         editarBebida(id) {
             var token = this.$route.params.token;
-            this.$router.push({ path: `/editar-bebida/${token}/${id}`, params: {id: id, token: token}} );
+            this.$router.push({ path: `/editar-bebida/${token}/${id}`, params: { id: id, token: token } });
         },
         cadastrarBebida() {
             var token = this.$route.params.token;
-            this.$router.push({ path: `/cadastrar-bebida/${token}`, params: {token: token } });
+            this.$router.push({ path: `/cadastrar-bebida/${token}`, params: { token: token } });
         },
         async statusBebida(option, id) {
             let data = {
@@ -133,20 +140,20 @@ export default {
 </script>
 
 <style scoped>
+.botao-acao-tabela button {
+    margin-left: 10px !important;
+}
 
+label,
+h2 {
+    color: black;
+}
+
+@media screen and (max-width: 425px) {
     .botao-acao-tabela button {
-        margin-left: 10px !important;
+        padding: 2px;
+        margin-left: 2px !important;
+        margin-top: 3px;
     }
-
-    label, h2 {
-        color: black;
-    }
-
-    @media screen and (max-width: 425px ) {
-        .botao-acao-tabela button {
-            padding: 2px;
-            margin-left: 2px !important;
-            margin-top: 3px;
-        }
-    }
+}
 </style>

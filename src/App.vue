@@ -20,4 +20,13 @@ label {
   color: #f9a529;
   padding-top: 10px;
 }
+
+body {
+  overflow: auto !important;
+}
+
+.tbodyDiv{
+    max-height: 500px;
+    overflow: auto;
+}
 </style>

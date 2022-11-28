@@ -106,27 +106,25 @@ export default {
             // this.axios(`http://127.0.0.1:8000/api/pedidos/${id}`)
             this.axios(`https://www.projetoadocao.com/api/pedidos/${id}`)
             .then(res => {
-                console.log(res.data)
-                this.dadosPedido = res.data;
-                this.lanches = res.data.lanches;
-                this.bebidas = res.data.bebidas;
-                this.id = res.data.id
-                this.nome_cliente = res.data.nome_cliente
-                this.codigo_pedido = res.data.codigo_pedido
-                this.telefone = res.data.telefone
-                this.rua = res.data.rua
-                this.bairro = res.data.bairro
-                this.ponto_referencia = res.data.ponto_referencia
-                this.apartamento = res.data.apartamento
-                this.bloco = res.data.bloco
-                this.valor_total = res.data.valor_total
-                this.troco = res.data.troco
-                this.forma_pagamento = res.data.forma_pagamento
-                let data_pedido = res.data.created_at;
+                this.dadosPedido = res.data.pedido;
+                this.lanches = res.data.lanche_pedido;
+                this.bebidas = res.data.bebida_pedido;
+                this.id = res.data.pedido.id
+                this.nome_cliente = res.data.pedido.nome_cliente
+                this.codigo_pedido = res.data.pedido.codigo_pedido
+                this.telefone = res.data.pedido.telefone
+                this.rua = res.data.pedido.rua
+                this.bairro = res.data.pedido.bairro
+                this.ponto_referencia = res.data.pedido.ponto_referencia
+                this.apartamento = res.data.pedido.apartamento
+                this.bloco = res.data.pedido.bloco
+                this.valor_total = res.data.pedido.valor_total
+                this.troco = res.data.pedido.troco
+                this.forma_pagamento = res.data.pedido.forma_pagamento
+                let data_pedido = res.data.pedido.created_at;
                 let dataAtual = new Date(data_pedido);
                 let dataPublicacao = new Date(dataAtual);
                 this.dataDoPedido = dataPublicacao.toLocaleDateString('pt-BR')
-
             });
         },
         voltar() {

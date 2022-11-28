@@ -7,44 +7,48 @@
                     <h1 class="text-secondary">Editar Taxa de Entrega</h1>
                 </div>
                 <div class="col-md-5 pt-2">
-                    <input type="text" name="filtro_taxa" id="filtro_taxa" class="form-control" placeholder="Pesquisar...">
+                    <input type="text" name="filtro_taxa" id="filtro_taxa" class="form-control"
+                        placeholder="Pesquisar...">
                 </div>
             </div>
         </div>
-        <table class="table text-center table-striped">
-            <thead class="table-dark">
-                <tr>
-                    <th>#</th>
-                    <th>Bairro</th>
-                    <th>Valor</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody id="tabela_taxa">
-                <tr v-for="taxa in dadosTaxa" :key="taxa">
-                    <th>{{taxa.id}}</th>
-                    <td>{{taxa.bairro}}</td>
-                    <td>R$ {{taxa.preco}}</td>
-                    <td class="botao-acao-tabela">
-                        <button class="btn btn-primary botao-acao-tabela" @click="editTaxa(taxa.id)"><i class="fa-solid fa-pen-to-square"></i></button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="tbodyDiv">
+            <table class="table text-center table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Bairro</th>
+                        <th>Valor</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="tabela_taxa">
+                    <tr v-for="taxa in dadosTaxa" :key="taxa">
+                        <th>{{ taxa.id }}</th>
+                        <td>{{ taxa.bairro }}</td>
+                        <td>R$ {{ taxa.preco }}</td>
+                        <td class="botao-acao-tabela">
+                            <button class="btn btn-primary botao-acao-tabela" @click="editTaxa(taxa.id)"><i
+                                    class="fa-solid fa-pen-to-square"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-  
+
 </template>
 
 <script>
 import Sidenav from '../conteudo/Sidenav.vue';
 // script de filtro de tabela
-$(document).ready(function(){
-  $("#filtro_taxa").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    $("#tabela_taxa tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+$(document).ready(function () {
+    $("#filtro_taxa").on("keyup", function () {
+        var value = $(this).val().toLowerCase();
+        $("#tabela_taxa tr").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
     });
-  });
 });
 
 export default {
@@ -79,7 +83,7 @@ export default {
         },
         editTaxa(id) {
             var token = this.$route.params.token;
-            this.$router.push({ path: `/editar-taxa/${token}/${id}`, params: { id: id, token: token} });
+            this.$router.push({ path: `/editar-taxa/${token}/${id}`, params: { id: id, token: token } });
         }
     },
     mounted() {
@@ -90,21 +94,20 @@ export default {
 </script>
 
 <style scoped>
+.botao-acao-tabela button {
+    margin-left: 10px !important;
+}
 
+label,
+h2 {
+    color: black;
+}
+
+@media screen and (max-width: 425px) {
     .botao-acao-tabela button {
-        margin-left: 10px !important;
+        padding: 2px;
+        margin-left: 2px !important;
+        margin-top: 3px;
     }
-
-    label, h2 {
-        color: black;
-    }
-
-    @media screen and (max-width: 425px ) {
-        .botao-acao-tabela button {
-            padding: 2px;
-            margin-left: 2px !important;
-            margin-top: 3px;
-        }
-    }
-
+}
 </style>

@@ -12,73 +12,72 @@
                     </div>
                 </div>
             </div>
-            <table class="table text-center table-striped table-responsive">
-                <thead class="table-dark">
-                    <tr>
-                        <th>Nº</th>
-                        <th>Nome Cliente</th>
-                        <th>Telefone</th>
-                        <th>Forma Pag</th>
-                        <th>Total</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody id="myTable">
-                    <tr v-for="pedido in pedidos" :key="pedido.id">
-                        <th>{{pedido.id}}</th>
-                        <td>{{pedido.nome_cliente}}</td>
-                        <td>{{pedido.telefone}}</td>
-                        <td>{{pedido.forma_pagamento}}</td>
-                        <td>R$ {{pedido.valor_total}}</td>
-                        <td class="botao-acao-tabela">
-                            <button class="btn btn-dark" @click="verPedido(pedido.id)"><i class="fa-solid fa-eye text-light"></i></button>
-                            <button class="btn btn-danger" @click="cancelarPedido(pedido.id)"><i class="fa-solid fa-trash"></i></button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="tbodyDiv">
+                <table class="table text-center table-striped table-responsive table-fixed">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Nome Cliente</th>
+                            <th>Telefone</th>
+                            <th>Forma Pag</th>
+                            <th>Total</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="myTable">
+                        <tr v-for="pedido in pedidos" :key="pedido.id">
+                            <td>{{ pedido.nome_cliente }}</td>
+                            <td>{{ pedido.telefone }}</td>
+                            <td>{{ pedido.forma_pagamento }}</td>
+                            <td>R$ {{ pedido.valor_total }}</td>
+                            <td class="botao-acao-tabela">
+                                <button class="btn btn-dark" @click="verPedido(pedido.id)"><i
+                                        class="fa-solid fa-eye text-light"></i></button>
+                                <button class="btn btn-danger" @click="cancelarPedido(pedido.id)"><i
+                                        class="fa-solid fa-trash"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
-$(document).ready(function(){
-  $("#filter").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    $("#myTable tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+$(document).ready(function () {
+    $("#filter").on("keyup", function () {
+        var value = $(this).val().toLowerCase();
+        $("#myTable tr").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
     });
-  });
 });
 
 import axios from 'axios'
 import Sidenav from '../conteudo/Sidenav.vue';
+
 export default {
     name: "Pedidos",
     props: {
         pedidos: Array,
         token: String
     },
+    components: { Sidenav },
     data() {
         return {
             pedidos: this.pedidos,
-            token: this.token
+            token: this.token,
         };
     },
     methods: {
         async listarPedidos() {
-            // cria um array com os dados do pedido 
-            // const req = await fetch("http://127.0.0.1:8000/api/pedidos");
-            // const req = await fetch("https://www.projetoadocao.com/api/pedidos");
-            // const data = await req.json();
-
             // this.axios(`http://127.0.0.1:8000/api/pedidos/`)
             axios.get(`https://www.projetoadocao.com/api/pedidos`)
-            .then(res => {
-                this.pedidos = res.data[0].pedidos;
-                this.somaValorTotal = res.data[0].somas;
-                this.totalPedidos = this.pedidos.length;
-            });
+                .then(res => {
+                    this.pedidos = res.data[0].pedidos;
+                    this.somaValorTotal = res.data[0].somas;
+                    this.totalPedidos = this.pedidos.length;
+                });
 
         },
         async cancelarPedido(id) {
@@ -107,16 +106,13 @@ export default {
     mounted() {
         this.listarPedidos();
     },
-    components: { Sidenav }
 }
 </script>
 
 <style scoped>
-
 .botao-acao-tabela button {
     margin-left: 10px !important;
 }
-
 
 @media screen and (max-width: 425px) {
     .botao-acao-tabela button {

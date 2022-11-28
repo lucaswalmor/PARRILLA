@@ -8,7 +8,8 @@
                     <h1 class="text-secondary">Editar Lanche</h1>
                 </div>
                 <div class="col-md-5 pt-2">
-                    <input type="text" name="filtro_lanche" id="filtro_lanche" class="form-control" placeholder="Pesquisar...">
+                    <input type="text" name="filtro_lanche" id="filtro_lanche" class="form-control"
+                        placeholder="Pesquisar...">
                 </div>
             </div>
         </div>
@@ -19,40 +20,45 @@
                 </button>
             </div>
         </div>
-        <table class="table text-center table-striped">
-            <thead class="table-dark">
-                <tr>
-                    <th>#</th>
-                    <th>Nome</th>
-                    <th>Preço</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody id="tabela_lanches">
-                <tr v-for="lanche in dadosLanches" :key="lanche">
-                    <th>{{lanche.id}}</th>
-                    <!-- <th><img :src="'http://127.0.0.1:8000/storage/' + lanche.path" alt=""></th> -->
-                    <td>{{lanche.nome}}</td>
-                    <td>R$ {{lanche.preco}}</td>
-                    <td class="botao-acao-tabela">
-                        <button class="btn btn-primary" @click="editarLanche(lanche.id)"><i class="fa-solid fa-pen-to-square"></i></button>
-                        <button @click="deletarLanche(lanche.id)" class="btn btn-danger"><i class="fa-solid fa-user-xmark"></i></button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+
+        <div class="tbodyDiv">
+            <table class="table text-center table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Nome</th>
+                        <th>Preço</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="tabela_lanches">
+                    <tr v-for="lanche in dadosLanches" :key="lanche">
+                        <th>{{ lanche.id }}</th>
+                        <!-- <th><img :src="'http://127.0.0.1:8000/storage/' + lanche.path" alt=""></th> -->
+                        <td>{{ lanche.nome }}</td>
+                        <td>R$ {{ lanche.preco }}</td>
+                        <td class="botao-acao-tabela">
+                            <button class="btn btn-primary" @click="editarLanche(lanche.id)"><i
+                                    class="fa-solid fa-pen-to-square"></i></button>
+                            <button @click="deletarLanche(lanche.id)" class="btn btn-danger"><i
+                                    class="fa-solid fa-user-xmark"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </template>
 
 <script>
 // script de filtro de tabela
-$(document).ready(function(){
-  $("#filtro_lanche").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    $("#tabela_lanches tr").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+$(document).ready(function () {
+    $("#filtro_lanche").on("keyup", function () {
+        var value = $(this).val().toLowerCase();
+        $("#tabela_lanches tr").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
     });
-  });
 });
 import Message from '../message/Message.vue';
 import Sidenav from '../conteudo/Sidenav.vue';
@@ -99,11 +105,11 @@ export default {
 
         editarLanche(id) {
             var token = this.$route.params.token;
-            this.$router.push({ path: `/editar-lanche/${token}/${id}`, params: {id: id, token: token}} );
+            this.$router.push({ path: `/editar-lanche/${token}/${id}`, params: { id: id, token: token } });
         },
         cadastrarLanche() {
             var token = this.$route.params.token;
-            this.$router.push({ path: `/cadastrar-lanche/${token}`, params: {token: token } });
+            this.$router.push({ path: `/cadastrar-lanche/${token}`, params: { token: token } });
         }
     },
     mounted() {
@@ -113,21 +119,20 @@ export default {
 </script>
 
 <style scoped>
+.botao-acao-tabela button {
+    margin-left: 10px !important;
+}
 
+label,
+h2 {
+    color: black;
+}
+
+@media screen and (max-width: 425px) {
     .botao-acao-tabela button {
-        margin-left: 10px !important;
+        padding: 2px;
+        margin-left: 2px !important;
+        margin-top: 3px;
     }
-
-    label, h2 {
-        color: black;
-    }
-
-    @media screen and (max-width: 425px ) {
-        .botao-acao-tabela button {
-            padding: 2px;
-            margin-left: 2px !important;
-            margin-top: 3px;
-        }
-    }
-
+}
 </style>

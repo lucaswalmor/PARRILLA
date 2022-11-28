@@ -4,7 +4,7 @@ import router from './router'
 import Maska from 'maska'
 import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css";
-import axios from 'axios'
+import axios from 'axios';
 
 const Application = createApp(App)
 Application.config.globalProperties.axios=axios
