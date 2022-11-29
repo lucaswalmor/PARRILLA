@@ -35,11 +35,9 @@
           <button type="submit" @click="adicionarLanche" class="btn btn-warning text-dark fw-bold w-75">
             <i class="fa-lg fa-solid fa-burger"></i> Adicionar Lanche
           </button>
-          <!-- <button type="submit" @click="carrinho" class="btn btn-warning text-dark fw-bold w-75">
+          <button v-show="quatidadeLancheCarrinho" type="submit" @click="carrinho" class="btn btn-warning text-dark fw-bold w-75">
             <i class="fa-lg fa-solid fa-cart-shopping"></i> Carrinho
-          </button> -->
-          
-          <button @click="formaPagamento" class="btn btn-warning text-dark fw-bold w-75"><i class="fa-solid fa-money-bill"></i> Forma de pagamento</button>
+          </button>
         </div>
       </div>
     </div>
@@ -62,6 +60,7 @@ export default {
                 preco_bebida: "",
             },
             pedido: [],
+            quatidadeLancheCarrinho: false,
             msg: ""
         };
     },
@@ -115,6 +114,8 @@ export default {
     },
     mounted() {
         this.listarBebidas();
+        let lanchesPedidos = JSON.parse(localStorage.getItem('pedido'))      
+        this.quatidadeLancheCarrinho = (lanchesPedidos.lanche.length > 0) ? true : false;
     },
     components: { HeaderPedido, Footer }
 }

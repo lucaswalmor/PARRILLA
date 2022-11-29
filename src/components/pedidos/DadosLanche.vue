@@ -36,11 +36,10 @@
           <button type="submit" @click="adicionarBebida" class="btn btn-warning text-dark fw-bold w-75">
             <i class="fa-lg fa-solid fa-wine-bottle"></i> Adicionar Bebida
           </button>
-          <!-- <button type="submit" @click="carrinho" class="btn btn-warning text-dark fw-bold w-75">
+          <button v-show="quatidadeLancheCarrinho" type="submit" @click="carrinho" class="btn btn-warning text-dark fw-bold w-75">
             <i class="fa-lg fa-solid fa-cart-shopping"></i> Carrinho
-          </button> -->
-          
-          <button @click="formaPagamento" class="btn btn-warning text-dark fw-bold w-75"><i class="fa-solid fa-money-bill"></i> Forma de pagamento</button>
+          </button>
+          <!-- <button @click="formaPagamento" class="btn btn-warning text-dark fw-bold w-75"><i class="fa-solid fa-money-bill"></i> Forma de pagamento</button> -->
         </div>
       </div>
     </div>
@@ -83,6 +82,7 @@
             pedido: [],
             msg: '',
             observacoes: '',
+            quatidadeLancheCarrinho: false
         };
       },
       methods: {
@@ -131,6 +131,9 @@
             localStorage.setItem('pedido', JSON.stringify(arr))
           }
 
+          let lanchesPedidos = JSON.parse(localStorage.getItem('pedido'))      
+          this.quatidadeLancheCarrinho = (lanchesPedidos.lanche.length > 0) ? true : false;
+
           const toast = useToast();
           toast.success(`1 ${lanche.nome} foi adicionado ao carrinho`);
         },
@@ -155,7 +158,9 @@
         toast.info(`Caso queira algum adicional, porfavor adicionar as observações o adicional e o lanche que gostaria`, {
           timeout: 5000
         });
-
+        
+        let lanchesPedidos = JSON.parse(localStorage.getItem('pedido'))      
+        this.quatidadeLancheCarrinho = (lanchesPedidos.lanche.length > 0) ? true : false;
         this.listarLanche();
       }
 }
