@@ -95,7 +95,7 @@
             const data = await req.json();
 
             this.dadosLanches = data;
-
+            console.log(this.dadosLanches);
             // traz o array de dados do localstorage e adicionar ao array de dadospedido
             var arr = JSON.parse(localStorage.getItem('pedido'))
             if(arr.hasOwnProperty("observacoes")){
@@ -159,8 +159,10 @@
           timeout: 5000
         });
         
-        let lanchesPedidos = JSON.parse(localStorage.getItem('pedido'))      
-        this.quatidadeLancheCarrinho = (lanchesPedidos.lanche.length > 0) ? true : false;
+        let lanchesPedidos = JSON.parse(localStorage.getItem('pedido'));
+        if(lanchesPedidos.lanche) {
+          this.quatidadeLancheCarrinho = (lanchesPedidos.lanche.length > 0) ? true : false;
+        }
         this.listarLanche();
       }
 }
