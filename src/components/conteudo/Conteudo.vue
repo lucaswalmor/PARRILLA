@@ -4,13 +4,13 @@
         <div class="dashboard">
             <div class="container">
                 <div class="row">
-                    <div class="titulo col-md-12 p-5 d-flex">
+                    <div class="titulo col-md-12 p-3 d-flex">
                         <div class="col-md-6">
                             <h1 class="text-secondary">Dashboard</h1>
                         </div>
                     </div>
                 </div>
-                <div class="row d-flex pb-5 justify-content-around">
+                <!-- <div class="row d-flex pb-5 justify-content-around">
                     <div class="col-md-4">
                         <label for="filtro_pedido" class="form-label">Filtrar pedidos</label>
                         <select class="form-select" id="filtro_pedido" v-model="filtro_total_pedidos_selecionado" @change="filtrarPedidos($event)">
@@ -23,7 +23,7 @@
                             <option v-for="option in options_valores_selecionado" :key="option" :value="option.value">{{ option.text }}</option>
                         </select>
                     </div>
-                </div>
+                </div> -->
                 <div class="row col-md-12 d-flex justify-content-around">
                     <div class="col-md-5 d-flex cards text-card-pedidos card-pedidos">
                         <div class="col-md-3 div-icon-dashboard">
@@ -52,7 +52,7 @@
                     </div>
                 </div>
                 <div class="row mt-5">
-                    <div class="col h-50">
+                    <div class="col-12 h-50">
                         <Grafico :dadosBackend="pedidos"/>
                     </div>
                 </div>

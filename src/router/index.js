@@ -141,7 +141,7 @@ const routes = [
   {
     path: '/clientes/:token',
     name: 'Clientes',
-    component: () => import('../components/clientes/Clientes.vue')
+    component: () => import('../components/clientes/PesquisarCliente.vue')
   },
 
 ]
