@@ -9,6 +9,7 @@
             <li>Nome: {{nome_cliente}}</li>
             <li>Telefone: {{telefone}}</li>
             <li>Lanche: {{lanche}}</li>
+            <li v-for="(lanche, index) in lanche" :key="index">{{index + 1}} - {{lanche.nome}}</li>
             <li>Valor: R$ {{valor_total}}</li>
             <li>Pagamento: {{forma_pagamento}}</li>
             <li>Rua: {{rua}}</li>
@@ -41,7 +42,7 @@ export default {
         }
 
         let dataBackEnd = this.created_at.substring(0, 10);
-        let dataAtual = new Date(dataBackEnd); //29/01/2020
+        let dataAtual = new Date(dataBackEnd);
         let dataAtualFormatada = (adicionaZero(dataAtual.getDate().toString()) + "/" + (adicionaZero(dataAtual.getMonth()+1).toString()) + "/" + dataAtual.getFullYear());
         return dataAtualFormatada;
       }

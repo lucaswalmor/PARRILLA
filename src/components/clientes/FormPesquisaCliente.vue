@@ -1,6 +1,6 @@
 <template>
     <div class="row text-secondary">
-        <h1>Pesquiar cliente</h1>
+        <h1>Pesquisar cliente</h1>
     </div>
     <div class="row mt-5">
         <div class="col-6">
@@ -54,11 +54,9 @@ export default {
                 });
 
                 const dados = await req.json();
-                
-                var soma = dados.reduce((a, b) => a + parseFloat(b.valor_total), 0)
-                localStorage.setItem('soma_total', JSON.stringify(soma));
+                // let soma = dados.reduce((a, b) => a + parseFloat(b.valor_total), 0)
+                // localStorage.setItem('soma_total', JSON.stringify(soma));
                 localStorage.setItem('dados', JSON.stringify(dados));
-
                 if(req.status === 200) {
                     location.reload(true);
                 }
@@ -70,7 +68,3 @@ export default {
 
 }
 </script>
-
-<style>
-
-</style>
