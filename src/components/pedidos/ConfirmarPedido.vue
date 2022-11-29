@@ -155,7 +155,7 @@ export default {
             data: data
           }).then(res => {
             console.log(res)
-          })
+          });
         },
         enviarPedido() {
 

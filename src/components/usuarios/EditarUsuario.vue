@@ -63,7 +63,7 @@ export default {
                 const dataJson = JSON.stringify(data);
                 // const req = await fetch(`http://127.0.0.1:8000/api/usuarios/${id}`, {
                 const req = await fetch(`https://www.projetoadocao.com/api/usuarios/${id}`, {
-                    method: "PATCH",
+                    method: "PUT",
                     headers: { "Content-Type": "application/json" },
                     body: dataJson
                 });
