@@ -4,8 +4,9 @@
         <Message :msg="msg" v-show="msg" />
         <div class="row">
             <div class="titulo col-md-12 p-5">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <h1 class="text-secondary">Editar Bebida</h1>
+                    <hr>
                 </div>
                 <div class="col-md-5 pt-2">
                     <input type="text" name="filtr_bebida" id="filtr_bebida" class="form-control"

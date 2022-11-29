@@ -2,7 +2,8 @@
     <Sidenav />
     <div class="container">
         <div class="row p-5">
-            <h2>Editar Taxa de Entrega</h2>
+            <h2 class="text-secondary">Editar Taxa de Entrega</h2>
+            <hr>
         </div>
         <Message :msg="msg" v-show="msg" />
         <form class="row g-3" autocomplete="off" @submit.prevent>

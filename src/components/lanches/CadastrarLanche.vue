@@ -4,6 +4,7 @@
         <div class="row">
             <div class="titulo col-md-12 p-5">
                 <h1 class="text-secondary">Cadastrar Lanche</h1>
+                <hr>
             </div>
         </div>
         <Message :msg="msg" v-show="msg"/>

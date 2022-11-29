@@ -3,8 +3,9 @@
     <div class="container">
         <div class="row">
             <div class="titulo col-md-12 p-5">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <h1 class="text-secondary">Editar Taxa de Entrega</h1>
+                    <hr>
                 </div>
                 <div class="col-md-5 pt-2">
                     <input type="text" name="filtro_taxa" id="filtro_taxa" class="form-control"

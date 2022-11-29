@@ -5,8 +5,9 @@
             <div class="container">
                 <div class="row">
                     <div class="titulo col-md-12 p-3 d-flex">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <h1 class="text-secondary">Dashboard</h1>
+                            <hr>
                         </div>
                     </div>
                 </div>

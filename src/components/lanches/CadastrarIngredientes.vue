@@ -5,6 +5,7 @@
         <div class="row">
             <div class="titulo col-md-12 p-5">
                 <h1 class="text-secondary">Cadastrar Ingredientes</h1>
+                <hr>
             </div>
         </div>
         <div class="row">

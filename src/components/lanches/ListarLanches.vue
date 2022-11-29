@@ -6,6 +6,7 @@
             <div class="titulo col-md-12 p-5">
                 <div class="col-md-6">
                     <h1 class="text-secondary">Editar Lanche</h1>
+                    <hr>
                 </div>
                 <div class="col-md-5 pt-2">
                     <input type="text" name="filtro_lanche" id="filtro_lanche" class="form-control"

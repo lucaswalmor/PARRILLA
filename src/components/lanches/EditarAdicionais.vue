@@ -3,6 +3,7 @@
     <div class="container">
         <div class="row p-5">
             <h2>Editar Adicionais</h2>
+            <hr>
         </div>
         <form class="row g-3" autocomplete="off" @submit.prevent>
             <div class="col-md-6">

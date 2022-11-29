@@ -2,7 +2,8 @@
     <Sidenav />
     <div class="container">
         <div class="row p-5">
-            <h2>Editar Bebida</h2>
+            <h2 class="text-secondary">Editar Bebida</h2>
+            <hr>
         </div>
         <Message :msg="msg" v-show="msg"/>
         <form class="row g-3" autocomplete="off" @submit.prevent>
