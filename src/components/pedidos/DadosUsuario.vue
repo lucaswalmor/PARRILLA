@@ -501,6 +501,7 @@ export default {
     mounted() {
         this.listarBairros();
         this.codigoPedido();
+        localStorage.clear();
     },
 };
 </script>
