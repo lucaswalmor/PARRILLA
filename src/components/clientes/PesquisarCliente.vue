@@ -35,31 +35,31 @@
         <div class="row mt-2 mb-5">
             <div class="col-md-6" v-for="(item, index) in dados" :key="index">
                 <div class="card mt-3">
-                    <div class="card-header bg-dark text-white text-center">
-                        Dados do Pedido
+                    <div class="card-header bg-dark text-white text-center h5">
+                        <span>Nº Pedido: </span> {{item.id}}
                     </div>
                     <div class="card-body bg-secondary text-white">
                         <ul>
-                            <li>Nº Pedido: {{item.id}}</li>
-                            <li>Nome: {{item.nome_cliente}}</li>
-                            <li>Telefone: {{item.telefone}}</li>
+                            <li></li>
+                            <li><span>Nome: </span> {{item.nome_cliente}}</li>
+                            <li><span>Telefone: </span> {{item.telefone}}</li>
                             <li>--------------</li>
-                            <li>-- LANCHE --</li>
+                            <li>-- <span>LANCHE</span> --</li>
                             <li>--------------</li>
                             <li class="ms-3" v-for="(item, index) in lanche" :key="index">{{index + 1}} - {{item.nome}}</li>
                             <li>--------------</li>
-                            <li>-- BEBIDA --</li>
+                            <li>-- <span>BEBIDA</span> --</li>
                             <li>--------------</li>
                             <li class="ms-3" v-for="(item, index) in bebida" :key="index">{{index + 1}} - {{item.nome}}</li>
                             <li>--------------</li>
-                            <li>Valor: {{item.valor_total.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'})}}</li>
-                            <li>Pagamento: {{item.forma_pagamento}}</li>
-                            <li>Rua: {{item.rua}}</li>
-                            <li>Bairro: {{item.bairro}}</li>
-                            <li v-if="item.ponto_referencia != null">Ponto de referência: {{item.ponto_referencia}}</li>
-                            <li v-if="item.apartamento != null">Apartamento: {{item.apartamento}}</li>
-                            <li v-if="item.bloco != null">Bloco: {{item.bloco}}</li>
-                            <li>Data: {{item.created_at}}</li>
+                            <li><span>Valor: </span> {{item.valor_total.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'})}}</li>
+                            <li><span>Pagamento: </span> {{item.forma_pagamento}}</li>
+                            <li><span>Rua: </span> {{item.rua}}</li>
+                            <li><span>Bairro: </span> {{item.bairro}}</li>
+                            <li v-if="item.ponto_referencia != null"><span>Ponto de referência: </span> {{item.ponto_referencia}}</li>
+                            <li v-if="item.apartamento != null"><span>Apartamento: </span> {{item.apartamento}}</li>
+                            <li v-if="item.bloco != null"><span>Bloco: </span> {{item.bloco}}</li>
+                            <li><span>Data: </span> {{item.created_at}}</li>
                         </ul>
                     </div>
                 </div>
@@ -120,5 +120,9 @@ export default {
 <style>
 li {
     list-style: none;
+}
+
+span {
+    font-weight: bold;
 }
 </style>
