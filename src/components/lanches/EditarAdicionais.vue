@@ -53,8 +53,8 @@ export default {
                 alert('Porfavor preencha os campos')
             } else {
                 const dataJson = JSON.stringify(data);
-                const req = await fetch(`http://127.0.0.1:8000/api/adicionais/${id}`, {
-                // const req = await fetch(`https://www.projetoadocao.com/api/adicionais/${id}`, {
+                // const req = await fetch(`http://127.0.0.1:8000/api/adicionais/${id}`, {
+                const req = await fetch(`https://www.projetoadocao.com/api/adicionais/${id}`, {
                     method: "PUT",
                     headers: { "Content-Type": "application/json" },
                     body: dataJson
