@@ -1,5 +1,6 @@
 <template>
     <Sidenav />
+    <Aviso />
     <div class="col py-3 body-dashboard">
         <div class="dashboard">
             <div class="container">
@@ -66,12 +67,14 @@
 
 import Sidenav from "./Sidenav.vue";
 import Grafico from "../graficos/Grafico.vue";
+import Aviso from "../avisos/Aviso.vue";
 
 export default {    
     name: "Dashboard",
     components: {
         Sidenav,
-        Grafico
+        Grafico,
+        Aviso
     },
     data() {
         return {

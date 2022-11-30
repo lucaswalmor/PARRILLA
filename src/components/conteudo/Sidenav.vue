@@ -36,7 +36,7 @@
                     </li>
                         <span href="#submenu" data-bs-toggle="collapse"  class="text-white col-md-12 d-flex nav-link px-0">
                             <div class="col-md-2">
-                                <i class="fa-lg fa-solid fa-user-plus"></i>
+                                <i class="fa-lg fa-solid fa-gear"></i>
                             </div>
                             <div class="col-md-6">
                                 <span class="offcanvas-span-titulo">
@@ -52,26 +52,6 @@
                                 <span class="nav-link px-0" @click="listarUsuarios"> Usuários</span>
                             </li>
                         </ul>
-                    <li>
-                        <span href="#submenu3" data-bs-toggle="collapse"  class="text-white col-md-12 d-flex nav-link px-0">
-                            <div class="col-md-2">
-                                <i class="fa-lg fa-solid fa-user-plus"></i>
-                            </div>
-                            <div class="col-md-6">
-                                <span class="offcanvas-span-titulo">
-                                    Usuario
-                                </span>
-                            </div>
-                        </span>
-                        <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
-                            <li class="w-100 ms-4">
-                                <span class="nav-link px-0" @click="cadastrarNovoUsuario"> Cadastrar</span>
-                            </li>
-                            <li class="ms-4">
-                                <span class="nav-link px-0" @click="listarUsuarios"> Editar / Excluir</span>
-                            </li>
-                        </ul>
-                    </li>
                     <li>
                         <span href="#submenu4" data-bs-toggle="collapse" class="col-md-12 d-flex nav-link px-0 align-middle">
                             <div class="col-md-2">
