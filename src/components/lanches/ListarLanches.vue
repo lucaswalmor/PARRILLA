@@ -26,7 +26,7 @@
             <table class="table text-center table-striped">
                 <thead class="table-dark">
                     <tr>
-                        <th>#</th>
+                        <th></th>
                         <th>Nome</th>
                         <th>Preço</th>
                         <th>Ações</th>
@@ -34,8 +34,7 @@
                 </thead>
                 <tbody id="tabela_lanches">
                     <tr v-for="lanche in dadosLanches" :key="lanche">
-                        <th>{{ lanche.id }}</th>
-                        <!-- <th><img :src="'http://127.0.0.1:8000/storage/' + lanche.path" alt=""></th> -->
+                        <th><img :src="'https://www.projetoadocao.com/storage/' + lanche.path" style="width: 100px"></th>
                         <td>{{ lanche.nome }}</td>
                         <td>R$ {{ lanche.preco }}</td>
                         <td class="botao-acao-tabela">

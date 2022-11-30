@@ -17,7 +17,6 @@
             <table class="table text-center table-striped">
                 <thead class="table-dark">
                     <tr>
-                        <th>#</th>
                         <th>Bairro</th>
                         <th>Valor</th>
                         <th>Ações</th>
@@ -25,7 +24,6 @@
                 </thead>
                 <tbody id="tabela_taxa">
                     <tr v-for="taxa in dadosTaxa" :key="taxa">
-                        <th>{{ taxa.id }}</th>
                         <td>{{ taxa.bairro }}</td>
                         <td>R$ {{ taxa.preco }}</td>
                         <td class="botao-acao-tabela">

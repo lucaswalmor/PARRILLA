@@ -26,7 +26,7 @@
             <table class="table text-center table-striped">
                 <thead class="table-dark">
                     <tr>
-                        <th>#</th>
+                        <th></th>
                         <th>Nome</th>
                         <th>Preço</th>
                         <th>Status</th>
@@ -35,7 +35,7 @@
                 </thead>
                 <tbody id="tabela_bebidas">
                     <tr v-for="bebida in dadosBebidas" :key="bebida">
-                        <th>{{ bebida.id }}</th>
+                        <th><img :src="'https://www.projetoadocao.com/storage/' + bebida.path" style="width: 100px"></th>
                         <td>{{ bebida.nome }}</td>
                         <td>R$ {{ bebida.preco }}</td>
                         <td class="d-flex justify-content-center">
