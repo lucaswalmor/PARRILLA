@@ -13,6 +13,7 @@
                             <li>Tempo de entrega agora é possível alterar no menu de configurações</li>
                             <li>Mensagem do restaurante no pedido do cliente agora também é possivel alterar de acordo com a vontade do restaurante</li>
                             <li>Agora o cadastro de usuário fica junto ao menu de configurações</li>
+                            <li>Formas de pagamentos disponiveis para seus clientes, agora podem ser editadas na aba de configurações alterando o status para ATIVO/INATIVO</li>
                         </ul>
                     </div>
                 </div>
@@ -22,7 +23,6 @@
                 <div class="modal-body">
                     <div class="container">
                         <ul>
-                            <li>Será implementada uma função aonde o restaurante irá definir sozinho os metodos de pagamento</li>
                             <li>Novo filtro de pesquisa de pedidos por datas especificas</li>
                             <li>Implementaremos em um futuro próximo API de pagamento, aonde seu cliente poderá fazer o pagamento na hora de finalizar o pedido</li>
                             <li>Será implementada a impressão de pedidos para impressoras térmicas</li>

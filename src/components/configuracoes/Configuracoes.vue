@@ -26,7 +26,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <textarea name="" id="" rows="5" v-model="mensagem_pedido" class="form-control"></textarea>
+                        <textarea name="" id="" rows="9" v-model="mensagem_pedido" class="form-control"></textarea>
                     </tbody>
                 </table>
             </div>

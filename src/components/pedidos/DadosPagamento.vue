@@ -138,12 +138,12 @@ export default {
           this.dadosPedido.troco = ''
           this.dadosPedido.forma_pagamento = this.forma_pagamento
         }
-
         localStorage.setItem('pedido', JSON.stringify(this.dadosPedido))
         this.$router.push('/confirmar-pedido')
       }
     },
     listarPedido() {
+
         this.tipo_pedido = localStorage.getItem("tipo_pedido");
 
         var arr = JSON.parse(localStorage.getItem("pedido"));

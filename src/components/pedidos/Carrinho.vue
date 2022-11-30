@@ -120,10 +120,7 @@
                 <div class="col-md-12">
                   <select id="forma_pagamento" class="form-select" @change="formaPagamento($event)">
                     <option disabled selected>Selecione...</option>
-                    <option value="Cartão de crédito">Cartão de crédito</option>
-                    <option value="Cartão de débito">Cartão de débito</option>
-                    <option value="Pix">Pix</option>
-                    <option value="Dinheiro">Dinheiro</option>
+                    <option v-for="item in arrFormaPagamento" :key="item.id">{{ item.forma_pagamento }}</option>
                   </select>
                   <p class="text-muted mt-2">
                     Caso sua escolha seja pix, enviar o comprovante assim que efetuar
@@ -215,6 +212,7 @@ export default {
       href: '',
       prazo_entrega: '',
       mensagem_pedido: '',
+      arrFormaPagamento: [],
     };
   },
   methods: {
@@ -388,6 +386,15 @@ export default {
         .then(res => {
             this.prazo_entrega = res.data.tempo_entrega
             this.mensagem_pedido = res.data.mensagem_pedido
+        });
+
+        this.axios(`https://www.projetoadocao.com/api/atualiza_forma_pagamento`)
+        .then(res => {
+            res.data.map((item) => {
+              if(item.status == 1) {
+                this.arrFormaPagamento.push(item)
+              }
+            });
         });
     },
     enviarPedido() {
