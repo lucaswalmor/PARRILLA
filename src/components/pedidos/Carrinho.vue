@@ -306,7 +306,7 @@ export default {
     listarPedido() {
         this.tipo_pedido = localStorage.getItem("tipo_pedido");
 
-        var arr = JSON.parse(localStorage.getItem("pedido"));
+        let arr = JSON.parse(localStorage.getItem("pedido"));
         this.dadosPedido = arr;
         const pedido = arr;
 
@@ -371,7 +371,6 @@ export default {
           forma_pagamento: this.forma_pagamento,
       };
       
-      console.log(data)
       // fetch para envio de dados ao backend
       this.axios({
         method: 'POST',
@@ -397,7 +396,7 @@ export default {
                 '%0A' +
                 '%0A*Código pedido* ' + this.dadosPedido.codigoPedido +
                 '%0A' +
-                '%0A*Prazo de entrega: 40 à 110 minutos' +
+                '%0A*Prazo de entrega:* 40 à 110 minutos' +
                 '%0A' +
                 '%0A*--------------* ' +
                 '%0A' +
@@ -419,7 +418,7 @@ export default {
                 '%0A' +
                 '%0A*Total* ' +
                 '%0A' +
-                '%0A*Valor:* R$ ' + this.valorTotalpedido +
+                '%0A*Valor:* R$ ' + this.dadosPedido.valor_total +
                 '%0A' +
                 '%0A*Troco para:* R$ ' + this.dadosPedido.troco +
                 '%0A' +
@@ -473,7 +472,7 @@ export default {
                 '%0A' +
                 '%0A*Total* ' +
                 '%0A' +
-                '%0A*Valor:* R$ ' + this.valorTotalpedido +
+                '%0A*Valor:* R$ ' + this.dadosPedido.valor_total +
                 '%0A' +
                 '%0A*Forma de pagamento:* ' + this.dadosPedido.forma_pagamento +
                 '%0A' +
@@ -523,7 +522,7 @@ export default {
             '%0A' +
             '%0A*Total* ' +
             '%0A' +
-            '%0A*Valor:* R$ ' + this.valorTotalpedido +
+            '%0A*Valor:* R$ ' + this.dadosPedido.valor_total +
             '%0A' +
             '%0A*Troco para:* R$ ' + this.dadosPedido.troco +
             '%0A' +
@@ -576,7 +575,7 @@ export default {
                 '%0A' +
                 '%0A*Total* ' +
                 '%0A' +
-                '%0A*Valor:* R$ ' + this.valorTotalpedido +
+                '%0A*Valor:* R$ ' + this.dadosPedido.valor_total +
                 '%0A' +
                 '%0A*Forma de pagamento:* ' + this.dadosPedido.forma_pagamento +
                 '%0A' +
@@ -626,7 +625,7 @@ export default {
                 '%0A' +
                 '%0A*Total* ' +
                 '%0A' +
-                '%0A*Valor:* R$ ' + this.valorTotalpedido +
+                '%0A*Valor:* R$ ' + this.dadosPedido.valor_total +
                 '%0A' +
                 '%0A*Troco para:* R$ ' + this.dadosPedido.troco +
                 '%0A' +
@@ -676,7 +675,7 @@ export default {
                 '%0A' +
                 '%0A*Total* ' +
                 '%0A' +
-                '%0A*Valor:* R$ ' + this.valorTotalpedido +
+                '%0A*Valor:* R$ ' + this.dadosPedido.valor_total +
                 '%0A' +
                 '%0A*Forma de pagamento:* ' + this.dadosPedido.forma_pagamento +
                 '%0A' +
@@ -722,7 +721,7 @@ export default {
                 '%0A' +
                 '%0A*Total* ' +
                 '%0A' +
-                '%0A*Valor:* R$ ' + this.valorTotalpedido +
+                '%0A*Valor:* R$ ' + this.dadosPedido.valor_total +
                 '%0A' +
                 '%0A*Forma de pagamento:* ' + this.dadosPedido.forma_pagamento +
                 '%0A' +
@@ -749,6 +748,7 @@ export default {
   },
   created() {
     this.pedido();
+    this.listarPedido();
   },
   components: { HeaderPedido, Footer },
 };

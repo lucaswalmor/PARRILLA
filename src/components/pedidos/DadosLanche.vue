@@ -39,7 +39,6 @@
           <button v-show="quatidadeLancheCarrinho" type="submit" @click="carrinho" class="btn btn-warning text-dark fw-bold w-75">
             <i class="fa-lg fa-solid fa-cart-shopping"></i> Carrinho
           </button>
-          <!-- <button @click="formaPagamento" class="btn btn-warning text-dark fw-bold w-75"><i class="fa-solid fa-money-bill"></i> Forma de pagamento</button> -->
         </div>
       </div>
     </div>
@@ -95,7 +94,7 @@
             const data = await req.json();
 
             this.dadosLanches = data;
-            console.log(this.dadosLanches);
+            
             // traz o array de dados do localstorage e adicionar ao array de dadospedido
             var arr = JSON.parse(localStorage.getItem('pedido'))
             if(arr.hasOwnProperty("observacoes")){
