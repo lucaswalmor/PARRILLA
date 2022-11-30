@@ -114,8 +114,8 @@ export default {
             };
 
             const dataJson = JSON.stringify(data);
-            // const req = await fetch(`http://127.0.0.1:8000/api/adicionais/${id}`, {
-            const req = await fetch(`https://www.projetoadocao.com/api/adicionais/${id}`, {
+            const req = await fetch(`http://127.0.0.1:8000/api/adicionais/${id}`, {
+            // const req = await fetch(`https://www.projetoadocao.com/api/adicionais/${id}`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: dataJson
@@ -129,8 +129,8 @@ export default {
         // deletar usuario 
         async deletarAdicionais(id) {
             if (confirm(`Você realmente deseja deletar o pedido Nº ${id} `)) {
-                // const req = await fetch(`http://127.0.0.1:8000/api/adicionais/${id}`, {
-                const req = await fetch(`https://www.projetoadocao.com/api/adicionais/${id}`, {
+                const req = await fetch(`http://127.0.0.1:8000/api/adicionais/${id}`, {
+                // const req = await fetch(`https://www.projetoadocao.com/api/adicionais/${id}`, {
                     method: "DELETE"
                 });
                 const res = await req.json();

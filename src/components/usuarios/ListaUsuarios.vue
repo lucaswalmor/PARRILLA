@@ -3,8 +3,9 @@
     <div class="container">
         <div class="row">
             <div class="titulo col-md-12 p-5">
-                <div class="col-md-6">
-                    <h1 class="text-secondary">Editar Usuário</h1>
+                <div class="col-md-12">
+                    <h1 class="text-secondary">Usuários</h1>
+                    <hr>
                 </div>
                 <div class="col-md-5 pt-2">
                     <input type="text" name="filtro_usuarios" id="filtro_usuarios" class="form-control" placeholder="Pesquisar...">
@@ -21,7 +22,6 @@
         <table class="table text-center table-striped">
             <thead class="table-dark">
                 <tr>
-                    <th>#</th>
                     <th>Nome</th>
                     <th>Email</th>
                     <th>Ações</th>
@@ -29,7 +29,6 @@
             </thead>
             <tbody id="tabela_usuarios">
                 <tr v-for="usuario in dadosUsuario" :key="usuario">
-                    <th>{{usuario.id}}</th>
                     <td>{{usuario.name}}</td>
                     <td>{{usuario.email}}</td>
                     <td class="botao-acao-tabela">

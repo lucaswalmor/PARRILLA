@@ -11,6 +11,12 @@ const routes = [
     name: 'Dashboard',
     component: () => import('../components/Dashboard.vue')
   },
+  // ROTAS DE CONFIGURACOES
+  {
+    path: '/configuracoes-gerais/:token',
+    name: 'Configuracoes',
+    component: () => import('../components/configuracoes/Configuracoes.vue')
+  },
   // ROTAS DE USUARIOS
   {
     path: '/cadastrar-usuario/:token',

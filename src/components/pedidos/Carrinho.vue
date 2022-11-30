@@ -213,6 +213,8 @@ export default {
       troco: "",
       pedidoValor: [],
       href: '',
+      prazo_entrega: '',
+      mensagem_pedido: '',
     };
   },
   methods: {
@@ -381,6 +383,13 @@ export default {
         console.log(res)
       });
     },
+    listaTempoEntrega() {
+        this.axios(`https://www.projetoadocao.com/api/atualiza_tempo_entrega/1`)
+        .then(res => {
+            this.prazo_entrega = res.data.tempo_entrega
+            this.mensagem_pedido = res.data.mensagem_pedido
+        });
+    },
     enviarPedido() {
       if(this.forma_pagamento == '') {
         const toast = useToast();
@@ -392,11 +401,11 @@ export default {
           && this.dadosPedido.bloco != '' 
           && this.dadosPedido.pontoReferencia != '') {
           this.pedido_wpp = 
-                '*Agradecemos pela preferência, seu pedido está sendo preparado!*' +
+                '*' + this.mensagem_pedido + '*' +
                 '%0A' +
                 '%0A*Código pedido* ' + this.dadosPedido.codigoPedido +
                 '%0A' +
-                '%0A*Prazo de entrega:* 40 à 110 minutos' +
+                '%0A*Prazo de entrega:* ' + this.prazo_entrega +
                 '%0A' +
                 '%0A*--------------* ' +
                 '%0A' +
@@ -446,7 +455,7 @@ export default {
         } else if (this.dadosPedido.troco === '' && this.dadosPedido.apartamento != '' 
           && this.dadosPedido.bloco != '' && this.dadosPedido.pontoReferencia != '') {
             this.pedido_wpp = 
-                '*Agradecemos pela preferência, seu pedido está sendo preparado!*' +
+                '*' + this.mensagem_pedido + '*' +
                 '%0A' +
                 '%0A*Código pedido* ' + this.dadosPedido.codigoPedido +
                 '%0A' +
@@ -498,7 +507,7 @@ export default {
             
         } else if (this.dadosPedido.troco != '' && this.dadosPedido.apartamento != '' && this.dadosPedido.pontoReferencia != '') {
           this.pedido_wpp = 
-            '*Agradecemos pela preferência, seu pedido está sendo preparado!*' +
+            '*' + this.mensagem_pedido + '*' +
             '%0A' +
             '%0A*Código pedido* ' + this.dadosPedido.codigoPedido +
             '%0A' +
@@ -549,11 +558,11 @@ export default {
             '%0A*--------------*';
         } else if (this.dadosPedido.apartamento != '' && this.dadosPedido.pontoReferencia != '') {
           this.pedido_wpp = 
-                '*Agradecemos pela preferência, seu pedido está sendo preparado!*' +
+                '*' + this.mensagem_pedido + '*' +
                 '%0A' +
                 '%0A*Código pedido* ' + this.dadosPedido.codigoPedido +
                 '%0A' +
-              '%0A*Prazo de entrega: 40 à 110 minutos' +
+              '%0A*Prazo de entrega:* ' + this.prazo_entrega +
                 '%0A' +
                 '%0A*--------------* ' +
                 '%0A' +
@@ -599,11 +608,11 @@ export default {
                 '%0A*--------------*';
         } else if (this.dadosPedido.troco != '' && this.dadosPedido.pontoReferencia != '') {
           this.pedido_wpp = 
-                '*Agradecemos pela preferência, seu pedido está sendo preparado!*' +
+                '*' + this.mensagem_pedido + '*' +
                 '%0A' +
                 '%0A*Código pedido* ' + this.dadosPedido.codigoPedido +
                 '%0A' +
-              '%0A*Prazo de entrega: 40 à 110 minutos' +
+              '%0A*Prazo de entrega:* ' + this.prazo_entrega +
                 '%0A' +
                 '%0A*--------------* ' +
                 '%0A' +
@@ -649,11 +658,11 @@ export default {
                 '%0A*--------------*';
         } else if (this.dadosPedido.pontoReferencia != '') {
           this.pedido_wpp = 
-                '*Agradecemos pela preferência, seu pedido está sendo preparado!*' +
+                '*' + this.mensagem_pedido + '*' +
                 '%0A' +
                 '%0A*Código pedido* ' + this.dadosPedido.codigoPedido +
                 '%0A' +
-              '%0A*Prazo de entrega: 40 à 110 minutos' +
+              '%0A*Prazo de entrega:* ' + this.prazo_entrega +
                 '%0A' +
                 '%0A*--------------* ' +
                 '%0A' +
@@ -697,11 +706,11 @@ export default {
                 '%0A*--------------*';
         } else {
           this.pedido_wpp = 
-                '*Agradecemos pela preferência, seu pedido está sendo preparado!*' +
+                '*' + this.mensagem_pedido + '*' +
                 '%0A' +
                 '%0A*Código pedido* ' + this.dadosPedido.codigoPedido +
                 '%0A' +
-              '%0A*Prazo de entrega: 40 à 110 minutos' +
+              '%0A*Prazo de entrega:* ' + this.prazo_entrega +
                 '%0A' +
                 '%0A*--------------* ' +
                 '%0A' +
@@ -749,6 +758,7 @@ export default {
   created() {
     this.pedido();
     this.listarPedido();
+    this.listaTempoEntrega();
   },
   components: { HeaderPedido, Footer },
 };

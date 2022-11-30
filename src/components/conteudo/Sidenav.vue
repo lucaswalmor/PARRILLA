@@ -34,6 +34,24 @@
                             </div>
                         </span>
                     </li>
+                        <span href="#submenu" data-bs-toggle="collapse"  class="text-white col-md-12 d-flex nav-link px-0">
+                            <div class="col-md-2">
+                                <i class="fa-lg fa-solid fa-user-plus"></i>
+                            </div>
+                            <div class="col-md-6">
+                                <span class="offcanvas-span-titulo">
+                                    Configurações
+                                </span>
+                            </div>
+                        </span>
+                        <ul class="collapse nav flex-column ms-1" id="submenu" data-bs-parent="#menu">
+                            <li class="ms-4">
+                                <span class="nav-link px-0" @click="configuracoes"> Geral</span>
+                            </li>
+                            <li class="w-100 ms-4">
+                                <span class="nav-link px-0" @click="listarUsuarios"> Usuários</span>
+                            </li>
+                        </ul>
                     <li>
                         <span href="#submenu3" data-bs-toggle="collapse"  class="text-white col-md-12 d-flex nav-link px-0">
                             <div class="col-md-2">
@@ -162,6 +180,12 @@ export default {
         dashboardView() {
             var token = this.$route.params.token;
             this.$router.push({ path: `/dashboard/${token}`, params: {token: token } });
+        },
+
+        // CONFIGURAÇÕES
+        configuracoes() {
+            var token = this.$route.params.token;
+            this.$router.push({ path: `/configuracoes-gerais/${token}`, params: {token: token } });
         },
 
         // USUÁRIOS
