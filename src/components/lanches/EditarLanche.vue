@@ -1,7 +1,7 @@
 <template>
     <Sidenav />
     <div class="container">
-        <div class="row p-5">
+        <div class="col-md-12 p-5">
             <h2>Editar Lanche</h2>
             <hr>
         </div>

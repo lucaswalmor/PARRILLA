@@ -1,8 +1,9 @@
 <template>
     <Sidenav />
     <div class="container">
-        <div class="row m-5">
+        <div class="row m-5 text-secondary">
             <h2>Editar Usuario</h2>
+            <hr />
         </div>
         <Message :msg="msg" v-show="msg"/>
         <form class="row g-3" autocomplete="off" @submit.prevent>

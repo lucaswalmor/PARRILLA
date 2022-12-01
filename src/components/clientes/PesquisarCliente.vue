@@ -6,11 +6,8 @@
       <hr />
     </div>
     <div class="col-md-12 text-secondary">
-      <div class="row mt-5">
-        <div class="col-3">
-          <label for="" class="form-label fw-bold h4 text-secondary"
-            >Digite o Telefone:</label
-          >
+      <div class="col-md-12 mt-5 d-flex">
+        <div class="col-md-4">
           <input
             type="text"
             name="telefone"
@@ -21,7 +18,7 @@
             v-maska="'(##) #####-####'"
           />
         </div>
-        <div class="col-2 d-flex align-items-end">
+        <div class="col-2 ms-2">
           <button
             class="btn btn-dark text-warning fw-bold"
             @click="pesquisarCliente()"
@@ -29,8 +26,8 @@
             Pesquisar
           </button>
         </div>
-        <div class="form-text">Obs: Todos os campos são obrigatórios</div>
       </div>
+      <div class="form-text">Obs: Todos os campos são obrigatórios</div>
       <hr>
         <div class="row mt-2 mb-5">
             <div class="col-md-6" v-for="(item, index) in dados" :key="index">

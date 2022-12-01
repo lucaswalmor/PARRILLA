@@ -4,6 +4,7 @@
         <div class="row">
             <div class="titulo col-md-12 p-5">
                 <h1 class="text-secondary">Cadastrar Usuário</h1>
+                <hr />
             </div>
         </div>
         <Message :msg="msg" v-show="msg"/>
@@ -88,7 +89,7 @@ export default {
         },
         voltar() {
             var token = this.$route.params.token;
-            this.$router.push({ path: `/dashboard/${token}`, params: {token: token } });
+            this.$router.push({ path: `/listar-usuario/${token}`, params: {token: token } });
         }
     },
 }
