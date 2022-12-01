@@ -77,8 +77,8 @@ export default {
         },
         voltar() {
             var token = this.$route.params.token;
-            this.$router.push({ path: `/dashboard/${token}`, params: {token: token } });
-        }
+            this.$router.push({ path: `/listar-bebida/${token}`, params: {token: token } });
+        },
     },
     components: { Sidenav, Message }
 }

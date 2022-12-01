@@ -44,6 +44,9 @@
                 <div class="col-md-6 pt-3">
                     <input type="submit" class="form-control btn btn-success" value="Cadastrar">
                 </div>
+                <div class="col-md-6 pt-3">
+                    <input type="button" class="form-control btn btn-secondary" value="Voltar" @click="voltar">
+                </div>
             </div>
         </form>
     </div>  
@@ -122,6 +125,10 @@ export default {
         cadastrarAdicionais() {
             var token = this.$route.params.token;
             this.$router.push({ path: `/cadastrar-adicionais/${token}`, params: {token: token } });
+        },
+        voltar() {
+            var token = this.$route.params.token;
+            this.$router.push({ path: `/listar-lanche/${token}`, params: {token: token } });
         }
     },
     mounted() {
