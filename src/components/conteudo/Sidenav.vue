@@ -1,11 +1,20 @@
 <template>
     <div class="header">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-                <button class="btn btn-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
-                <span id="data-hora"></span>
+            <div class="col-md-12 d-flex">
+                <div class="col-md-10 d-flex ms-3">
+                    <button class="btn btn-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                    <span class="ps-3 pt-1" @click="dashboardView">
+                        <div class="col-md-2">
+                            <i class="fa-2x fa-solid fa-gauge text-dark"></i> 
+                        </div>
+                    </span>
+                </div>
+                <div class="col-md-2">
+                    <span id="data-hora"></span>
+                </div>
             </div>
         </nav>
     </div>
