@@ -11,7 +11,7 @@
         </div>
         <div class="row">
             <div class="card m-4" style="width: 18rem;">
-                <div class="card-header text-center">
+                <div class="card-header text-center bg-dark text-warning">
                     <h4>Whatsapp</h4>
                 </div>
                 <div class="card-body text-center">
@@ -21,7 +21,7 @@
                 </div>
             </div>
             <div class="card m-4" style="width: 18rem;">
-                <div class="card-header text-center">
+                <div class="card-header text-center bg-dark text-warning">
                     <h4>E-mail</h4>
                 </div>
                 <div class="card-body text-center">
@@ -46,5 +46,9 @@ export default {
 <style scoped>
     a {
         cursor: pointer;
+    }
+
+    h4 {
+        margin-bottom: 0px;
     }
 </style>
