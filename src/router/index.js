@@ -17,6 +17,12 @@ const routes = [
     name: 'Configuracoes',
     component: () => import('../components/configuracoes/Configuracoes.vue')
   },
+  // ROTAS DE CONTATOS
+  {
+    path: '/contatos/:token',
+    name: 'Contato',
+    component: () => import('../components/contato/Contato.vue')
+  },
   // ROTAS DE USUARIOS
   {
     path: '/cadastrar-usuario/:token',

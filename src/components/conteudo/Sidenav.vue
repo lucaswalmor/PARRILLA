@@ -43,6 +43,7 @@
                             </div>
                         </span>
                     </li>
+                    <li>
                         <span href="#submenu" data-bs-toggle="collapse"  class="text-white col-md-12 d-flex nav-link px-0">
                             <div class="col-md-2">
                                 <i class="fa-lg fa-solid fa-gear"></i>
@@ -61,6 +62,7 @@
                                 <span class="nav-link px-0" @click="listarUsuarios"> Usuários</span>
                             </li>
                         </ul>
+                    </li>
                     <li>
                         <span href="#submenu4" data-bs-toggle="collapse" class="col-md-12 d-flex nav-link px-0 align-middle">
                             <div class="col-md-2">
@@ -121,6 +123,18 @@
                             <div class="col-md-6">
                                 <span class="offcanvas-span-titulo">
                                     Clientes
+                                </span>
+                            </div>
+                        </span>
+                    </li>
+                    <li class="nav-item">
+                        <span class="col-md-12 d-flex nav-link px-0" @click="contato">
+                            <div class="col-md-2">
+                                <i class="fa-lg fa-solid fa-address-book"></i> 
+                            </div>
+                            <div class="col-md-6">
+                                <span class="offcanvas-span-titulo">
+                                    Contato
                                 </span>
                             </div>
                         </span>
@@ -224,6 +238,13 @@ export default {
             var token = this.$route.params.token;
             localStorage.removeItem('dados')
             this.$router.push({ path: `/clientes/${token}`, params: {token: token}} );  
+        },
+
+        // CONTATO 
+        contato() {
+            var token = this.$route.params.token;
+            localStorage.removeItem('dados')
+            this.$router.push({ path: `/contatos/${token}`, params: {token: token}} );  
         },
 
         // OUTROS
