@@ -13,9 +13,9 @@
                 <button class="btn btn-warning text-dark fw-bold" @click="cadastrarIngrediente">
                     Cadastrar Ingrediente
                 </button>
-                <button class="btn btn-secondary ms-3 fw-bold" @click="cadastrarAdicionais">
+                <!-- <button class="btn btn-secondary ms-3 fw-bold" @click="cadastrarAdicionais">
                     Cadastrar Adicionais
-                </button>
+                </button> -->
             </div>
         </div>
         <form class="row g-3" autocomplete="off" @submit.prevent="createLanche" id="formulario-lanche" enctype="multipart/form-data">

@@ -81,7 +81,7 @@ export default {
                   const toast = useToast();
                   toast.success(`Lanche cadastrado com sucesso!`);
                   var token = this.$route.params.token;
-                  this.$router.push({ path: `/dashboard/${token}`, params: {token: token } });
+                  this.$router.push({ path: `/listar-lanche/${token}`, params: {token: token } });
                   setTimeout(() => {
                       this.msg = "";
                   }, 2000);

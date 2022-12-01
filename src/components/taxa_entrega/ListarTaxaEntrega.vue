@@ -14,7 +14,7 @@
             </div>
         </div>
         <div class="tbodyDiv">
-            <table class="table text-center table-striped">
+            <table class="table text-center table-striped align-middle">
                 <thead class="table-dark">
                     <tr>
                         <th>Bairro</th>

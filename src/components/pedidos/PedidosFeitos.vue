@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class="tbodyDiv">
-                <table class="table text-center table-striped table-responsive table-fixed">
+                <table class="table text-center table-striped table-responsive table-fixed align-middle">
                     <thead class="table-dark">
                         <tr>
                             <th>Nome Cliente</th>

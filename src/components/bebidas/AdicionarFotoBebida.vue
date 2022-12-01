@@ -81,7 +81,7 @@ export default {
                   const toast = useToast();
                   toast.success(`Bebida cadastrada com sucesso`);
                   var token = this.$route.params.token;
-                  this.$router.push({ path: `/dashboard/${token}`, params: {token: token } });
+                  this.$router.push({ path: `/listar-bebida/${token}`, params: {token: token } });
                   setTimeout(() => {
                       this.msg = "";
                   }, 2000);

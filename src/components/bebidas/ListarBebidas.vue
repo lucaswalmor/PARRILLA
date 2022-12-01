@@ -23,7 +23,7 @@
         </div>
 
         <div class="tbodyDiv">
-            <table class="table text-center table-striped">
+            <table class="table text-center  align-middle">
                 <thead class="table-dark">
                     <tr>
                         <th></th>
@@ -38,8 +38,8 @@
                         <th><img :src="'https://www.projetoadocao.com/storage/' + bebida.path" style="width: 100px"></th>
                         <td>{{ bebida.nome }}</td>
                         <td>R$ {{ bebida.preco }}</td>
-                        <td class="d-flex justify-content-center">
-                            <select name="" id="" class="form-select w-50" @change="statusBebida($event, bebida.id)"
+                        <td>
+                            <select name="" id="" class="form-select" @change="statusBebida($event, bebida.id)"
                                 v-model="bebida.status">
                                 <option value="Ativo">Ativo</option>
                                 <option value="Inativo">Inativo</option>
@@ -72,6 +72,7 @@ $(document).ready(function () {
 import Message from '../message/Message.vue';
 import Sidenav from '../conteudo/Sidenav.vue';
 import { useToast } from "vue-toastification";
+const toast = useToast();
 
 export default {
     name: "ListarBebidas",
@@ -104,7 +105,6 @@ export default {
 
                 // msg de pedido deletado
                 this.msg = `bebida Nº ${id} deletado com sucesso`;
-                const toast = useToast();
                 toast.success(`Bebida deletada com sucesso`);
                 setTimeout(() => {
                     this.msg = "";
@@ -132,6 +132,10 @@ export default {
                 headers: { "Content-Type": "application/json" },
                 body: dataJson
             });
+
+            if (req.status == 200) {
+                toast.success("Status alterado com sucesso!",);
+            }
         }
     },
     mounted() {

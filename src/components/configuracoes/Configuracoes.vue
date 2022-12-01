@@ -19,7 +19,7 @@
         </div>
         <div class="row mt-3">
             <div class="col-md-6">
-                <table class="table table-responsive table-striped">
+                <table class="table table-responsive table-striped align-middle">
                     <thead class="table-dark text-center">
                         <tr>
                             <th>Mensagem Aviso</th>
@@ -31,7 +31,7 @@
                 </table>
             </div>
             <div class="col-md-6">
-                <table class="table table-responsive table-striped text-center">
+                <table class="table table-responsive table-striped text-center align-middle">
                     <thead class="table-dark">
                         <tr>
                             <th>Forma Pagamento</th>
@@ -54,7 +54,7 @@
             </div>
         </div>
         <div class="col-md-12 mt-3">
-            <button class="btn btn-success w-100" @click="alterarInformacoes">
+            <button class="btn btn-success w-50" @click="alterarInformacoes">
                 Salvar
             </button>
         </div>

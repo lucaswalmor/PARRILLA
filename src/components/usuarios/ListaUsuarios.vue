@@ -19,7 +19,7 @@
                 </button>
             </div>
         </div>
-        <table class="table text-center table-striped">
+        <table class="table text-center table-striped align-middle">
             <thead class="table-dark">
                 <tr>
                     <th>Nome</th>
