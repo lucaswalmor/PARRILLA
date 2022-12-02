@@ -13,6 +13,7 @@
                     </div>
                 </div>
             </div>
+            <input type="hidden" id="value" v-model="value.id">
             <div class="tbodyDiv">
                 <table class="table text-center table-striped table-responsive table-fixed align-middle">
                     <thead class="table-dark">
@@ -45,17 +46,20 @@
 </template>
 
 <script>
-$(document).ready(function () {
-    $("#filter").on("keyup", function () {
-        var value = $(this).val().toLowerCase();
-        $("#myTable tr").filter(function () {
-            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-        });
-    });
-});
-
 import axios from 'axios'
 import Sidenav from '../conteudo/Sidenav.vue';
+
+setInterval(function() {
+    let ultimoId = $('#value').val()
+    axios.get(`https://www.projetoadocao.com/api/pedidos`)
+    .then(res => {
+        // const id = res.data[0].pedidos.at(-1).id;
+        console.log(res)
+        // if (ultimoId < id) {
+        //     alert('ok');
+        // }
+    });
+}, 11115000);
 
 export default {
     name: "Pedidos",
@@ -66,20 +70,21 @@ export default {
     components: { Sidenav },
     data() {
         return {
-            pedidos: this.pedidos,
+            pedidos: [],
             token: this.token,
+            value: ''
         };
     },
     methods: {
         async listarPedidos() {
             // this.axios(`http://127.0.0.1:8000/api/pedidos/`)
             axios.get(`https://www.projetoadocao.com/api/pedidos`)
-                .then(res => {
-                    this.pedidos = res.data[0].pedidos;
-                    this.somaValorTotal = res.data[0].somas;
-                    this.totalPedidos = this.pedidos.length;
-                });
-
+            .then(res => {
+                this.pedidos = res.data[0].pedidos;
+                this.somaValorTotal = res.data[0].somas;
+                this.totalPedidos = this.pedidos.length;
+                this.value = res.data[0].pedidos.at(-1);
+            });
         },
         async cancelarPedido(id) {
             if (confirm(`Você realmente deseja deletar o pedido Nº ${id} `)) {
@@ -105,6 +110,12 @@ export default {
         },
     },
     mounted() {
+        $("#filter").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
         this.listarPedidos();
     },
 }

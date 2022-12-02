@@ -14,6 +14,7 @@
                             <li>Mensagem do restaurante no pedido do cliente agora também é possivel alterar de acordo com a vontade do restaurante</li>
                             <li>Agora o cadastro de usuário fica junto ao menu de configurações</li>
                             <li>Formas de pagamentos disponiveis para seus clientes, agora podem ser editadas na aba de configurações alterando o status para ATIVO/INATIVO</li>
+                            <li>Implementada a aba de "CONTATOS" aonde poderá entrar em contato com nossa equipe!</li>
                         </ul>
                     </div>
                 </div>
@@ -27,7 +28,7 @@
                             <li>Implementaremos em um futuro próximo API de pagamento, aonde seu cliente poderá fazer o pagamento na hora de finalizar o pedido</li>
                             <li>Será implementada a impressão de pedidos para impressoras térmicas</li>
                             <li>Será implementada a função de AVISO de novo pedido</li>
-                            <li>Será implementada a função de avisar seu cliente que o pedido esta sendo despachado</li>
+                            <li>Será implementada a função de avisar seu cliente que o pedido esta sendo despachado para entrega</li>
                         </ul>
                     </div>
                 </div>

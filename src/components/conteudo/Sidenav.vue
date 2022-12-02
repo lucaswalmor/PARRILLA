@@ -128,6 +128,18 @@
                         </span>
                     </li>
                     <li class="nav-item">
+                        <span class="col-md-12 d-flex nav-link px-0" @click="planoUsuario">
+                            <div class="col-md-2">
+                                <i class="fa-lg fa-solid fa-money-bill"></i> 
+                            </div>
+                            <div class="col-md-6">
+                                <span class="offcanvas-span-titulo">
+                                    Plano
+                                </span>
+                            </div>
+                        </span>
+                    </li>
+                    <li class="nav-item">
                         <span class="col-md-12 d-flex nav-link px-0" @click="contato">
                             <div class="col-md-2">
                                 <i class="fa-lg fa-solid fa-address-book"></i> 
@@ -243,8 +255,13 @@ export default {
         // CONTATO 
         contato() {
             var token = this.$route.params.token;
-            localStorage.removeItem('dados')
             this.$router.push({ path: `/contatos/${token}`, params: {token: token}} );  
+        },
+
+        // PLANO USUARIO 
+        planoUsuario() {
+            var token = this.$route.params.token;
+            this.$router.push({ path: `/plano-usuario/${token}`, params: {token: token}} );  
         },
 
         // OUTROS

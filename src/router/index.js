@@ -23,6 +23,12 @@ const routes = [
     name: 'Contato',
     component: () => import('../components/contato/Contato.vue')
   },
+  // ROTAS DE CONTATOS
+  {
+    path: '/plano-usuario/:token',
+    name: 'PlanoUsuario',
+    component: () => import('../components/planos/PlanoUsuario.vue')
+  },
   // ROTAS DE USUARIOS
   {
     path: '/cadastrar-usuario/:token',

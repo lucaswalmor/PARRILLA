@@ -53,6 +53,9 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- <DateCalendar /> -->
+                
                 <div class="row mt-5">
                     <div class="col-12 h-50">
                         <Grafico :dadosBackend="pedidos"/>
@@ -68,16 +71,20 @@
 import Sidenav from "./Sidenav.vue";
 import Grafico from "../graficos/Grafico.vue";
 import Aviso from "../avisos/Aviso.vue";
+import DateCalendar from '../filtros/DateCalendar.vue';
 
-export default {    
+export default { 
     name: "Dashboard",
     components: {
         Sidenav,
         Grafico,
-        Aviso
+        Aviso,
+        DateCalendar,
     },
     data() {
         return {
+            dataInicial: '',
+            dataFinal: '',
             dadosUsuario: [],
             pedidos: [],
             totalPedidos: '',
@@ -293,11 +300,13 @@ export default {
             this.email = email_storage
             this.token_storage = this.$route.params.token
         },
+        
     },
     mounted() {
         this.token();
         this.listarPedidos();
-    }
+    }, 
+    
 }
 </script>
 
