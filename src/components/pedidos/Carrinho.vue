@@ -756,7 +756,7 @@ export default {
         }
 
         // ao finalizar o pedido será gerado o link com o pedido do whatsapp para redirecionar o cliente 
-        this.href = 'https://api.whatsapp.com/send?phone=55' + 34996390605 + '&text=' + this.pedido_wpp;
+        this.href = 'https://api.whatsapp.com/send?phone=55' + 34992021394 + '&text=' + this.pedido_wpp;
       }
     },
   },

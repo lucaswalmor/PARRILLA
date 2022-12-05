@@ -36,19 +36,31 @@
                             <div class="col-md-2">
                                 <i class="fa-lg fa-solid fa-gauge"></i> 
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-10">
                                 <span class="offcanvas-span-titulo">
                                     Dashboard
                                 </span>
                             </div>
                         </span>
                     </li>
+                    <!-- <li class="nav-item">
+                        <span class="col-md-12 d-flex nav-link px-0" @click="pedidos_online">
+                            <div class="col-md-2">
+                                <i class="fa-lg fa-solid fa-cash-register"></i> 
+                            </div>
+                            <div class="col-md-6">
+                                <span class="offcanvas-span-titulo">
+                                    Vendas
+                                </span>
+                            </div>
+                        </span>
+                    </li> -->
                     <li>
                         <span href="#submenu" data-bs-toggle="collapse"  class="text-white col-md-12 d-flex nav-link px-0">
                             <div class="col-md-2">
                                 <i class="fa-lg fa-solid fa-gear"></i>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-10">
                                 <span class="offcanvas-span-titulo">
                                     Configurações
                                 </span>
@@ -64,17 +76,34 @@
                         </ul>
                     </li>
                     <li>
-                        <span href="#submenu4" data-bs-toggle="collapse" class="col-md-12 d-flex nav-link px-0 align-middle">
+                        <span href="#submenu2" data-bs-toggle="collapse"  class="text-white col-md-12 d-flex nav-link px-0">
+                            <div class="col-md-2">
+                                <i class="fa-lg fa-solid fa-file-lines"></i>
+                            </div>
+                            <div class="col-md-10">
+                                <span class="offcanvas-span-titulo">
+                                    Relatórios
+                                </span>
+                            </div>
+                        </span>
+                        <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
+                            <li class="ms-4">
+                                <span class="nav-link px-0" @click="pedidos_feitos"> Pedidos</span>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span href="#submenu3" data-bs-toggle="collapse" class="col-md-12 d-flex nav-link px-0 align-middle">
                             <div class="col-md-2">
                                 <i class="fa-lg fa-solid fa-burger"></i> 
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-10">
                                 <span class="offcanvas-span-titulo">
                                     Lanches
                                 </span>
                             </div>
                         </span>
-                        <ul class="collapse nav flex-column ms-1" id="submenu4" data-bs-parent="#menu">
+                        <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
                             <li class="w-100 ms-4">
                                 <span class="nav-link px-0" @click="cadastrarNovoLanche">Cadastrar</span>
                             </li>
@@ -84,17 +113,17 @@
                         </ul>
                     </li>
                     <li>
-                        <span href="#submenu2" data-bs-toggle="collapse" class="col-md-12 d-flex nav-link px-0 align-middle">
+                        <span href="#submenu4" data-bs-toggle="collapse" class="col-md-12 d-flex nav-link px-0 align-middle">
                             <div class="col-md-2">
                                 <i class="fa-lg fa-solid fa-martini-glass"></i>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-10">
                                 <span class="offcanvas-span-titulo">
                                     Bebidas
                                 </span>
                             </div>
                         </span>
-                        <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
+                        <ul class="collapse nav flex-column ms-1" id="submenu4" data-bs-parent="#menu">
                             <li class="w-100 ms-4">
                                 <span class="nav-link px-0" @click="cadastrarNovaBebida">Cadastrar</span>
                             </li>
@@ -104,47 +133,35 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <span class="col-md-12 d-flex nav-link px-0" @click="pedidos_feitos">
-                            <div class="col-md-2">
-                                <i class="fa-lg fa-solid fa-file-lines"></i>
-                            </div>
-                            <div class="col-md-6">
-                                <span class="offcanvas-span-titulo">
-                                    Pedidos
-                                </span>
-                            </div>
-                        </span>
-                    </li>
-                    <li class="nav-item">
                         <span class="col-md-12 d-flex nav-link px-0" @click="clientes">
                             <div class="col-md-2">
                                 <i class="fa-lg fa-solid fa-users"></i>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-10">
                                 <span class="offcanvas-span-titulo">
                                     Clientes
                                 </span>
                             </div>
                         </span>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <span class="col-md-12 d-flex nav-link px-0" @click="planoUsuario">
                             <div class="col-md-2">
                                 <i class="fa-lg fa-solid fa-money-bill"></i> 
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-10">
                                 <span class="offcanvas-span-titulo">
                                     Plano
                                 </span>
                             </div>
                         </span>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
                         <span class="col-md-12 d-flex nav-link px-0" @click="contato">
                             <div class="col-md-2">
                                 <i class="fa-lg fa-solid fa-address-book"></i> 
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-10">
                                 <span class="offcanvas-span-titulo">
                                     Contato
                                 </span>
@@ -233,10 +250,16 @@ export default {
             this.$router.push({ path: `/listar-bebida/${token}`, params: {token: token } });
         },
 
+        // PEDIDOS ONLINE
+        pedidos_online() {
+            var token = this.$route.params.token;
+            this.$router.push({ path: `/pedidos-online/${token}`, params: {token: token}} );  
+        },
+
         // PEDIDOS
         pedidos_feitos() {
             var token = this.$route.params.token;
-            this.$router.push({ path: `/pedidos/${token}`, params: {token: token}} );  
+            this.$router.push({ path: `/relatorio-pedidos/${token}`, params: {token: token}} );  
         },
 
         // TAXA DE ENTREGA

@@ -17,6 +17,18 @@ const routes = [
     name: 'Configuracoes',
     component: () => import('../components/configuracoes/Configuracoes.vue')
   },
+  // ROTAS DE PEDIDOS ONLINE
+  {
+    path: '/pedidos-online/:token',
+    name: 'PedidosOnline',
+    component: () => import('../components/pedidosOnline/PedidosOnline.vue')
+  },
+  // ROTAS DE RELATORIOS
+  {
+    path: '/relatorio-pedidos/:token',
+    name: 'RelatorioPedidos',
+    component: () => import('../components/relatorios/RelatorioPedidos.vue')
+  },
   // ROTAS DE CONTATOS
   {
     path: '/contatos/:token',
@@ -115,11 +127,6 @@ const routes = [
     component: () => import('../components/taxa_entrega/EditarTaxa.vue')
   },
   // ROTAS DE PEDIDOS
-  {
-    path: '/pedidos/:token',
-    name: 'PedidosFeitos',
-    component: () => import('../components/pedidos/PedidosFeitos.vue')
-  },
   {
     path: '/ver-pedido/:token/:id',
     name: 'VerPedido',

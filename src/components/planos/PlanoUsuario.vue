@@ -25,7 +25,6 @@
                                 <button class="btn btn-success w-100 p-3" @click="renovarPlano(item)">
                                     <h4>Renovar Plano</h4>
                                 </button>
-
                             </div>
                         </div>
                     </div>
