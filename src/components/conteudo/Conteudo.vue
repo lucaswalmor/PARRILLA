@@ -1,6 +1,6 @@
 <template>
     <Sidenav />
-    <Aviso />
+    <!-- <Aviso /> -->
     <div class="col py-3 body-dashboard">
         <div class="dashboard">
             <div class="container">

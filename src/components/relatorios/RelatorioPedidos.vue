@@ -31,7 +31,7 @@
                             <td>{{ pedido.nome_cliente }}</td>
                             <td>{{ pedido.telefone }}</td>
                             <td>{{ pedido.forma_pagamento }}</td>
-                            <td>R$ {{ pedido.valor_total }}</td>
+                            <td>{{ pedido.valor_total.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'}) }}</td>
                             <td class="botao-acao-tabela">
                                 <button class="btn btn-dark" @click="verPedido(pedido.id)"><i
                                         class="fa-solid fa-eye text-light"></i></button>
