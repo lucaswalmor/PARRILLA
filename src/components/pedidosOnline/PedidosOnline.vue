@@ -10,17 +10,20 @@
                 </div>
             </div>
         </div>
-        <div class="row" v-if="botaoIniciarDia">
-            <button id="audio" class="btn btn-primary" @click="inciarDia()">Iniciar Dia</button>
+        <div class="col-md-12" v-if="botaoIniciarDia">
+            <button id="audio" class="w-100 mb-3 btn fw-bold p-2 fs-4 btn-success" @click="inciarDia()">Iniciar Dia</button>
+        </div>
+        <div class="col-md-12" v-if="botaoEncerrarDia">
+            <button id="audio" class="w-100 mb-3 btn fw-bold p-2 fs-4 btn-danger" @click="encerrarDia()">Encerrar Dia</button>
         </div>
 
         <div class="col-md-12" v-if="diaIniciado">
             <table class="table table-striped table-responsive text-center">
                 <thead class="table-dark">
                         <tr>
-                            <th>Nome Cliente</th>
+                            <th>Cliente</th>
                             <th>Telefone</th>
-                            <th>Forma Pag</th>
+                            <th>Tipo Pag</th>
                             <th>Total</th>
                         </tr>
                     </thead>
@@ -51,6 +54,7 @@ export default {
             pedidos: [],
             diaIniciado: false,
             botaoIniciarDia: true,
+            botaoEncerrarDia: false,
         }
     },
     methods: {
@@ -66,6 +70,13 @@ export default {
             localStorage.setItem('iniciouDia', date.toLocaleDateString());
             this.diaIniciado = true;
             this.botaoIniciarDia = false;
+            this.botaoEncerrarDia = true;
+        },
+        encerrarDia() {
+            localStorage.removeItem('iniciouDia');
+            this.diaIniciado = false;
+            this.botaoIniciarDia = true;
+            this.botaoEncerrarDia = false;
         },
         verificaNovoPedido() {
             setInterval(() => {
@@ -103,6 +114,7 @@ export default {
         if(dataAtual) {
             this.diaIniciado = true;
             this.botaoIniciarDia = false;
+            this.botaoEncerrarDia = true;
         }
     },
 }

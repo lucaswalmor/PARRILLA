@@ -1,7 +1,6 @@
 <template>
     <div class="header">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="col-md-12 d-flex">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-around">
                 <div class="col-md-10 d-flex ms-3">
                     <button class="btn btn-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
                         <i class="fa-solid fa-bars"></i>
@@ -15,7 +14,6 @@
                 <div class="col-md-2">
                     <span id="data-hora"></span>
                 </div>
-            </div>
         </nav>
     </div>
     <div class="sidenav">

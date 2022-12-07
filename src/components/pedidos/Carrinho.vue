@@ -99,7 +99,6 @@
             <span>{{valorTotalPedido.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'})}}</span>
           </div>
           <div class="fw-bold d-flex justify-content-end">
-            <!-- <button @click="formaPagamento" class="btn btn-success fw-bold m-3">Forma de pagamento</button> -->
             <button class="btn btn-dark text-warning fw-bold m-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Forma de pagamento</button>
           </div>
         </div>
@@ -108,7 +107,7 @@
   </section>
     <!-- Modal -->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-      <div class="modal-dialog">
+      <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="staticBackdropLabel">Forma de pagamento</h5>
@@ -224,16 +223,16 @@ export default {
         const pedido = this.dadosPedido;
         let somaLanche = 0
         for(let item in pedido.lanche) {
-          somaLanche += parseInt(pedido.lanche[item].preco);
+          somaLanche += parseFloat(pedido.lanche[item].preco);
         }
         
         let somaBebida = 0
         for(let item in pedido.bebida) {
-          somaBebida += parseInt(pedido.bebida[item].preco);
+          somaBebida += parseFloat(pedido.bebida[item].preco);
         }
         
         this.valorPedido = somaLanche + somaBebida
-        this.valorTotalPedido = somaLanche + parseInt(pedido.taxa_entrega) + somaBebida
+        this.valorTotalPedido = somaLanche + parseFloat(pedido.taxa_entrega) + somaBebida
 
         this.dadosPedido.valor_total = this.valorTotalPedido;
         
@@ -243,12 +242,12 @@ export default {
         const pedido = this.dadosPedido;
         let somaLanche = 0
         for(let item in pedido.lanche) {
-          somaLanche += parseInt(pedido.lanche[item].preco);
+          somaLanche += parseFloat(pedido.lanche[item].preco);
         }
         
         let somaBebida = 0
         for(let item in pedido.bebida) {
-          somaBebida += parseInt(pedido.bebida[item].preco);
+          somaBebida += parseFloat(pedido.bebida[item].preco);
         }
         
         this.valorPedido = somaLanche + somaBebida
@@ -326,17 +325,17 @@ export default {
 
         let somaLanche = 0
         for(let item in pedido.lanche) {
-          somaLanche += parseInt(pedido.lanche[item].preco);
+          somaLanche += parseFloat(pedido.lanche[item].preco);
         }
         
         let somaBebida = 0
         for(let item in pedido.bebida) {
-          somaBebida += parseInt(pedido.bebida[item].preco);
+          somaBebida += parseFloat(pedido.bebida[item].preco);
         }
-        
+
         if(this.tipo_pedido == 'Entregar') {
           this.valorpedido = somaLanche + somaBebida
-          this.valorTotalpedido = somaLanche + parseInt(pedido.taxa_entrega) + somaBebida
+          this.valorTotalpedido = somaLanche + parseFloat(pedido.taxa_entrega) + somaBebida
         } else if (this.tipo_pedido == 'Retirar') {
           this.valorpedido = somaLanche + somaBebida
           this.valorTotalpedido = somaLanche + somaBebida
@@ -396,368 +395,63 @@ export default {
         });
     },
     enviarPedido() {
-      if(this.forma_pagamento == '') {
-        const toast = useToast();
-        toast.error('Porfavor selecione uma forma de pagamento!');
-      } else {
-        // se tiver troco, ap e bloco no pedido, entrara neste bloco 
-        if (this.dadosPedido.troco != ''
-          && this.dadosPedido.apartamento != '' 
-          && this.dadosPedido.bloco != '' 
-          && this.dadosPedido.pontoReferencia != '') {
-          this.pedido_wpp = 
-                '*' + this.mensagem_pedido + '*' +
-                '%0A' +
-                '%0A*Código pedido* ' + this.dadosPedido.codigoPedido +
-                '%0A' +
-                '%0A*Prazo de entrega:* ' + this.prazo_entrega +
-                '%0A' +
-                '%0A*--------------* ' +
-                '%0A' +
-                '%0A*Olá, meu nome é* ' + this.dadosPedido.nome +
-                '%0A' +
-                '%0A*e meu contato:* ' + this.dadosPedido.telefone +
-                '%0A' +
-                '%0A*--------------*' +
-                '%0A' +
-                '%0A*Pedido* ' +
-                '%0A' +
-                '%0A*Lanche:* %0A%0A' + this.lanche_pedido +
-                '%0A' +
-                '%0A*Bebida:* %0A%0A' + this.bebida_pedido +
-                '%0A' +
-                '%0A*Observações:* ' + this.dadosPedido.observacoes +
-                '%0A' +
-                '%0A*--------------* ' +
-                '%0A' +
-                '%0A*Total* ' +
-                '%0A' +
-                '%0A*Valor:* R$ ' + this.dadosPedido.valor_total +
-                '%0A' +
-                '%0A*Troco para:* R$ ' + this.dadosPedido.troco +
-                '%0A' +
-                '%0A*Forma de pagamento:* ' + this.forma_pagamento +
-                '%0A' +
-                '%0A*--------------* ' +
-                '%0A' +
-                '%0A*Endereço de entrega* ' +
-                '%0A' +
-                '%0A*Rua:* ' + this.dadosPedido.rua + ' Nº ' + this.dadosPedido.numero +
-                '%0A' +
-                '%0A*Bairro:* ' + this.dadosPedido.bairro +
-                '%0A' +
-                '%0A*Ponto de referência:* ' + this.dadosPedido.pontoReferencia +
-                '%0A' +
-                '%0A*Apartamento:* ' + this.dadosPedido.apartamento +
-                '%0A' +
-                '%0A*Bloco:* ' + this.dadosPedido.bloco +
-                '%0A*--------------*' +
-                '%0A' +
-                '%0A*LK Pedidos Whatsapp* ' +
-                '%0Ahttps://lucaswalmor.github.io/lk-whatsapp/' +
-                '%0A' +
-                '%0A*--------------*';
-        } else if (this.dadosPedido.troco === '' && this.dadosPedido.apartamento != '' 
-          && this.dadosPedido.bloco != '' && this.dadosPedido.pontoReferencia != '') {
-            this.pedido_wpp = 
-                '*' + this.mensagem_pedido + '*' +
-                '%0A' +
-                '%0A*Código pedido* ' + this.dadosPedido.codigoPedido +
-                '%0A' +
-                '%0A*Prazo de entrega: 40 à 120 minutos' +
-                '%0A' +
-                '%0A*--------------* ' +
-                '%0A' +
-                '%0A*Olá, meu nome é* ' + this.dadosPedido.nome +
-                '%0A' +
-                '%0A*e meu contato:* ' + this.dadosPedido.telefone +
-                '%0A' +
-                '%0A*--------------*' +
-                '%0A' +
-                '%0A*Pedido* ' +
-                '%0A' +
-                '%0A*Lanche:* %0A%0A' + this.lanche_pedido +
-                '%0A' +
-                '%0A*Bebida:* %0A%0A' + this.bebida_pedido +
-                '%0A' +
-                '%0A*Observações:* ' + this.dadosPedido.observacoes +
-                '%0A' +
-                '%0A*--------------* ' +
-                '%0A' +
-                '%0A*Total* ' +
-                '%0A' +
-                '%0A*Valor:* R$ ' + this.dadosPedido.valor_total +
-                '%0A' +
-                '%0A*Forma de pagamento:* ' + this.forma_pagamento +
-                '%0A' +
-                '%0A*--------------* ' +
-                '%0A' +
-                '%0A*Endereço de entrega* ' +
-                '%0A' +
-                '%0A*Rua:* ' + this.dadosPedido.rua + ' Nº ' + this.dadosPedido.numero +
-                '%0A' +
-                '%0A*Bairro:* ' + this.dadosPedido.bairro +
-                '%0A' +
-                '%0A*Ponto de referência:* ' + this.dadosPedido.pontoReferencia +
-                '%0A' +
-                '%0A*Apartamento:* ' + this.dadosPedido.apartamento +
-                '%0A' +
-                '%0A*Bloco:* ' + this.dadosPedido.bloco +
-                '%0A*--------------*' +
-                '%0A' +
-                '%0A*LK Pedidos Whatsapp* ' +
-                '%0Ahttps://lucaswalmor.github.io/lk-whatsapp/' +
-                '%0A' +
-                '%0A*--------------*';
-            
-        } else if (this.dadosPedido.troco != '' && this.dadosPedido.apartamento != '' && this.dadosPedido.pontoReferencia != '') {
-          this.pedido_wpp = 
-            '*' + this.mensagem_pedido + '*' +
-            '%0A' +
-            '%0A*Código pedido* ' + this.dadosPedido.codigoPedido +
-            '%0A' +
-            '%0A*--------------* ' +
-            '%0A' +
-            '%0A*Olá, meu nome é* ' + this.dadosPedido.nome +
-            '%0A' +
-            '%0A*e meu contato:* ' + this.dadosPedido.telefone +
-            '%0A' +
-            '%0A*--------------*' +
-            '%0A' +
-            '%0A*Pedido* ' +
-            '%0A' +
-            '%0A*Lanche:* %0A%0A' + this.lanche_pedido +
-            '%0A' +
-            '%0A*Bebida:* %0A%0A' + this.bebida_pedido +
-            '%0A' +
-            '%0A*Observações:* ' + this.dadosPedido.observacoes +
-            '%0A' +
-            '%0A*--------------* ' +
-            '%0A' +
-            '%0A*Total* ' +
-            '%0A' +
-            '%0A*Valor:* R$ ' + this.dadosPedido.valor_total +
-            '%0A' +
-            '%0A*Troco para:* R$ ' + this.dadosPedido.troco +
-            '%0A' +
-            '%0A*Forma de pagamento:* ' + this.forma_pagamento +
-            '%0A' +
-            '%0A*--------------* ' +
-            '%0A' +
-            '%0A*Endereço de entrega* ' +
-            '%0A' +
-            '%0A*Rua:* ' + this.dadosPedido.rua + ' Nº ' + this.dadosPedido.numero +
-            '%0A' +
-            '%0A*Bairro:* ' + this.dadosPedido.bairro +
-            '%0A' +
-            '%0A*Ponto de referência:* ' + this.dadosPedido.pontoReferencia +
-            '%0A' +
-            '%0A*Apartamento:* ' + this.dadosPedido.apartamento +
-            '%0A' +
-            '%0A*Bloco:* ' + this.dadosPedido.bloco +
-            '%0A*--------------*' +
-            '%0A' +
-            '%0A*LK Pedidos Whatsapp* ' +
-            '%0Ahttps://lucaswalmor.github.io/lk-whatsapp/' +
-            '%0A' +
-            '%0A*--------------*';
-        } else if (this.dadosPedido.apartamento != '' && this.dadosPedido.pontoReferencia != '') {
-          this.pedido_wpp = 
-                '*' + this.mensagem_pedido + '*' +
-                '%0A' +
-                '%0A*Código pedido* ' + this.dadosPedido.codigoPedido +
-                '%0A' +
-              '%0A*Prazo de entrega:* ' + this.prazo_entrega +
-                '%0A' +
-                '%0A*--------------* ' +
-                '%0A' +
-                '%0A*Olá, meu nome é* ' + this.dadosPedido.nome +
-                '%0A' +
-                '%0A*e meu contato:* ' + this.dadosPedido.telefone +
-                '%0A' +
-                '%0A*--------------*' +
-                '%0A' +
-                '%0A*Pedido* ' +
-                '%0A' +
-                '%0A*Lanche:* %0A%0A' + this.lanche_pedido +
-                '%0A' +
-                '%0A*Bebida:* %0A%0A' + this.bebida_pedido +
-                '%0A' +
-                '%0A*Observações:* ' + this.dadosPedido.observacoes +
-                '%0A' +
-                '%0A*--------------* ' +
-                '%0A' +
-                '%0A*Total* ' +
-                '%0A' +
-                '%0A*Valor:* R$ ' + this.dadosPedido.valor_total +
-                '%0A' +
-                '%0A*Forma de pagamento:* ' + this.forma_pagamento +
-                '%0A' +
-                '%0A*--------------* ' +
-                '%0A' +
-                '%0A*Endereço de entrega* ' +
-                '%0A' +
-                '%0A*Rua:* ' + this.dadosPedido.rua + ' Nº ' + this.dadosPedido.numero +
-                '%0A' +
-                '%0A*Bairro:* ' + this.dadosPedido.bairro +
-                '%0A' +
-                '%0A*Ponto de referência:* ' + this.dadosPedido.pontoReferencia +
-                '%0A' +
-                '%0A*Apartamento:* ' + this.dadosPedido.apartamento +
-                '%0A' +
-                '%0A*--------------*' +
-                '%0A' +
-                '%0A*LK Pedidos Whatsapp* ' +
-                '%0Ahttps://lucaswalmor.github.io/lk-whatsapp/' +
-                '%0A' +
-                '%0A*--------------*';
-        } else if (this.dadosPedido.troco != '' && this.dadosPedido.pontoReferencia != '') {
-          this.pedido_wpp = 
-                '*' + this.mensagem_pedido + '*' +
-                '%0A' +
-                '%0A*Código pedido* ' + this.dadosPedido.codigoPedido +
-                '%0A' +
-              '%0A*Prazo de entrega:* ' + this.prazo_entrega +
-                '%0A' +
-                '%0A*--------------* ' +
-                '%0A' +
-                '%0A*Olá, meu nome é* ' + this.dadosPedido.nome +
-                '%0A' +
-                '%0A*e meu contato:* ' + this.dadosPedido.telefone +
-                '%0A' +
-                '%0A*--------------*' +
-                '%0A' +
-                '%0A*Pedido* ' +
-                '%0A' +
-                '%0A*Lanche:* %0A%0A' + this.lanche_pedido +
-                '%0A' +
-                '%0A*Bebida:* %0A%0A' + this.bebida_pedido +
-                '%0A' +
-                '%0A*Observações:* ' + this.dadosPedido.observacoes +
-                '%0A' +
-                '%0A*--------------* ' +
-                '%0A' +
-                '%0A*Total* ' +
-                '%0A' +
-                '%0A*Valor:* R$ ' + this.dadosPedido.valor_total +
-                '%0A' +
-                '%0A*Troco para:* R$ ' + this.dadosPedido.troco +
-                '%0A' +
-                '%0A*Forma de pagamento:* ' + this.forma_pagamento +
-                '%0A' +
-                '%0A*--------------* ' +
-                '%0A' +
-                '%0A*Endereço de entrega* ' +
-                '%0A' +
-                '%0A*Rua:* ' + this.dadosPedido.rua + ' Nº ' + this.dadosPedido.numero +
-                '%0A' +
-                '%0A*Bairro:* ' + this.dadosPedido.bairro +
-                '%0A' +
-                '%0A*Ponto de referência:* ' + this.dadosPedido.pontoReferencia +
-                '%0A' +
-                '%0A*--------------*' +
-                '%0A' +
-                '%0A*LK Pedidos Whatsapp* ' +
-                '%0Ahttps://lucaswalmor.github.io/lk-whatsapp/' +
-                '%0A' +
-                '%0A*--------------*';
-        } else if (this.dadosPedido.pontoReferencia != '') {
-          this.pedido_wpp = 
-                '*' + this.mensagem_pedido + '*' +
-                '%0A' +
-                '%0A*Código pedido* ' + this.dadosPedido.codigoPedido +
-                '%0A' +
-              '%0A*Prazo de entrega:* ' + this.prazo_entrega +
-                '%0A' +
-                '%0A*--------------* ' +
-                '%0A' +
-                '%0A*Olá, meu nome é* ' + this.dadosPedido.nome +
-                '%0A' +
-                '%0A*e meu contato:* ' + this.dadosPedido.telefone +
-                '%0A' +
-                '%0A*--------------*' +
-                '%0A' +
-                '%0A*Pedido* ' +
-                '%0A' +
-                '%0A*Lanche:* %0A%0A' + this.lanche_pedido + 
-                '%0A' +
-                '%0A*Bebida:* %0A%0A' + this.bebida_pedido +
-                '%0A' +
-                '%0A*Observações:* ' + this.dadosPedido.observacoes +
-                '%0A' +
-                '%0A*--------------* ' +
-                '%0A' +
-                '%0A*Total* ' +
-                '%0A' +
-                '%0A*Valor:* R$ ' + this.dadosPedido.valor_total +
-                '%0A' +
-                '%0A*Forma de pagamento:* ' + this.forma_pagamento +
-                '%0A' +
-                '%0A*--------------* ' +
-                '%0A' +
-                '%0A*Endereço de entrega* ' +
-                '%0A' +
-                '%0A*Rua:* ' + this.dadosPedido.rua + ' Nº ' + this.dadosPedido.numero +
-                '%0A' +
-                '%0A*Bairro:* ' + this.dadosPedido.bairro +
-                '%0A' +
-                '%0A*Ponto de referência:* ' + this.dadosPedido.pontoReferencia +
-                '%0A' +
-                '%0A*--------------*' +
-                '%0A' +
-                '%0A*LK Pedidos Whatsapp* ' +
-                '%0Ahttps://lucaswalmor.github.io/lk-whatsapp/' +
-                '%0A'
-                '%0A*--------------*';
-        } else {
-          this.pedido_wpp = 
-                '*' + this.mensagem_pedido + '*' +
-                '%0A' +
-                '%0A*Código pedido* ' + this.dadosPedido.codigoPedido +
-                '%0A' +
-              '%0A*Prazo de entrega:* ' + this.prazo_entrega +
-                '%0A' +
-                '%0A*--------------* ' +
-                '%0A' +
-                '%0A*Olá, meu nome é* ' + this.dadosPedido.nome +
-                '%0A' +
-                '%0A*e meu contato:* ' + this.dadosPedido.telefone +
-                '%0A' +
-                '%0A*--------------*' +
-                '%0A' +
-                '%0A*Pedido* ' +
-                '%0A' +
-                '%0A*Lanche:* %0A%0A' + this.lanche_pedido +
-                '%0A' +
-                '%0A*Bebida:* %0A%0A' + this.bebida_pedido +
-                '%0A' +
-                '%0A*--------------* ' +
-                '%0A' +
-                '%0A*Total* ' +
-                '%0A' +
-                '%0A*Valor:* R$ ' + this.dadosPedido.valor_total +
-                '%0A' +
-                '%0A*Forma de pagamento:* ' + this.forma_pagamento +
-                '%0A' +
-                '%0A*--------------* ' +
-                '%0A' +
-                '%0A*Endereço de entrega* ' +
-                '%0A' +
-                '%0A*Rua:* ' + this.dadosPedido.rua + ' Nº ' + this.dadosPedido.numero +
-                '%0A' +
-                '%0A*Bairro:* ' + this.dadosPedido.bairro +
-                '%0A' +
-                '%0A*--------------*' +
-                '%0A' +
-                '%0A*LK Pedidos Whatsapp* ' +
-                '%0Ahttps://lucaswalmor.github.io/lk-whatsapp/' +
-                '%0A'
-                '%0A*--------------*';
-        }
+      this.pedido_wpp = `
+        *${this.mensagem_pedido}*
+        %0A
+        %0A*Código pedido*  ${this.dadosPedido.codigoPedido}
+        %0A
+        %0A*Prazo de entrega:*  ${this.prazo_entrega}
+        %0A
+        %0A*--------------* 
+        %0A
+        %0A*Olá, meu nome é*  ${this.dadosPedido.nome}
+        %0A
+        %0A*e meu contato:*  ${this.dadosPedido.telefone}
+        %0A
+        %0A*--------------*
+        %0A
+        %0A*Pedido* 
+        %0A
+        ${this.lanche_pedido ? '%0A*Lanches:* %0A%0A ' + this.lanche_pedido  : ''}
+        %0A
+        ${this.bebida_pedido ? '%0A*Bebidas:* %0A%0A ' + this.bebida_pedido  : ''}
+        %0A
+        ${this.dadosPedido.observacoes ? '%0A*Observações:* %0A%0A ' + this.dadosPedido.observacoes  : ''}
+        %0A
+        %0A*--------------* 
+        %0A
+        %0A*SubTotal:* ${this.valorPedido.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'})}
+        %0A
+        %0A*Taxa de entrega:* ${this.dadosPedido.taxa_entrega.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'})}
+        %0A
+        %0A*Total:* ${this.dadosPedido.valor_total.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'})}
+        %0A
+        ${this.dadosPedido.troco ? '%0A*Troco para:* ' + this.dadosPedido.troco.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'})  : ''}
+        %0A
+        %0A*Forma de pagamento:*  ${this.forma_pagamento}
+        %0A
+        %0A*--------------* 
+        %0A
+        %0A*Endereço de entrega* 
+        %0A
+        %0A*Rua:*  ${this.dadosPedido.rua}  Nº  ${this.dadosPedido.numero}
+        %0A
+        %0A*Bairro:*  ${this.dadosPedido.bairro}
+        %0A
+        ${this.dadosPedido.pontoReferencia ? '%0A*Ponto de referência:* ' + this.dadosPedido.pontoReferencia  : ''}
+        %0A
+        ${this.dadosPedido.apartamento ? '%0A*Apartamento:* ' + this.dadosPedido.apartamento  : ''}
+        %0A
+        ${this.dadosPedido.bloco ? '%0A*bloco:* ' + this.dadosPedido.bloco  : ''}
+        %0A*--------------*
+        %0A
+        %0A*LK Pedidos Whatsapp* 
+        %0Ahttps://lucaswalmor.github.io/lk-whatsapp/
+        %0A
+        %0A*--------------*
+      `;
 
-        // ao finalizar o pedido será gerado o link com o pedido do whatsapp para redirecionar o cliente 
-        this.href = 'https://api.whatsapp.com/send?phone=55' + 34996390605 + '&text=' + this.pedido_wpp;
-      }
+      this.href = 'https://api.whatsapp.com/send?phone=55' + 34996390605 + '&text=' + this.pedido_wpp;
     },
   },
   created() {
