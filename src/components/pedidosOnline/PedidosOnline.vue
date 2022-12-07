@@ -5,7 +5,7 @@
         <div class="row">
             <div class="titulo col-md-12 p-3">
                 <div class="col-md-12">
-                    <h1 class="text-secondary">Vendas</h1>
+                    <h1 class="text-secondary">Vendas do dia</h1>
                     <hr>
                 </div>
             </div>
@@ -22,7 +22,6 @@
                             <th>Telefone</th>
                             <th>Forma Pag</th>
                             <th>Total</th>
-                            <th>Ações</th>
                         </tr>
                     </thead>
                     <tbody id="myTable">
@@ -31,12 +30,6 @@
                             <td>{{ pedido.telefone }}</td>
                             <td>{{ pedido.forma_pagamento }}</td>
                             <td>{{ pedido.valor_total.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'}) }}</td>
-                            <td class="botao-acao-tabela">
-                                <button class="btn btn-dark" @click="verPedido(pedido.id)"><i
-                                        class="fa-solid fa-eye text-light"></i></button>
-                                <button class="btn ms btn-danger" @click="cancelarPedido(pedido.id)"><i
-                                        class="fa-solid fa-trash"></i></button>
-                            </td>
                         </tr>
                     </tbody>
             </table>
@@ -62,19 +55,55 @@ export default {
     },
     methods: {
         listarPedidos() {
-            axios.get(`https://www.projetoadocao.com/api/pedidos`)
+            axios.get(`https://www.projetoadocao.com/api/pedidos-dia`)
             .then(res => {
-                this.pedidos = res.data[0].pedidos;
+                this.pedidos = res.data.data.pedidos;
                 this.ultimo = res.data.data.ultimoPedido;
             });
         },
         inciarDia() {
+            let date = new Date();
+            localStorage.setItem('iniciouDia', date.toLocaleDateString());
             this.diaIniciado = true;
             this.botaoIniciarDia = false;
-        }
+        },
+        verificaNovoPedido() {
+            setInterval(() => {
+                const idAntigo = this.ultimo
+                axios.get(`https://www.projetoadocao.com/api/pedidos-dia`)
+                .then(res => {
+                    const novoId = res.data.data.ultimoPedido;
+                    const dadosPedido = res.data.data.pedidos.at(-1);
+                    if(idAntigo < novoId) {
+                        setTimeout(() => {
+                            const audio = new Audio('https://soundbible.com/mp3/dixie-horn_daniel-simion.mp3');
+                            audio.play();
+                            Swal.fire({
+                                title: 'Novo Pedido!',
+                                html: `Nome: ${dadosPedido.nome_cliente} <br> Telefone: ${dadosPedido.telefone}`,
+                                icon: 'success',
+                                confirmButtonColor: '#4FA845',
+                                confirmButtonText: 'Confirmar'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    location.reload();
+                                }
+                            });
+                        });
+                    }
+                });
+            }, 5000);
+        },
     },
     mounted() {
         this.listarPedidos();
+        this.verificaNovoPedido();
+
+        let dataAtual = localStorage.getItem('iniciouDia')
+        if(dataAtual) {
+            this.diaIniciado = true;
+            this.botaoIniciarDia = false;
+        }
     },
 }
 </script>

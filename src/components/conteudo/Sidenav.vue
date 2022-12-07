@@ -43,7 +43,7 @@
                             </div>
                         </span>
                     </li>
-                    <!-- <li class="nav-item">
+                    <li class="nav-item">
                         <span class="col-md-12 d-flex nav-link px-0" @click="pedidos_online">
                             <div class="col-md-2">
                                 <i class="fa-lg fa-solid fa-cash-register"></i> 
@@ -54,7 +54,7 @@
                                 </span>
                             </div>
                         </span>
-                    </li> -->
+                    </li>
                     <li>
                         <span href="#submenu" data-bs-toggle="collapse"  class="text-white col-md-12 d-flex nav-link px-0">
                             <div class="col-md-2">

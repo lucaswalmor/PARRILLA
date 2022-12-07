@@ -35,7 +35,7 @@
                             <td class="botao-acao-tabela">
                                 <button class="btn btn-dark" @click="verPedido(pedido.id)"><i
                                         class="fa-solid fa-eye text-light"></i></button>
-                                <button class="btn btn-danger" @click="cancelarPedido(pedido.id)"><i
+                                <button class="btn btn-danger" @click="cancelarPedido(pedido)"><i
                                         class="fa-solid fa-trash"></i></button>
                             </td>
                         </tr>
@@ -49,6 +49,7 @@
 <script>
 import axios from 'axios'
 import Sidenav from '../conteudo/Sidenav.vue';
+import Swal from 'sweetalert2'
 
 export default {
     name: "Pedidos",
@@ -75,30 +76,29 @@ export default {
                 this.ultimo = res.data[0].pedidos.at(-1);
             });
         },
-        async cancelarPedido(id) {
-            if (confirm(`Você realmente deseja deletar o pedido Nº ${id} `)) {
-                // const req = await fetch(`http://127.0.0.1:8000/api/pedidos/${id}`, {
-                const req = await fetch(`https://www.projetoadocao.com/api/pedidos/${id}`, {
-                    method: "DELETE"
-                });
-
-                const res = await req.json();
-                // msg de pedido deletado
-                this.msg = `bebida Nº ${id} deletado com sucesso`;
-
-                setTimeout(() => {
-                    this.msg = "";
-                }, 3000);
-
-                this.$router.go(this.$router.currentRoute)
-            }
+        async cancelarPedido(pedido) {
+            Swal.fire({
+                html: `
+                    <h4>Você realmente deseja deletar o pedido de: </h4>
+                    <h2>${pedido.nome_cliente}</h2>
+                `,
+                icon: 'success',
+                cancelButtonColor: '#d33',
+                showCancelButton: true,
+                confirmButtonColor: '#4FA845',
+                confirmButtonText: 'Confirmar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    axios.delete(`https://www.projetoadocao.com/api/pedidos/${pedido.id}`)
+                    .then(() => 
+                        this.$router.go(this.$router.currentRoute)
+                    );
+                }
+            });
         },
         verPedido(id) {
             var token = this.$route.params.token;
             this.$router.push({ path: `/ver-pedido/${token}/${id}`, params: { id: id, token: token } });
-        },
-        showAlert() {
-            this.$swal('Hello Vue world!!!');
         },
     },
     mounted() {
