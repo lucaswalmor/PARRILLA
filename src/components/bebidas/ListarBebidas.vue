@@ -48,8 +48,8 @@
                         <td class="botao-acao-tabela">
                             <button class=" btn btn-primary" @click="editarBebida(bebida.id)"><i
                                     class="fa-solid fa-pen-to-square"></i></button>
-                            <button @click="deletarBebida(bebida.id)" class="btn btn-danger ms-3"><i
-                                    class="fa-solid fa-user-xmark"></i></button>
+                            <button @click="deletarBebida(bebida)" class="btn btn-danger ms-3"><i
+                                    class="fa-solid fa-trash"></i></button>
                         </td>
                     </tr>
                 </tbody>
@@ -72,6 +72,7 @@ $(document).ready(function () {
 import Message from '../message/Message.vue';
 import Sidenav from '../conteudo/Sidenav.vue';
 import { useToast } from "vue-toastification";
+import Swal from 'sweetalert2';
 const toast = useToast();
 
 export default {
@@ -95,22 +96,25 @@ export default {
             this.dadosBebidas = data;
         },
         // deletar usuario 
-        async deletarBebida(id) {
-            if (confirm(`Você realmente deseja deletar o pedido Nº ${id} `)) {
-                // const req = await fetch(`http://127.0.0.1:8000/api/bebidas/${id}`, {
-                const req = await fetch(`https://www.projetoadocao.com/api/bebidas/${id}`, {
-                    method: "DELETE"
-                });
-                const res = await req.json();
-
-                // msg de pedido deletado
-                this.msg = `bebida Nº ${id} deletado com sucesso`;
-                toast.success(`Bebida deletada com sucesso`);
-                setTimeout(() => {
-                    this.msg = "";
-                    location.reload();
-                }, 1500);
-            }
+        async deletarBebida(bebida) {
+            Swal.fire({
+                html: `
+                    <h4>Você realmente deseja deletar a bebida: </h4>
+                    <h2>${bebida.nome}</h2>
+                `,
+                icon: 'success',
+                cancelButtonColor: '#d33',
+                showCancelButton: true,
+                confirmButtonColor: '#4FA845',
+                confirmButtonText: 'Confirmar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    axios.delete(`https://www.projetoadocao.com/api/bebidas/${bebida.id}`)
+                    .then(() => 
+                        this.$router.go(this.$router.currentRoute)
+                    );
+                }
+            });
         },
         editarBebida(id) {
             var token = this.$route.params.token;

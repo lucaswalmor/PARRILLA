@@ -40,8 +40,8 @@
                         <td class="botao-acao-tabela">
                             <button class="btn btn-primary" @click="editarLanche(lanche.id)"><i
                                     class="fa-solid fa-pen-to-square"></i></button>
-                            <button @click="deletarLanche(lanche.id)" class="btn btn-danger"><i
-                                    class="fa-solid fa-user-xmark"></i></button>
+                            <button @click="deletarLanche(lanche)" class="btn btn-danger"><i
+                                    class="fa-solid fa-trash"></i></button>
                         </td>
                     </tr>
                 </tbody>
@@ -63,6 +63,7 @@ $(document).ready(function () {
 import Message from '../message/Message.vue';
 import Sidenav from '../conteudo/Sidenav.vue';
 import { useToast } from "vue-toastification";
+import Swal from 'sweetalert2';
 
 export default {
     name: "ListaLanches",
@@ -83,24 +84,25 @@ export default {
             this.dadosLanches = data;
         },
         // deletar usuario 
-        async deletarLanche(id) {
-            if (confirm(`Você realmente deseja deletar o pedido Nº ${id} `)) {
-                // const req = await fetch(`http://127.0.0.1:8000/api/lanches/${id}`, {
-                const req = await fetch(`https://www.projetoadocao.com/api/lanches/${id}`, {
-                    method: "DELETE"
-                });
-                const res = await req.json();
-
-                // msg de pedido deletado
-                this.msg = `Lanche Nº ${id} deletado com sucesso`;
-                const toast = useToast();
-                toast.success(`Lanche Nº ${id} deletado com sucesso`);
-
-                setTimeout(() => {
-                    this.msg = "";
-                    location.reload();
-                }, 1500);
-            }
+        async deletarLanche(lanche) {
+            Swal.fire({
+                html: `
+                    <h4>Você realmente deseja deletar o lanche: </h4>
+                    <h2>${lanche.nome}</h2>
+                `,
+                icon: 'success',
+                cancelButtonColor: '#d33',
+                showCancelButton: true,
+                confirmButtonColor: '#4FA845',
+                confirmButtonText: 'Confirmar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    axios.delete(`https://www.projetoadocao.com/api/lanches/${lanche.id}`)
+                    .then(() => 
+                        this.$router.go(this.$router.currentRoute)
+                    );
+                }
+            });
         },
 
         editarLanche(id) {
