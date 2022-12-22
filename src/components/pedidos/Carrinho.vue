@@ -214,7 +214,7 @@
                   </div>
                 </div>
 
-                <a @click="salvarPedidoDB(), enviarPedido(), salvarLog()" class="enviar_pedido m-3 fw-bold btn btn-success">
+                <a :href="href" @click="salvarPedidoDB(), enviarPedido(), salvarLog()" class="enviar_pedido m-3 fw-bold btn btn-success">
                   <i class="me-2 fa-lg fa-brands fa-whatsapp"></i> Finalizar Pedido
                 </a>
             </div>
