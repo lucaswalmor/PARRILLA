@@ -29,6 +29,11 @@ const routes = [
     name: 'RelatorioPedidos',
     component: () => import('../components/relatorios/RelatorioPedidos.vue')
   },
+  {
+    path: '/logs/:token',
+    name: 'Logs',
+    component: () => import('../components/relatorios/Logs.vue')
+  },
   // ROTAS DE CONTATOS
   {
     path: '/contatos/:token',

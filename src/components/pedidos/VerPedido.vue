@@ -120,7 +120,7 @@ export default {
                 this.bloco = res.data.pedido.bloco
                 this.valor_total = res.data.pedido.valor_total
                 this.troco = res.data.pedido.troco
-                this.forma_pagamento = res.data.pedido.forma_pagamento
+                this.pag = res.data.pedido.forma_pagamento
                 let data_pedido = res.data.pedido.created_at;
                 let dataAtual = new Date(data_pedido);
                 let dataPublicacao = new Date(dataAtual);

@@ -102,7 +102,7 @@ export default {
                     <h4>Você realmente deseja deletar a bebida: </h4>
                     <h2>${bebida.nome}</h2>
                 `,
-                icon: 'success',
+                icon: 'warning',
                 cancelButtonColor: '#d33',
                 showCancelButton: true,
                 confirmButtonColor: '#4FA845',

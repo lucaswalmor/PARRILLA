@@ -90,7 +90,7 @@ export default {
                     <h4>Você realmente deseja deletar o lanche: </h4>
                     <h2>${lanche.nome}</h2>
                 `,
-                icon: 'success',
+                icon: 'warning',
                 cancelButtonColor: '#d33',
                 showCancelButton: true,
                 confirmButtonColor: '#4FA845',

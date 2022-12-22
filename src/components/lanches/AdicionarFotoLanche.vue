@@ -30,17 +30,6 @@
       </button>
     </div>
   </div>
-  <div class="row">
-    
-    <div class="col-md-6 pt-3">
-      <input
-        type="submit"
-        class="form-control btn btn-secondary"
-        @click="voltar"
-        value="Voltar"
-      />
-    </div>
-  </div>
 </div>
 </template>
 

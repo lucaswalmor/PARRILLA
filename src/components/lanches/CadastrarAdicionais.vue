@@ -8,26 +8,26 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <label for="adicional" class="form-label">Adicional</label>
                 <input type="text" class="form-control" v-model="adicional">
+                <div class="text-muted">
+                    *Digite o nome do adicional
+                </div>
             </div>
-            <div class="text-muted">
-                *Digite o nome do adicional
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <label for="preco" class="form-label">Preço</label>
                 <input type="text" class="form-control" v-model="preco">
-            </div>
-            <div class="text-muted">
-                * Favor seguir o modelo de preço na hora do cadastro "00.00"
+                <div class="text-muted">
+                    * Favor seguir o modelo de preço na hora do cadastro "00.00"
+                </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-4">
                 <button class="btn btn-warning w-100 text-dark fw-bold mt-4" @click="createAdicionais">Adicionar</button>
+            </div>
+            <div class="col-md-4">
                 <button class="btn btn-secondary w-100 fw-bold mt-4" @click="voltar">Voltar</button>
             </div>
         </div>
@@ -44,17 +44,17 @@
                 </thead>
                 <tbody>
                     <tr v-for="item in adicionais" :key="item.id">
-                        <td>{{item.nome}}</td>
-                        <td>R$ {{item.preco}}</td>
-                        <td class="d-flex justify-content-center">
-                            <select name="" id="" class="form-select w-50" @change="statusAdicionais($event, item.id)" v-model="item.status">
-                                <option value="Ativo">Ativo</option>
-                                <option value="Inativo">Inativo</option>
+                        <td>{{item.nome_adicional}}</td>
+                        <td>{{item.preco_adicional.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'})}}</td>
+                        <td>
+                            <select name="" id="" class="form-select" @change="statusAdicionais($event, item.id)" v-model="item.status_adicional">
+                                <option value="1">Ativo</option>
+                                <option value="0">Inativo</option>
                             </select>
                         </td>
                         <td class="botao-acao-tabela">
                             <button class=" btn btn-primary" @click="editarAdicionais(item.id)"><i class="fa-solid fa-pen-to-square"></i></button>
-                            <button @click="deletarAdicionais(item.id)" class="btn btn-danger ms-3"><i class="fa-solid fa-user-xmark"></i></button>
+                            <button @click="deletarAdicionais(item)" class="btn btn-danger ms-3"><i class="fa-solid fa-trash"></i></button>
                         </td>
                     </tr>
                 </tbody>
@@ -66,6 +66,10 @@
 <script>
 import Sidenav from '../conteudo/Sidenav.vue';
 import { useToast } from "vue-toastification";
+import axios from "axios";
+import Swal from 'sweetalert2';
+
+const toast = useToast();
 
 export default {
     name: "CadastrarAdicionais",
@@ -78,84 +82,75 @@ export default {
         }
     },
     methods: {
-        async createAdicionais() {
+        createAdicionais() {
             let data = {
-                nome: this.adicional,
-                preco: this.preco
+                nome_adicional: this.adicional,
+                preco_adicional: this.preco
             }
-
+            
             if (data.nome === null || data.preco === null) {
                 alert("Porfavor preencha todos os campos");
             }
             else {
-                // transforma o array de dados do pedido em texto 
-                const dataJson = JSON.stringify(data);
-                const req = await fetch("http://127.0.0.1:8000/api/adicionais", {
-                // const req = await fetch("https://www.projetoadocao.com/api/adicionais", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: dataJson
-                });
-                
-                    this.msg = "Adicional cadastrado com sucesso!";
+                axios.post('https://www.projetoadocao.com/api/adicionais', data)
+                .then(res => {
                     this.adicional = "";
-                    const toast = useToast();
                     toast.success(`Adicional cadastrado com sucesso!`);
-                    var token = this.$route.params.token;
-                    this.$router.push({ path: `/cadastrar-lanche/${token}`, params: {token: token } });
-                    setTimeout(() => {
-                        this.msg = "";
-                    }, 2000);
+                    location.reload();
+                });
             }
         },
         async statusAdicionais(option, id) {
             let data = {
-                status: option.target.value
+                status_adicional: option.target.value
             };
 
-            const dataJson = JSON.stringify(data);
-            const req = await fetch(`http://127.0.0.1:8000/api/adicionais/${id}`, {
-            // const req = await fetch(`https://www.projetoadocao.com/api/adicionais/${id}`, {
-                method: "PUT",
-                headers: { "Content-Type": "application/json" },
-                body: dataJson
+            axios.put(`https://www.projetoadocao.com/api/adicionais/${id}`, data)
+            .then(res => {
+                toast.success("Status alterado com sucesso!",);
             });
-
-            if(req.status === 200) {
-                const toast = useToast();
-                toast.success(`Status atualizado com sucesso!`);
-            }
         },
+
         // deletar usuario 
-        async deletarAdicionais(id) {
-            if (confirm(`Você realmente deseja deletar o pedido Nº ${id} `)) {
-                const req = await fetch(`http://127.0.0.1:8000/api/adicionais/${id}`, {
-                // const req = await fetch(`https://www.projetoadocao.com/api/adicionais/${id}`, {
-                    method: "DELETE"
-                });
-                const res = await req.json();
-
-                // msg de pedido deletado
-                this.msg = `Adicional Nº ${id} deletado com sucesso`;
-                const toast = useToast();
-                toast.success(`Adicional deletada com sucesso`);
-                setTimeout(() => {
-                    this.msg = "";
-                    location.reload();
-                }, 1500);
-            }
+        deletarAdicionais(adicional) {
+            console.log(adicional)
+            Swal.fire({
+                html: `
+                    <h4>Você realmente deseja deletar o adicional: </h4>
+                    <h2>${adicional.nome_adicional}</h2>
+                `,
+                icon: 'warning',
+                cancelButtonColor: '#d33',
+                showCancelButton: true,
+                confirmButtonColor: '#4FA845',
+                confirmButtonText: 'Confirmar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    axios.delete(`https://www.projetoadocao.com/api/adicionais/${adicional.id}`)
+                    .then(() => 
+                        this.$router.go(this.$router.currentRoute)
+                    );
+                }
+            });
         },
+
         editarAdicionais(id) {
             var token = this.$route.params.token;
             this.$router.push({ path: `/editar-adicionais/${token}/${id}`, params: {id: id, token: token}} );
         },
+
         cadastrarAdicionais() {
             var token = this.$route.params.token;
             this.$router.push({ path: `/cadastrar-adicionais/${token}`, params: {token: token } });
         },
+        voltar() {
+            var token = this.$route.params.token;
+            this.$router.push({ path: `/cadastrar-lanche/${token}`, params: {token: token } });
+            
+        }
     },
     mounted() {
-        this.axios("http://127.0.0.1:8000/api/adicionais")
+        axios.get('https://www.projetoadocao.com/api/adicionais')
         .then(res => {
             this.adicionais = res.data
         });

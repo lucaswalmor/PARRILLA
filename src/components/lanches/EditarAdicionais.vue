@@ -1,18 +1,18 @@
 <template>
     <Sidenav />
     <div class="container">
-        <div class="row p-5">
+        <div class="row p-5 text-secondary">
             <h2>Editar Adicionais</h2>
             <hr>
         </div>
         <form class="row g-3" autocomplete="off" @submit.prevent>
             <div class="col-md-6">
                 <label for="nome" class="form-label">Adicional:</label>
-                <input type="text" class="form-control" id="nome" v-model="dadosAdicionais.nome">
+                <input type="text" class="form-control" id="nome" v-model="dadosAdicionais.nome_adicional">
             </div>
             <div class="col-md-6">
                 <label for="preco" class="form-label">Preco:</label>
-                <input type="text" class="form-control" placeholder="00.00" id="preco" v-model="dadosAdicionais.preco">
+                <input type="text" class="form-control" placeholder="00.00" id="preco" v-model="dadosAdicionais.preco_adicional">
             </div>
             <div class="col-md-6">
                 <input type="submit" value="Atualizar" class="form-control btn btn-success" @click="updateBebida">
@@ -28,6 +28,8 @@
 <script>
 import Sidenav from '../conteudo/Sidenav.vue';
 import { useToast } from "vue-toastification";
+import axios from 'axios';
+const toast = useToast();
 
 export default {
     name: 'EditarAdicionais',
@@ -42,34 +44,21 @@ export default {
     },
     methods: {
         async updateBebida() {
-            var id = this.$route.params.id;
+            
+            const id = this.$route.params.id;
 
-            const data = {
-                nome: this.dadosAdicionais.nome,
-                preco: this.dadosAdicionais.preco,
+            let data = {
+                nome_adicional: this.dadosAdicionais.nome_adicional,
+                preco_adicional: this.dadosAdicionais.preco_adicional,
             };
 
-            if(data.nome === null || data.preco === null) {
+            if(data.nome_adicional === null || data.preco_adicional === null) {
                 alert('Porfavor preencha os campos')
             } else {
-                const dataJson = JSON.stringify(data);
-                const req = await fetch(`http://127.0.0.1:8000/api/adicionais/${id}`, {
-                // const req = await fetch(`https://www.projetoadocao.com/api/adicionais/${id}`, {
-                    method: "PUT",
-                    headers: { "Content-Type": "application/json" },
-                    body: dataJson
+                axios.put(`https://www.projetoadocao.com/api/adicionais/${id}`, data)
+                .then(res => {
+                    toast.success(`Adicional editado com sucesso`);
                 });
-
-                if (req.status === 200) {
-                    this.msg = "Adicional editada com sucesso";
-                    this.nome = "";
-                    this.preco = "";
-                    const toast = useToast();
-                    toast.success(`Adicional editada com sucesso`);
-                    setTimeout(() => {
-                        this.msg = ''
-                    }, 2000);
-                }
             }
 
         },
@@ -79,9 +68,12 @@ export default {
         }
     },
     mounted() {
-        this.axios("http://127.0.0.1:8000/api/adicionais")
+
+        const id = this.$route.params.id;
+
+        this.axios(`https://www.projetoadocao.com/api/adicionais/${id}`)
         .then(res => {
-            this.dadosAdicionais = res.data[0]
+            this.dadosAdicionais = res.data
         });
     }
 }

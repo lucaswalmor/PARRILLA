@@ -88,6 +88,9 @@
                             <li class="ms-4">
                                 <span class="nav-link px-0" @click="pedidos_feitos"> Pedidos</span>
                             </li>
+                            <li class="ms-4">
+                                <span class="nav-link px-0" @click="logs"> Logs</span>
+                            </li>
                         </ul>
                     </li>
                     <li>
@@ -283,6 +286,12 @@ export default {
         planoUsuario() {
             var token = this.$route.params.token;
             this.$router.push({ path: `/plano-usuario/${token}`, params: {token: token}} );  
+        },
+
+        // PLANO USUARIO 
+        logs() {
+            var token = this.$route.params.token;
+            this.$router.push({ path: `/logs/${token}`, params: {token: token}} );  
         },
 
         // OUTROS

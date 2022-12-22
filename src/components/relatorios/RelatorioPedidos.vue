@@ -82,7 +82,7 @@ export default {
                     <h4>Você realmente deseja deletar o pedido de: </h4>
                     <h2>${pedido.nome_cliente}</h2>
                 `,
-                icon: 'success',
+                icon: 'warning',
                 cancelButtonColor: '#d33',
                 showCancelButton: true,
                 confirmButtonColor: '#4FA845',

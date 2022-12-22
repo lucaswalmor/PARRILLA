@@ -20,7 +20,7 @@
             <div class="card-footer">
               <div class="row text-center">
                   <button class="btn btn-warning text-dark fw-bold w-100" @click="adicionarLanche(lanche)">
-                    <i class="fa-solid fa-circle-plus"></i> Adicionar ao carrinho
+                    <i class="fa-solid fa-circle-plus"></i> Adicionar ao carrinho0
                   </button>
               </div>
             </div>
@@ -71,6 +71,7 @@
   import HeaderPedido from '../conteudo/HeaderPedido.vue';
   import Footer from '../conteudo/Footer.vue';
   import { useToast } from "vue-toastification";
+  import axios from 'axios';
 
   export default {
       name: "DadosLanche",
@@ -81,7 +82,9 @@
             pedido: [],
             msg: '',
             observacoes: '',
-            quatidadeLancheCarrinho: false
+            quatidadeLancheCarrinho: false,
+            adicionais: [],
+            checkedNames: []
         };
       },
       methods: {
@@ -94,7 +97,6 @@
             const data = await req.json();
 
             this.dadosLanches = data;
-            
             // traz o array de dados do localstorage e adicionar ao array de dadospedido
             var arr = JSON.parse(localStorage.getItem('pedido'))
             if(arr.hasOwnProperty("observacoes")){

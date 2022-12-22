@@ -112,13 +112,13 @@ export default {
     formaPagamento(event) {
       const option = event.target.value;
       if(option === 'Cartão de crédito') {
-        this.forma_pagamento = option
+        this.pag = option
       } else if(option === 'Cartão de débito') {
-        this.forma_pagamento = option
+        this.pag = option
       } else if(option === 'Pix') {
-        this.forma_pagamento = option
+        this.pag = option
       } else if(option === 'Dinheiro') {
-        this.forma_pagamento = option
+        this.pag = option
       }
     },
     confirmarPedido() {
@@ -126,17 +126,17 @@ export default {
       this.dadosPedido = arr;
       const toast = useToast();
 
-      if(this.forma_pagamento == '') {
+      if(this.pag == '') {
         toast.error('Porfavor selecione uma forma de pagamento!');
       } else {
         if(this.troco != '' && this.troco < this.dadosPedido.valor_total) {
           toast.error('O valor do troco esta abaixo do valor do pedido!');
         } else if(this.troco != '' &&  this.troco > this.dadosPedido.valor_total) {
           this.dadosPedido.troco = this.troco
-          this.dadosPedido.forma_pagamento = this.forma_pagamento
+          this.dadosPedido.forma_pagamento = this.pag
         } else {
           this.dadosPedido.troco = ''
-          this.dadosPedido.forma_pagamento = this.forma_pagamento
+          this.dadosPedido.forma_pagamento = this.pag
         }
         localStorage.setItem('pedido', JSON.stringify(this.dadosPedido))
         this.$router.push('/confirmar-pedido')

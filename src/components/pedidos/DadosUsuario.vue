@@ -327,7 +327,7 @@
     <div class="col-12 mt-4 d-flex justify-content-center" id="proximo">
       <button
         type="submit"
-        @click="salvarDadosUsuario"
+        @click="salvarDadosUsuario()"
         class="btn btn-warning text-dark fw-bold"
       >
         Próxima Etapa
@@ -342,6 +342,8 @@
 <script>
 import HeaderPedido from '../conteudo/HeaderPedido.vue';
 import Footer from '../conteudo/Footer.vue';
+import axios from 'axios';
+
 export default {
     name: "DadosUsuario",
     components: { HeaderPedido, Footer },
@@ -369,6 +371,20 @@ export default {
         };
     },
     methods: {
+        salvarLog() {
+          let data = {
+            nome_cliente: this.dadosPedido.nome,
+            telefone: this.dadosPedido.telefone,
+            enviou_pedido: 'Não'
+          }
+
+          this.axios({
+            // url: 'http://127.0.0.1:8000/api/pedidos',
+            url: "https://www.projetoadocao.com/api/logs", 
+            data: data,
+            method: 'POST'
+          });
+        },
         salvarDadosUsuario() {
             this.errors = [];
             let telefone = this.dadosPedido.telefone;
@@ -412,6 +428,7 @@ export default {
                 const dataJson = JSON.stringify(data);
                 localStorage.setItem('pedido', dataJson)
                 localStorage.setItem('tipo_pedido', this.tipoPedido)
+                this.salvarLog();
                 this.$router.push('/dadosLanche');
               }
             }
@@ -444,6 +461,7 @@ export default {
 
                 localStorage.setItem('pedido', dataJson)
                 localStorage.setItem('tipo_pedido', this.tipoPedido)
+                this.salvarLog();
                 this.$router.push('/dadosLanche');
               }
             }
