@@ -100,8 +100,7 @@ export default {
             });
             this.axios(`https://www.projetoadocao.com/api/atualiza_forma_pagamento`)
             .then(res => {
-                this.pag = res.data
-                // this.mensagem_pedido = res.data.mensagem_pedido
+                this.forma_pagamento = res.data
             });
         },
         alterarInformacoes() {
