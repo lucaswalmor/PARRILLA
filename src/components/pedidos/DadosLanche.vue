@@ -20,7 +20,7 @@
             <div class="card-footer">
               <div class="row text-center">
                   <button class="btn btn-warning text-dark fw-bold w-100" @click="adicionarLanche(lanche)">
-                    <i class="fa-solid fa-circle-plus"></i> Adicionar ao carrinho0
+                    <i class="fa-solid fa-circle-plus"></i> Adicionar ao carrinho
                   </button>
               </div>
             </div>

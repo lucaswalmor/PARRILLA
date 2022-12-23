@@ -214,7 +214,7 @@
                   </div>
                 </div>
 
-                <a :href="href" @click="salvarPedidoDB(), enviarPedido(), salvarLog()" class="enviar_pedido m-3 fw-bold btn btn-success">
+                <a :href="href" v-if="pag" @click="enviarPedido()" class="enviar_pedido m-3 fw-bold btn btn-success">
                   <i class="me-2 fa-lg fa-brands fa-whatsapp"></i> Finalizar Pedido
                 </a>
             </div>
@@ -229,7 +229,7 @@
 <script>
 import HeaderPedido from "../conteudo/HeaderPedido.vue";
 import Footer from "../conteudo/Footer.vue";
-import { useToast } from "vue-toastification";
+import Swal from 'sweetalert2';
 
 export default {
   name: "Carrinho",
@@ -248,6 +248,7 @@ export default {
       mensagem_pedido: "",
       arrFormaPagamento: [],
       pag: "",
+      telefone_restaurante: ''
     };
   },
   methods: {
@@ -283,8 +284,7 @@ export default {
         }
 
         this.valorPedido = somaLanche + somaBebida;
-        this.valorTotalPedido =
-          somaLanche + parseFloat(pedido.taxa_entrega) + somaBebida;
+        this.valorTotalPedido = somaLanche + parseFloat(pedido.taxa_entrega) + somaBebida;
 
         this.dadosPedido.valor_total = this.valorTotalPedido;
 
@@ -305,8 +305,9 @@ export default {
         this.valorPedido = somaLanche + somaBebida;
         this.valorTotalPedido = somaLanche + somaBebida;
 
-        this.dadosPedido.valor_total = this.valorTotalPedido;
+        this.dadosPedido.valor_total = this.valorTotalPedido.toLocaleString("pt-br", { style: "currency", currency: "BRL"});
       }
+      
     },
     removerLanche(index) {
       const arrLanche = this.dadosPedido.lanche;
@@ -407,7 +408,7 @@ export default {
         bebida: this.dadosPedido.bebida,
         lanche: this.dadosPedido.lanche,
         observacoes: this.dadosPedido.observacoes,
-        valor_total: this.dadosPedido.valor_total,
+        valor_total: this.valorTotalpedido,
         troco: this.dadosPedido.troco,
         forma_pagamento: this.pag,
       };
@@ -426,6 +427,7 @@ export default {
       ).then((res) => {
         this.prazo_entrega = res.data.tempo_entrega;
         this.mensagem_pedido = res.data.mensagem_pedido;
+        this.telefone_restaurante = res.data.telefone_restaurante
       });
 
       this.axios(
@@ -482,10 +484,7 @@ export default {
           { style: "currency", currency: "BRL" }
         )}
         %0A
-        %0A*Total:* ${this.dadosPedido.valor_total.toLocaleString("pt-br", {
-          style: "currency",
-          currency: "BRL",
-        })}
+        %0A*Total:* ${this.valorTotalPedido.toLocaleString("pt-br", { style: "currency", currency: "BRL"})}
         %0A
         ${
           this.dadosPedido.troco
@@ -528,11 +527,23 @@ export default {
         %0A*--------------*
       `;
 
-      this.href =
+      if (this.pag === "") {
+        Swal.fire({
+            title: 'Porfavor selecione um método de pagamento.',
+            icon: 'warning',
+            confirmButtonColor: '#dd4145',
+            confirmButtonText: 'Confirmar'
+        });
+      } else {
+        this.salvarPedidoDB();
+        this.salvarLog();
+
+        this.href =
         "https://api.whatsapp.com/send?phone=55" +
-        34996390605 +
+        this.telefone_restaurante +
         "&text=" +
         this.pedido_wpp;
+      }
     },
   },
   created() {

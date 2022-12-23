@@ -17,7 +17,7 @@
             <li v-if="ponto_referencia != null">Ponto de referência: {{ponto_referencia}}</li>
             <li v-if="apartamento != null">Apartamento: {{apartamento}}</li>
             <li v-if="bloco != null">Bloco: {{bloco}}</li>
-            <li>Data: {{getCreated}}</li>
+            <li>Data: {{ getCreated }}</li>
         </ul>
     </div>
   </div>

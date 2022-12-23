@@ -3,28 +3,49 @@
     <div class="container">
         <div class="row">
             <div class="titulo col-md-12 p-5">
-                <h1 class="text-secondary">Logs Clientes</h1>
-                <hr>
-            </div>
-        </div>
-        <div class="container">
-            <div class="card m-3 col-md-6" v-for="item in logs" :key="item.id">
-                <div class="card-body">
-                    <ul>
-                        <li>Nome: {{ item.nome_cliente }}</li>
-                        <li>Telefone: {{ item.telefone }}</li>
-                        <li>Data: {{ item.created_at.substring(0, 10).split('-').reverse().join('/') }}</li>
-                        <li>Enviou: {{ (item.enviou_pedido != '') ? item.enviou_pedido : 'Não'}}</li>
-                    </ul>
+                <div class="col-md-12">
+                    <h1 class="text-secondary">Logs Clientes</h1>
+                    <hr>
+                </div>
+                <div class="col-md-5 pt-2">
+                    <input type="text" name="filtro_logs" id="filtro_logs" class="form-control"
+                        placeholder="Pesquisar...">
                 </div>
             </div>
+        </div>
+        <div class="tbodyDiv">
+            <table class="table text-center table-striped align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Cliente</th>
+                        <th>Telefone</th>
+                        <th>Data</th>
+                        <th>Enviou</th>
+                    </tr>
+                </thead>
+                <tbody id="tabela_taxa">
+                    <tr v-for="item in logs" :key="item">
+                        <td>{{ item.nome_cliente }}</td>
+                        <td>{{ item.telefone }}</td>
+                        <td>{{ item.created_at.substring(0, 10).split('-').reverse().join('/') }}</td>
+                        <td>{{ (item.enviou_pedido != null) ? item.enviou_pedido : 'Não'}}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </template>
 
 <script>
 import Sidenav from '../conteudo/Sidenav.vue';
-
+$(document).ready(function () {
+    $("#filtro_logs").on("keyup", function () {
+        var value = $(this).val().toLowerCase();
+        $("#tabela_taxa tr").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    });
+});
 export default {
     name: 'Logs',
     components: { Sidenav },

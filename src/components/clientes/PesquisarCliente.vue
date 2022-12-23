@@ -56,7 +56,7 @@
                             <li v-if="item.ponto_referencia != null"><span>Ponto de referência: </span> {{item.ponto_referencia}}</li>
                             <li v-if="item.apartamento != null"><span>Apartamento: </span> {{item.apartamento}}</li>
                             <li v-if="item.bloco != null"><span>Bloco: </span> {{item.bloco}}</li>
-                            <li><span>Data: </span> {{item.created_at}}</li>
+                            <li><span>Data: </span> {{item.created_at.substring(0, 10).split('-').reverse().join('/')}}</li>
                         </ul>
                     </div>
                 </div>
