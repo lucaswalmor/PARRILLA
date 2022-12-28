@@ -40,13 +40,15 @@ export default {
 
             const data = {
                 labels: labels,
-                datasets: [{
-                    label: 'Total R$ ',
-                    backgroundColor: 'rgb(255, 99, 132)',
-                    borderColor: 'rgb(255, 99, 132)',
-                    borderRadius: '20',
-                    data: dadosBackend[0],
-                }]
+                datasets: [
+                    {
+                        label: 'Total R$ ',
+                        backgroundColor: '#f9a52f',
+                        borderColor: '#f9a52f',
+                        borderRadius: '20',
+                        data: dadosBackend[0],
+                    },
+                ]
             };
 
             const config = {
